@@ -1,0 +1,175 @@
+.nav {
+	margin: 0;
+	align-items: center;
+	justify-content: start;
+	height: 4rem;
+	gap: 2rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}
+
+.nav-item > a {
+	color: var(--secondary);
+}
+
+.nav-logo {
+	flex-grow: 0;
+	display: flex;
+	align-items: center;
+}
+
+.nav-item:hover {
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+.drawer {
+	transform: translate(-100%);
+	position: fixed;
+	bottom: 0;
+	top: 4rem;
+	background-color: var(--primary);
+	left: 0;
+	width: 19rem;
+	transition: transform 2s;
+}
+
+.drawer[data-visible="true"] {
+	transform: translate(0%);
+	box-shadow: none;
+	transition: transform 2s;
+}
+
+.hamburger-menu > button {
+	background-color: transparent;
+	border: none;
+	color: var(--secondary);
+}
+
+.section1 {
+	display: flex;
+	flex-grow: 1;
+}
+
+.btn-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-login-icon,
+.wishlist-icon,
+.cart-icon {
+	font-size: 2rem;
+	color: var(--secondary);
+}
+
+.user-login-icon {
+	font-size: 2.5rem;
+}
+
+.user-login-btn {
+	display: none;
+}
+
+.btn.bg-secondary {
+	box-sizing: border-box;
+}
+
+.btn.bg-secondary:hover {
+	background-color: transparent;
+	border: 2px solid var(--secondary);
+	text-decoration: underline;
+	color: var(--secondary);
+	transition: 0.5s;
+}
+
+.input-search {
+	width: 100px;
+	margin-bottom: 0;
+	padding: 0.5rem 1rem;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid var(--secondary);
+	color: var(--secondary);
+}
+
+.input-search::placeholder {
+	color: var(--secondary);
+	font-size: 1rem;
+}
+
+.btn.bg-primary:hover {
+	background-color: var(--primary);
+	border: 2px solid var(--primary);
+	box-shadow: rgba(149, 157, 165, 0.555) 0px 8px 24px;
+}
+
+.btn-transform:hover {
+	transform: scale(1.02);
+	transition: transform 0.2s;
+}
+
+.btn.btn.bg-primary {
+	border: 2px solid var(--primary);
+}
+
+@media only screen and (max-width: 400px) {
+	.input-search {
+		width: 40px;
+		margin-bottom: 0;
+		padding: 0.5rem 1rem;
+		background-color: transparent;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid var(--secondary);
+		color: var(--secondary);
+	}
+	.nav {
+		gap: 1rem;
+	}
+}
+
+@media only screen and (min-width: 650px) {
+	.user-login-btn {
+		display: inline-block;
+	}
+	.user-login-icon {
+		display: none;
+	}
+	.input-text-nav:focus {
+		width: 200px;
+		transition: width 1s;
+	}
+	.btn-addtocart-text {
+		display: inline;
+	}
+	.btn-addtocart-icon {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 1000px) {
+	html {
+		font-size: 100%; /* font size is 16px */
+	}
+	.landingpage {
+		margin-top: 0;
+	}
+	.hamburger-menu {
+		display: none;
+	}
+	.drawer {
+		flex-direction: row;
+		transform: translate(0%);
+		position: static;
+		width: auto;
+	}
+	.btn-addtocart-icon {
+		display: inline;
+	}
+}
