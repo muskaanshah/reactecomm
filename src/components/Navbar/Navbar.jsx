@@ -13,7 +13,7 @@ function Navbar() {
 					</div>
 					<li className="nav-logo">
 					<Link to="/">
-							<img className="nav-logo-img" src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png" />
+							<img className="nav-logo-img" alt="logo" src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png" />
 					</Link>
 					</li>
 					<div className="drawer" data-visible="false">
