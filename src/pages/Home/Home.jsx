@@ -1,0 +1,40 @@
+import { GameCard } from "./components/Gamecard";
+import "./home.css";
+import { CATEGORIES } from "../../constants/categories";
+
+function Home() {
+	return (
+		<div>
+			<div className="landingpage">
+				<picture>
+					<source
+						media="(min-width: 1000px)"
+						srcset="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541607/e-commerce/landingpagedesktop_hta9tn.jpg"
+					/>
+					<img
+						src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541607/e-commerce/landingpage_gobzt1.jpg"
+						className="img-responsive"
+						alt="landingpage"
+					/>
+				</picture>
+			</div>
+			<h1>Categories</h1>
+			<div className="categories mx-auto">
+				{CATEGORIES.map(category => (
+					<GameCard category={category} />
+				))}
+			</div>
+			<div className="homepagequote mx-auto">
+				<p className="homequote mb-0 fs-1-25 fw-400">
+					<i>
+						"By playing games you can artificially speed up your learning curve
+						to develop the right kind of thought process"
+					</i>
+				</p>
+				<p className="homequoteauthor fs-1-25 fw-500 mt-0">-Nate Silver</p>
+			</div>
+		</div>
+	);
+}
+
+export { Home };

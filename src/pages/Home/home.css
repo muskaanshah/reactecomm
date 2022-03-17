@@ -1,0 +1,71 @@
+.img-responsive {
+	height: auto;
+	width: 100%;
+}
+
+.landingpage {
+	margin-top: 4rem;
+}
+
+.landingpage + h1 {
+	font-size: 4rem;
+	text-align: center;
+}
+
+.categories {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 20rem);
+	grid-column-gap: 2rem;
+	grid-row-gap: 2rem;
+	padding: 2rem;
+	justify-content: center;
+}
+
+.game-card {
+	width: 18rem;
+	position: relative;
+}
+
+.game-card-overlay {
+	position: absolute;
+	height: 5rem;
+	bottom: 2rem;
+	left: 0;
+	right: 0;
+	background-color: rgba(14, 14, 14, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 1;
+}
+
+.game-card:hover,
+.card-product:hover {
+	box-shadow: rgba(71, 71, 71, 0.4) 0px 8px 24px;
+	cursor: pointer;
+	transform: scale(1.01);
+	transition: transform 0.5s;
+}
+
+.game-card:hover .game-card-overlay {
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.homepagequote {
+	width: 70%;
+}
+
+.homequote {
+	text-align: center;
+}
+
+.homequoteauthor {
+	text-align: right;
+}
+
+@media only screen and (min-width: 1000px) {
+	.game-card-overlay {
+		opacity: 0;
+	}
+}
