@@ -1,4 +1,4 @@
-import "./navbar.css"
+import "./navbar.css";
 import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -12,16 +12,19 @@ function Navbar() {
 						</button>
 					</div>
 					<li className="nav-logo">
-					<Link to="/">
-							<img className="nav-logo-img" alt="logo" src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png" />
-					</Link>
+						<Link to="/">
+							<img
+								className="nav-logo-img"
+								src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png"
+							/>
+						</Link>
 					</li>
 					<div className="drawer" data-visible="false">
 						<li className="nav-item">
-						<Link to="/">Home</Link>
+							<Link to="/">Home</Link>
 						</li>
 						<li className="nav-item">
-							<a href="/pages/products.html">Games</a>
+							<Link to="/products">Products</Link>
 						</li>
 						<li className="nav-item">
 							<a href="#">About us</a>
@@ -40,7 +43,10 @@ function Navbar() {
 				</li>
 				<li className="btn-login">
 					<a href="/pages/login.html">
-						<span className="material-icons user-login-icon"> account_circle </span>
+						<span className="material-icons user-login-icon">
+							{" "}
+							account_circle{" "}
+						</span>
 					</a>
 					<a
 						className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
@@ -50,11 +56,11 @@ function Navbar() {
 					</a>
 				</li>
 				<li>
-					<a href="/pages/wishlist.html">
+					<Link to="/wishlist">
 						<span className="material-icons-outlined wishlist-icon">
 							favorite_border
 						</span>
-					</a>
+					</Link>
 				</li>
 				<li>
 					<span className="badge-container">
@@ -71,4 +77,4 @@ function Navbar() {
 	);
 }
 
-export {Navbar}
+export { Navbar };
