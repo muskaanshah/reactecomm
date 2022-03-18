@@ -1,0 +1,77 @@
+.card-horizontal {
+	width: min(100%, 50rem);
+	box-sizing: border-box;
+	grid-template-columns: minmax(90px, 2fr) 6fr;
+}
+
+.card-cart-product {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.divider-black {
+	width: 100%;
+}
+
+.price-attribute {
+	display: flex;
+	align-items: baseline;
+}
+
+.price-attribute > p {
+	margin-bottom: 0.4rem;
+	margin-top: 0.4rem;
+}
+
+.price-attribute > :first-child {
+	flex-grow: 1;
+}
+
+.fs-0-6 {
+	font-size: 0.6rem;
+}
+
+.btn-place-order {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.cart-objectfit-cover {
+	height: 100%;
+	object-fit: cover;
+}
+
+.card-horizontal {
+	background-color: white;
+}
+
+.cartproduct {
+	display: grid;
+	align-items: start;
+	gap: 3rem;
+}
+
+.cartsummary-header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+.cartsummary-header > p:hover {
+	cursor: pointer;
+}
+
+.flex-end {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+@media only screen and (min-width: 650px) {
+	.cartproduct {
+		grid-template-columns: 3fr 2fr;
+	}
+}
