@@ -48,12 +48,13 @@ function Navbar() {
 							account_circle{" "}
 						</span>
 					</a>
-					<a
+					<Link
+						to="/login"
 						className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
 						href="/pages/login.html"
 					>
 						Login
-					</a>
+					</Link>
 				</li>
 				<li>
 					<Link to="/wishlist">
@@ -64,11 +65,11 @@ function Navbar() {
 				</li>
 				<li>
 					<span className="badge-container">
-						<a href="/pages/cart.html">
+						<Link to="/cart">
 							<span className="material-icons-outlined cart-icon">
 								shopping_cart
 							</span>
-						</a>
+						</Link>
 						<div className="badge badge-number bg-danger color-white">17</div>
 					</span>
 				</li>

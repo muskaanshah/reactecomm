@@ -19,7 +19,11 @@ body {
 
 .btn.bg-primary:hover {
 	background-color: var(--primary);
-	border: 2px solid var(--primary);
+	box-shadow: rgba(149, 157, 165, 0.555) 0px 8px 24px;
+}
+
+.btn.bg-secondary:hover {
+	background-color: var(--secondary);
 	box-shadow: rgba(149, 157, 165, 0.555) 0px 8px 24px;
 }
 

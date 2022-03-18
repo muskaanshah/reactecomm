@@ -23,7 +23,7 @@ function FilterSection() {
 				</div>
 				<h3>Category</h3>
 				<div className="checkbox-group category-filter">
-					<label for="checkbox-strategicgames">
+					<label htmlFor="checkbox-strategicgames">
 						<input
 							id="checkbox-strategicgames"
 							type="checkbox"
@@ -33,7 +33,7 @@ function FilterSection() {
 						/>
 						Strategic games
 					</label>
-					<label for="checkbox-fungames">
+					<label htmlFor="checkbox-fungames">
 						<input
 							id="checkbox-fungames"
 							type="checkbox"
@@ -42,7 +42,7 @@ function FilterSection() {
 						/>
 						Fun games
 					</label>
-					<label for="checkbox-multiplayergames">
+					<label htmlFor="checkbox-multiplayergames">
 						<input
 							id="checkbox-multiplayergames"
 							type="checkbox"
@@ -51,7 +51,7 @@ function FilterSection() {
 						/>
 						Multiplayer games
 					</label>
-					<label for="checkbox-twoplayergames">
+					<label htmlFor="checkbox-twoplayergames">
 						<input
 							id="checkbox-twoplayergames"
 							type="checkbox"
@@ -60,7 +60,7 @@ function FilterSection() {
 						/>
 						Two player games
 					</label>
-					<label for="checkbox-cardgames">
+					<label htmlFor="checkbox-cardgames">
 						<input
 							id="checkbox-cardgames"
 							type="checkbox"
@@ -69,7 +69,7 @@ function FilterSection() {
 						/>
 						Card games
 					</label>
-					<label for="checkbox-childrengames">
+					<label htmlFor="checkbox-childrengames">
 						<input
 							id="checkbox-childrengames"
 							type="checkbox"
@@ -81,7 +81,7 @@ function FilterSection() {
 				</div>
 				<h3>Rating</h3>
 				<div className="radio-group rating-filter">
-					<label for="4stars">
+					<label htmlFor="4stars">
 						<input
 							id="4stars"
 							type="radio"
@@ -90,7 +90,7 @@ function FilterSection() {
 						/>
 						4 stars and above
 					</label>
-					<label for="3stars">
+					<label htmlFor="3stars">
 						<input
 							id="3stars"
 							type="radio"
@@ -99,7 +99,7 @@ function FilterSection() {
 						/>
 						3 stars and above
 					</label>
-					<label for="2stars">
+					<label htmlFor="2stars">
 						<input
 							id="2stars"
 							type="radio"
@@ -108,14 +108,14 @@ function FilterSection() {
 						/>
 						2 stars and above
 					</label>
-					<label for="1star">
+					<label htmlFor="1star">
 						<input id="1star" type="radio" name="radio-rating" value="1 star" />
 						1 star and above
 					</label>
 				</div>
 				<h3>Sort By</h3>
 				<div className="radio-group sortby-filter">
-					<label for="htol">
+					<label htmlFor="htol">
 						<input
 							id="htol"
 							type="radio"
@@ -124,7 +124,7 @@ function FilterSection() {
 						/>
 						Price - High to Low
 					</label>
-					<label for="ltoh">
+					<label htmlFor="ltoh">
 						<input
 							id="ltoh"
 							type="radio"

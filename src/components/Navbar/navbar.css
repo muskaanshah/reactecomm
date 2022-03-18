@@ -73,13 +73,10 @@
 
 .user-login-btn {
 	display: none;
-}
-
-.btn.bg-secondary {
 	box-sizing: border-box;
 }
 
-.btn.bg-secondary:hover {
+.user-login-btn:hover {
 	background-color: transparent;
 	border: 2px solid var(--secondary);
 	text-decoration: underline;

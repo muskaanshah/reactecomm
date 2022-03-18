@@ -1,0 +1,35 @@
+.input-box {
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+}
+
+.input-text.input-authentication {
+	width: 100%;
+	font-weight: 400;
+	color: var(--black);
+}
+
+.card-login {
+	width: 20rem;
+}
+
+.login-space-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.login-space-between + button {
+	display: block;
+	width: 100%;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
