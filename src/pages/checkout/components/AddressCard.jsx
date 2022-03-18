@@ -1,6 +1,6 @@
 function AddressCard() {
 	return (
-		<label for="radio-address" class="address-selector p-0-5 centered">
+		<label for="radio-address" className="address-selector p-0-5 centered">
 			<input
 				id="radio-address"
 				type="radio"
@@ -8,7 +8,7 @@ function AddressCard() {
 				value="add1"
 				checked
 			/>
-			<p class="m-0">
+			<p className="m-0">
 				<b>Muskaan - Home:</b> 41, Gandhi Nagar Road, Flat-3, Sindur Sunshine,
 				Kilpauk, Chennai - 600 010
 			</p>

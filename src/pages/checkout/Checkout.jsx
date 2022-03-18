@@ -4,18 +4,18 @@ import { PriceCard } from "./components/PriceCard";
 
 function Checkout() {
 	return (
-		<div class="container-body py-1 px-2">
-			<div class="ordersummary-flex">
+		<div className="container-body py-1 px-2">
+			<div className="ordersummary-flex">
 				<div>
-					<h2 class="page-heading">Select your address</h2>
-					<div class="flex-column address-radiobox">
+					<h2 className="page-heading">Select your address</h2>
+					<div className="flex-column address-radiobox">
 						<AddressCard />
 						<AddressCard />
 						<AddressCard />
 					</div>
-					<h2 class="page-heading">Choose your payment method</h2>
-					<div class="flex-column payment-radiobox">
-						<label for="radio-payment" class="p-0-5">
+					<h2 className="page-heading">Choose your payment method</h2>
+					<div className="flex-column payment-radiobox">
+						<label for="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -25,7 +25,7 @@ function Checkout() {
 							/>
 							Debit Card
 						</label>
-						<label for="radio-payment" class="p-0-5">
+						<label for="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -34,7 +34,7 @@ function Checkout() {
 							/>
 							Credit Card
 						</label>
-						<label for="radio-payment" class="p-0-5">
+						<label for="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -43,7 +43,7 @@ function Checkout() {
 							/>
 							Paytm Wallet
 						</label>
-						<label for="radio-payment" class="p-0-5">
+						<label for="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -52,7 +52,7 @@ function Checkout() {
 							/>
 							UPI
 						</label>
-						<label for="radio-payment" class="p-0-5">
+						<label for="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -64,7 +64,7 @@ function Checkout() {
 					</div>
 				</div>
 				<div>
-					<h2 class="page-heading">Order Summary</h2>
+					<h2 className="page-heading">Order Summary</h2>
 					<PriceCard />
 				</div>
 			</div>
