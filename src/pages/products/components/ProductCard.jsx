@@ -1,13 +1,32 @@
 function ProductCard({
-	product: { id, url, name, description, newprice, actualprice, rating },
+	product: {
+		id,
+		url,
+		name,
+		description,
+		newprice,
+		actualprice,
+		outofstock,
+		badge,
+	},
 }) {
 	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
+	const badgeColors = [
+		"bg-danger",
+		"bg-warning",
+		"bg-success-dark",
+		"bg-tealgreen-light",
+	];
+	const randomColor = Math.floor(Math.random() * badgeColors.length);
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
 				<div className="card-image-wrapper">
 					<img className="img-responsive" src={url} />
 				</div>
+				{badge && (
+					<span class={`card-badge ${badgeColors[randomColor]}`}>{badge}</span>
+				)}
 				<div className="card-product-details">
 					<button className="card-product-favourite">
 						<span className="material-icons"> favorite </span>
@@ -16,8 +35,12 @@ function ProductCard({
 					<p className="card-product-description">{description}</p>
 					<div className="card-product-price pb-0">
 						<span className="card-product-newprice">Rs.{newprice}</span>
-						<span className="card-product-actualprice">Rs.{actualprice}</span>
-						<span className="card-product-discount">{discount}% off</span>
+						{actualprice && (
+							<span className="card-product-actualprice">Rs.{actualprice}</span>
+						)}
+						{actualprice && (
+							<span className="card-product-discount">{discount}% off</span>
+						)}
 					</div>
 				</div>
 				<div className="card-button">
@@ -28,6 +51,11 @@ function ProductCard({
 						</span>
 					</button>
 				</div>
+				{outofstock && (
+					<div class="card-outofstock-overlay">
+						<p>Out of stock ☹</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
