@@ -11,13 +11,12 @@ function ProductCard({
 	},
 }) {
 	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
-	const badgeColors = [
-		"bg-danger",
-		"bg-warning",
-		"bg-success-dark",
-		"bg-tealgreen-light",
-	];
-	const randomColor = Math.floor(Math.random() * badgeColors.length);
+	const badgeColors = {
+		"Best selling": "bg-success-dark",
+		"Top 10": "bg-warning",
+		"Only few products left": "bg-danger",
+		"People's favourite": "bg-tealgreen-light",
+	};
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
@@ -25,7 +24,7 @@ function ProductCard({
 					<img className="img-responsive" src={url} />
 				</div>
 				{badge && (
-					<span class={`card-badge ${badgeColors[randomColor]}`}>{badge}</span>
+					<span class={`card-badge ${badgeColors[badge]}`}>{badge}</span>
 				)}
 				<div className="card-product-details">
 					<button className="card-product-favourite">

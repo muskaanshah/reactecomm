@@ -25,7 +25,7 @@ export const products = [
     newprice: 1999,
     actualprice: 2499,
     rating: 4.4,
-    badge: "Top 10"
+    badge: "People's favourite"
   },
   {
     _id: uuid(),
