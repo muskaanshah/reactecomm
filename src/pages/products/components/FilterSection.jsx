@@ -1,7 +1,22 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useProduct } from "../../../context/product-context";
 
 function FilterSection() {
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await axios.get("/api/categories");
+				setCategories(res.data.categories);
+				console.log("Categories", categories);
+			} catch (error) {
+				console.log("Error", error);
+			}
+		})();
+	}, []);
+
 	const { state, dispatch } = useProduct();
+	const [categories, setCategories] = useState([]);
 	const categoryDispatch = (e) => {
 		if (e.target.checked) {
 			dispatch({
@@ -59,66 +74,19 @@ function FilterSection() {
 				</div>
 				<h3>Category</h3>
 				<div className="checkbox-group category-filter">
-					<label htmlFor="checkbox-strategicgames">
-						<input
-							id="checkbox-strategicgames"
-							type="checkbox"
-							name="checkbox"
-							value="STRATEGIC_GAMES"
-							onChange={(e) => categoryDispatch(e)}
-						/>
-						Strategic games
-					</label>
-					<label htmlFor="checkbox-fungames">
-						<input
-							id="checkbox-fungames"
-							type="checkbox"
-							name="checkbox"
-							value="FUN_GAMES"
-							onChange={(e) => categoryDispatch(e)}
-						/>
-						Fun games
-					</label>
-					<label htmlFor="checkbox-multiplayergames">
-						<input
-							id="checkbox-multiplayergames"
-							type="checkbox"
-							name="checkbox"
-							value="MULTIPLAYER_GAMES"
-							onChange={(e) => categoryDispatch(e)}
-						/>
-						Multiplayer games
-					</label>
-					<label htmlFor="checkbox-twoplayergames">
-						<input
-							id="checkbox-twoplayergames"
-							type="checkbox"
-							name="checkbox"
-							value="TWOPLAYER_GAMES"
-							onChange={(e) => categoryDispatch(e)}
-						/>
-						Two player games
-					</label>
-					<label htmlFor="checkbox-cardgames">
-						<input
-							id="checkbox-cardgames"
-							type="checkbox"
-							name="checkbox"
-							value="CARD_GAMES"
-							onChange={(e) => categoryDispatch(e)}
-						/>
-						Card games
-					</label>
-					<label htmlFor="checkbox-childrengames">
-						<input
-							id="checkbox-childrengames"
-							type="checkbox"
-							name="checkbox"
-							value="CHILDREN_GAMES"
-							onChange={(e) => categoryDispatch(e)}
-						/>
-						Games for children
-					</label>
+					{categories.map((currentCategory) => {
+						return (
+							<label>
+								<input
+									type="checkbox"
+									name="checkbox"
+									value={currentCategory.categoryName}
+									onChange={(e) => categoryDispatch(e)}
+								/>
+								{currentCategory.categoryName}
+							</label>
+						);
+					})}
 				</div>
 				<h3>Rating</h3>
 				<div className="radio-group rating-filter">

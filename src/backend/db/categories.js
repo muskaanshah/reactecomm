@@ -14,7 +14,7 @@ export const categories = [
   {
     _id: uuid(),
     imgUrl: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541607/e-commerce/groupgame_ewlhun.jpg",
-    categoryName: "Group Games"
+    categoryName: "Multiplayer Games"
   },
   {
     _id: uuid(),
