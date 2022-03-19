@@ -1,25 +1,23 @@
 function ProductCard({
 	product: { id, url, name, description, newprice, actualprice, rating },
 }) {
+	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
 				<div className="card-image-wrapper">
-					<img
-						className="img-responsive"
-						src="https://m.media-amazon.com/images/I/71qDTSDIN0L._SY355_.jpg"
-					/>
+					<img className="img-responsive" src={url} />
 				</div>
 				<div className="card-product-details">
 					<button className="card-product-favourite">
 						<span className="material-icons"> favorite </span>
 					</button>
-					<h3 className="card-title">Codenames</h3>
-					<p className="card-product-description">Multiplayer witty game</p>
+					<h3 className="card-title">{name}</h3>
+					<p className="card-product-description">{description}</p>
 					<div className="card-product-price pb-0">
-						<span className="card-product-newprice">Rs.799</span>
-						<span className="card-product-actualprice">Rs.1199</span>
-						<span className="card-product-discount">30% off</span>
+						<span className="card-product-newprice">Rs.{newprice}</span>
+						<span className="card-product-actualprice">Rs.{actualprice}</span>
+						<span className="card-product-discount">{discount}% off</span>
 					</div>
 				</div>
 				<div className="card-button">

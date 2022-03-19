@@ -1,8 +1,20 @@
 import { GameCard } from "./components/Gamecard";
 import "./home.css";
-import { CATEGORIES } from "../../constants/categories";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Home() {
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await axios.get("/api/categories");
+				setCategories(res.data.categories);
+			} catch (error) {
+				console.log("error", error);
+			}
+		})();
+	});
+	const [categories, setCategories] = useState([]);
 	return (
 		<div>
 			<div className="landingpage">
@@ -20,7 +32,7 @@ function Home() {
 			</div>
 			<h1>Categories</h1>
 			<div className="categories mx-auto">
-				{CATEGORIES.map(category => (
+				{categories.map((category) => (
 					<GameCard category={category} />
 				))}
 			</div>

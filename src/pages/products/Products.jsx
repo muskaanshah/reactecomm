@@ -1,17 +1,17 @@
 import "../products.css";
 import { ProductCard } from "./components/ProductCard";
 import { FilterSection } from "./components/FilterSection";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useProduct } from "../../context/product-context";
 
 function Products() {
+	const { state } = useProduct();
 	return (
 		<div className="container-body">
 			<div className="p-1">
 				<h2 className="page-heading">Showing all products</h2>
 				<div className="products-listing">
-					{productsData.map((product) => (
-						<ProductCard product={product} />
+					{state.filteredItems.map((product) => (
+						<ProductCard key={product._id} product={product} />
 					))}
 				</div>
 			</div>
