@@ -45,7 +45,8 @@ export const products = [
     category: ["Two player Games", "Strategic Games", "Card Games"],
     newprice: 2099,
     // actualprice: 2399,
-    rating: 3.7
+    rating: 3.7,
+    badge: "Top 10"
   },
   {
     _id: uuid(),
