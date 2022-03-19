@@ -2,6 +2,7 @@ import { GameCard } from "./components/Gamecard";
 import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Home() {
 	useEffect(() => {
@@ -16,7 +17,7 @@ function Home() {
 	});
 	const [categories, setCategories] = useState([]);
 	return (
-		<div>
+		<>
 			<div className="landingpage">
 				<picture>
 					<source
@@ -32,9 +33,13 @@ function Home() {
 			</div>
 			<h1>Categories</h1>
 			<div className="categories mx-auto">
-				{categories.map((category) => (
-					<GameCard category={category} />
-				))}
+				{categories.map((category) => {
+					return (
+						<Link to="/products">
+							<GameCard category={category} />
+						</Link>
+					);
+				})}
 			</div>
 			<div className="homepagequote mx-auto">
 				<p className="homequote mb-0 fs-1-25 fw-400">
@@ -45,7 +50,7 @@ function Home() {
 				</p>
 				<p className="homequoteauthor fs-1-25 fw-500 mt-0">-Nate Silver</p>
 			</div>
-		</div>
+		</>
 	);
 }
 
