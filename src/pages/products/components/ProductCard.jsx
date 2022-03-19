@@ -1,4 +1,6 @@
-function ProductCard() {
+function ProductCard({
+	product: { id, url, name, description, newprice, actualprice, rating },
+}) {
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
