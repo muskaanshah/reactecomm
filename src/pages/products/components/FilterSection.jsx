@@ -2,6 +2,25 @@ import { useProduct } from "../../../context/product-context";
 
 function FilterSection() {
 	const { state, dispatch } = useProduct();
+	const categoryDispatch = (e) => {
+		if (e.target.checked) {
+			dispatch({
+				type: "CATEGORIES",
+				payload: {
+					value: e.target.value,
+					isChecked: true,
+				},
+			});
+		} else {
+			dispatch({
+				type: "CATEGORIES",
+				payload: {
+					value: e.target.value,
+					isChecked: false,
+				},
+			});
+		}
+	};
 	return (
 		<div className="products-filters pb-2" data-visible="false">
 			<div className="px-1">
@@ -46,25 +65,7 @@ function FilterSection() {
 							type="checkbox"
 							name="checkbox"
 							value="STRATEGIC_GAMES"
-							onChange={(e) => {
-								if (e.target.checked) {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: true,
-										},
-									});
-								} else {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: false,
-										},
-									});
-								}
-							}}
+							onChange={(e) => categoryDispatch(e)}
 						/>
 						Strategic games
 					</label>
@@ -74,25 +75,7 @@ function FilterSection() {
 							type="checkbox"
 							name="checkbox"
 							value="FUN_GAMES"
-							onChange={(e) => {
-								if (e.target.checked) {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: true,
-										},
-									});
-								} else {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: false,
-										},
-									});
-								}
-							}}
+							onChange={(e) => categoryDispatch(e)}
 						/>
 						Fun games
 					</label>
@@ -102,25 +85,7 @@ function FilterSection() {
 							type="checkbox"
 							name="checkbox"
 							value="MULTIPLAYER_GAMES"
-							onChange={(e) => {
-								if (e.target.checked) {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: true,
-										},
-									});
-								} else {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: false,
-										},
-									});
-								}
-							}}
+							onChange={(e) => categoryDispatch(e)}
 						/>
 						Multiplayer games
 					</label>
@@ -130,25 +95,7 @@ function FilterSection() {
 							type="checkbox"
 							name="checkbox"
 							value="TWOPLAYER_GAMES"
-							onChange={(e) => {
-								if (e.target.checked) {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: true,
-										},
-									});
-								} else {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: false,
-										},
-									});
-								}
-							}}
+							onChange={(e) => categoryDispatch(e)}
 						/>
 						Two player games
 					</label>
@@ -158,25 +105,7 @@ function FilterSection() {
 							type="checkbox"
 							name="checkbox"
 							value="CARD_GAMES"
-							onChange={(e) => {
-								if (e.target.checked) {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: true,
-										},
-									});
-								} else {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: false,
-										},
-									});
-								}
-							}}
+							onChange={(e) => categoryDispatch(e)}
 						/>
 						Card games
 					</label>
@@ -186,25 +115,7 @@ function FilterSection() {
 							type="checkbox"
 							name="checkbox"
 							value="CHILDREN_GAMES"
-							onChange={(e) => {
-								if (e.target.checked) {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: true,
-										},
-									});
-								} else {
-									dispatch({
-										type: "CATEGORIES",
-										payload: {
-											value: e.target.value,
-											isChecked: false,
-										},
-									});
-								}
-							}}
+							onChange={(e) => categoryDispatch(e)}
 						/>
 						Games for children
 					</label>
