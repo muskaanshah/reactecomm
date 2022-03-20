@@ -1,4 +1,5 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { Modal } from "../../../components/Modal/Modal";
 
 function ProductCardHorizontal({
 	product: { _id, name, description, newprice, actualprice, url, qty },
@@ -11,21 +12,30 @@ function ProductCardHorizontal({
 				<img className="img-responsive cart-objectfit-cover" src={url} />
 			</div>
 			<div className="card-product-details">
-				<button className="btn-close">
+				<button className="btn-close" onClick={() => <Modal />}>
 					<span className="material-icons close-button"> close </span>
 				</button>
 				<h3 className="card-title">{name}</h3>
 				<p className="card-product-description">{description}</p>
 				<div className="card-product-price">
 					<span className="card-product-newprice">Rs.{newprice}</span>
-					<span className="card-product-actualprice">Rs.{actualprice}</span>
-					<span className="card-product-discount">{discount}% off</span>
+					{actualprice && (
+						<span className="card-product-actualprice">Rs.{actualprice}</span>
+					)}
+					{actualprice && (
+						<span className="card-product-discount">{discount}% off</span>
+					)}
 				</div>
 				<div className="card-product-quantity">
 					<span className="product-qty mr-0-5">Qty:</span>
 					<button
 						className="borderradius-2 btn-count border-accent bg-secondary"
-						//   onClick={() => removeFromCart(id)}
+						onClick={(e) =>
+							dispatch({
+								type: "REMOVE_FROM_CART",
+								payload: { value: _id },
+							})
+						}
 					>
 						-
 					</button>

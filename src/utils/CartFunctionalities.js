@@ -4,7 +4,7 @@ const addToCart = (state, id) => {
         ...state,
         cartItemsNumber: state.cartItemsNumber + 1,
         idOfProduct: id,
-        // cartPrice: state.cartPrice + price, - easier way, used logic in temp2
+        // cartPrice: state.cartPrice + price, - easier way, used logic in below return
         // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
         cart: itemFind
             ? state.cart.map((currentProduct) =>
@@ -20,11 +20,33 @@ const addToCart = (state, id) => {
                 state.cart
             ),
     };
-    const temp2 = {
+    return {
         ...temp1,
-        cartPrice: temp2.cart.reduce((acc, curr) => acc += curr.newprice * curr.qty, 0)
-    }
-    return temp2;
+        cartPrice: temp1.cart.reduce(
+            (acc, curr) => (acc += curr.newprice * curr.qty),
+            0
+        ),
+    };
 };
 
-export { addToCart }
+const removeFromCart = (state, id, isDeleteItem) => {
+    const temp2 = {
+        ...state,
+        cartItemsNumber: state.cartItemsNumber - 1,
+        idOfProduct: id,
+        cart: state.cart.map((currentProduct) =>
+            currentProduct._id === id
+                ? { ...currentProduct, qty: isDeleteItem ? 0 : currentProduct.qty - 1 }
+                : { ...currentProduct }
+        ),
+    };
+    return {
+        ...temp2,
+        cartPrice: temp2.cart.reduce(
+            (acc, curr) => (acc += curr.newprice * curr.qty),
+            0
+        ),
+    };
+};
+
+export { addToCart, removeFromCart };
