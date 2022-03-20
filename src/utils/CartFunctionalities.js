@@ -30,9 +30,12 @@ const addToCart = (state, id) => {
 };
 
 const removeFromCart = (state, id, isDeleteItem) => {
+    const itemFind2 = state.cart.find((currentItem) => currentItem._id === id);
     const temp2 = {
         ...state,
-        cartItemsNumber: state.cartItemsNumber - 1,
+        cartItemsNumber: isDeleteItem
+            ? state.cartItemsNumber - itemFind2.qty
+            : state.cartItemsNumber - 1,
         idOfProduct: id,
         cart: state.cart.map((currentProduct) =>
             currentProduct._id === id
