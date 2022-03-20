@@ -44,7 +44,6 @@ function Navbar() {
 				<li className="btn-login">
 					<a href="/pages/login.html">
 						<span className="material-icons user-login-icon">
-							{" "}
 							account_circle{" "}
 						</span>
 					</a>

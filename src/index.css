@@ -27,11 +27,6 @@ body {
 	box-shadow: rgba(149, 157, 165, 0.555) 0px 8px 24px;
 }
 
-.btn-transform:hover {
-	transform: scale(1.02);
-	transition: transform 0.2s;
-}
-
 .btn.btn.bg-primary {
 	border: 2px solid var(--primary);
 }
