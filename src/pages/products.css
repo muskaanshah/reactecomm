@@ -32,7 +32,7 @@
 	z-index: 3;
 }
 
-.products-filters[data-visible="true"] {
+.products-filters-open {
 	transform: translateX(0%);
 	transition: transform 2s;
 }
@@ -133,7 +133,7 @@
 		justify-content: space-between;
 		flex-direction: row;
 	}
-	.products-filters[data-visible="false"] {
+	.products-filters-open {
 		transform: translateX(0%);
 		transition: transform 2s;
 	}

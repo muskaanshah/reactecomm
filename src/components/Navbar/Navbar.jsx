@@ -1,19 +1,24 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
+import { useState } from "react";
 
 function Navbar() {
 	const { state } = useCartWishlist();
+	const [drawer, setDrawer] = useState(false);
 	return (
 		<div>
 			<ul className="nav bg-primary px-1">
 				<div className="section1">
 					<div className="hamburger-menu">
-						<button className="btn-hamburger-menu">
+						<button
+							className="btn-hamburger-menu"
+							onClick={() => setDrawer((prev) => !prev)}
+						>
 							<span className="material-icons-outlined"> menu </span>
 						</button>
 					</div>
-					<li className="nav-logo">
+					<li className="nav-logo" onClick={() => setDrawer(false)}>
 						<Link to="/">
 							<img
 								className="nav-logo-img"
@@ -21,17 +26,17 @@ function Navbar() {
 							/>
 						</Link>
 					</li>
-					<div className="drawer" data-visible="false">
-						<li className="nav-item">
+					<div className={`drawer ${drawer && `drawer-open`}`}>
+						<li className="nav-item" onClick={() => setDrawer(false)}>
 							<Link to="/">Home</Link>
 						</li>
-						<li className="nav-item">
+						<li className="nav-item" onClick={() => setDrawer(false)}>
 							<Link to="/products">Products</Link>
 						</li>
-						<li className="nav-item">
+						<li className="nav-item" onClick={() => setDrawer(false)}>
 							<a href="#">About us</a>
 						</li>
-						<li className="nav-item">
+						<li className="nav-item" onClick={() => setDrawer(false)}>
 							<a href="#">Contact</a>
 						</li>
 					</div>

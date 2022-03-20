@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useProduct } from "../../../context/product-context";
 
-function FilterSection() {
+function FilterSection({ filterDrawer, setFilterDrawer }) {
 	useEffect(() => {
 		(async () => {
 			try {
@@ -36,7 +36,11 @@ function FilterSection() {
 		}
 	};
 	return (
-		<div className="products-filters pb-2" data-visible="false">
+		<div
+			className={`products-filters pb-2 ${
+				filterDrawer && `products-filters-open`
+			}`}
+		>
 			<div className="px-1">
 				<div className="products-filters-heading">
 					<h3>Filters</h3>

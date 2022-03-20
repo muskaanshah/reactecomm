@@ -37,9 +37,8 @@
 	transition: transform 2s;
 }
 
-.drawer[data-visible="true"] {
+.drawer-open {
 	transform: translate(0%);
-	box-shadow: none;
 	transition: transform 2s;
 }
 

@@ -2,9 +2,11 @@ import "../products.css";
 import { ProductCard } from "./components/ProductCard";
 import { FilterSection } from "./components/FilterSection";
 import { useProduct } from "../../context/product-context";
+import { useState } from "react";
 
 function Products() {
 	const { state } = useProduct();
+	const [filterDrawer, setFilterDrawer] = useState(true);
 	return (
 		<div className="container-body">
 			<div className="p-1">
@@ -15,10 +17,16 @@ function Products() {
 					))}
 				</div>
 			</div>
-			<button className="filter-icon">
+			<button
+				className="filter-icon"
+				onClick={() => setFilterDrawer((prev) => !prev)}
+			>
 				<span className="material-icons"> filter_list </span>
 			</button>
-			<FilterSection />
+			<FilterSection
+				filterDrawer={filterDrawer}
+				setFilterDrawer={setFilterDrawer}
+			/>
 		</div>
 	);
 }

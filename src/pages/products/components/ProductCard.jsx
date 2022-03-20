@@ -1,4 +1,5 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { useState, useEffect } from "react";
 
 function ProductCard({
 	product: {
@@ -20,6 +21,12 @@ function ProductCard({
 		"Only few products left": "bg-danger",
 		"People's favourite": "bg-tealgreen-light",
 	};
+	const [disabled, setDisabled] = useState(false);
+	useEffect(() => {
+		if (outofstock) {
+			setDisabled(() => true);
+		}
+	}, []);
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
@@ -54,6 +61,7 @@ function ProductCard({
 								payload: { value: _id },
 							})
 						}
+						disabled={disabled}
 					>
 						<span className="btn-addtocart-text">ADD TO CART</span>
 						<span className="material-icons-outlined btn-addtocart-icon">
@@ -62,7 +70,7 @@ function ProductCard({
 					</button>
 				</div>
 				{outofstock && (
-					<div class="card-outofstock-overlay">
+					<div className="card-outofstock-overlay">
 						<p>Out of stock ☹</p>
 					</div>
 				)}
