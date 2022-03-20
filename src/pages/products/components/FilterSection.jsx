@@ -76,7 +76,7 @@ function FilterSection() {
 				<div className="checkbox-group category-filter">
 					{categories.map((currentCategory) => {
 						return (
-							<label>
+							<label key={currentCategory._id}>
 								<input
 									type="checkbox"
 									name="checkbox"

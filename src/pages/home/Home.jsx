@@ -36,7 +36,7 @@ function Home() {
 				{categories.map((category) => {
 					return (
 						<Link to="/products">
-							<GameCard category={category} />
+							<GameCard key={category._id} category={category} />
 						</Link>
 					);
 				})}
