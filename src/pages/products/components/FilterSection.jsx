@@ -8,7 +8,6 @@ function FilterSection() {
 			try {
 				const res = await axios.get("/api/categories");
 				setCategories(res.data.categories);
-				console.log("Categories", categories);
 			} catch (error) {
 				console.log("Error", error);
 			}

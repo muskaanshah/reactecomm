@@ -1,22 +1,25 @@
-function ProductCardHorizontal() {
+import { useCartWishlist } from "../../../context/cart-wishlist-context";
+
+function ProductCardHorizontal({
+	product: { _id, name, description, newprice, actualprice, url, qty },
+}) {
+	const { dispatch } = useCartWishlist();
+	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
 	return (
 		<div className="card-horizontal">
 			<div className="card-image-wrapper">
-				<img
-					className="img-responsive cart-objectfit-cover"
-					src="https://m.media-amazon.com/images/I/71qDTSDIN0L._SY355_.jpg"
-				/>
+				<img className="img-responsive cart-objectfit-cover" src={url} />
 			</div>
 			<div className="card-product-details">
 				<button className="btn-close">
 					<span className="material-icons close-button"> close </span>
 				</button>
-				<h3 className="card-title">Codenames</h3>
-				<p className="card-product-description">Based on team strategy</p>
+				<h3 className="card-title">{name}</h3>
+				<p className="card-product-description">{description}</p>
 				<div className="card-product-price">
-					<span className="card-product-newprice">Rs.799</span>
-					<span className="card-product-actualprice">Rs.1199</span>
-					<span className="card-product-discount">30% off</span>
+					<span className="card-product-newprice">Rs.{newprice}</span>
+					<span className="card-product-actualprice">Rs.{actualprice}</span>
+					<span className="card-product-discount">{discount}% off</span>
 				</div>
 				<div className="card-product-quantity">
 					<span className="product-qty mr-0-5">Qty:</span>
@@ -26,10 +29,10 @@ function ProductCardHorizontal() {
 					>
 						-
 					</button>
-					<span className="mx-0-5">1</span>
+					<span className="mx-0-5">{qty}</span>
 					<button
 						className="borderradius-2 btn-count border-accent bg-secondary"
-						//   onClick={() => addToCart(id)}
+						onClick={(e) => dispatch({ type: "ADD_TO_CART", payload: _id })}
 					>
 						+
 					</button>

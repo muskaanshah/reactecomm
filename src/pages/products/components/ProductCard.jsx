@@ -1,6 +1,8 @@
+import { useCartWishlist } from "../../../context/cart-wishlist-context";
+
 function ProductCard({
 	product: {
-		id,
+		_id,
 		url,
 		name,
 		description,
@@ -10,6 +12,7 @@ function ProductCard({
 		badge,
 	},
 }) {
+	const { dispatch } = useCartWishlist();
 	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
@@ -43,7 +46,10 @@ function ProductCard({
 					</div>
 				</div>
 				<div className="card-button">
-					<button className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1">
+					<button
+						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
+						onClick={(e) => dispatch({ type: "ADD_TO_CART", payload: _id })}
+					>
 						<span className="btn-addtocart-text">ADD TO CART</span>
 						<span className="material-icons-outlined btn-addtocart-icon">
 							add_shopping_cart

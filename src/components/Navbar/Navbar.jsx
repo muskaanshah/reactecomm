@@ -1,7 +1,9 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import { useCartWishlist } from "../../context/cart-wishlist-context";
 
 function Navbar() {
+	const { state } = useCartWishlist();
 	return (
 		<div>
 			<ul className="nav bg-primary px-1">
@@ -69,7 +71,11 @@ function Navbar() {
 								shopping_cart
 							</span>
 						</Link>
-						<div className="badge badge-number bg-danger color-white">17</div>
+						{state.cartItemsNumber > 0 && (
+							<div className="badge badge-number bg-danger color-white">
+								{state.cartItemsNumber}
+							</div>
+						)}
 					</span>
 				</li>
 			</ul>

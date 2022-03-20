@@ -1,8 +1,10 @@
 import { ProductCardHorizontal } from "./components/ProductCardHorizontal";
 import "./cart.css";
 import { Link } from "react-router-dom";
+import { useCartWishlist } from "../../context/cart-wishlist-context";
 
 function Cart() {
+	const { state } = useCartWishlist();
 	return (
 		<div className="container-body py-1 px-2">
 			<div className="cartproduct">
@@ -16,13 +18,17 @@ function Cart() {
 					</div>
 					<div className="divider-black"></div>
 					<div className="card-cart-product mt-1">
-						<ProductCardHorizontal />
-						<ProductCardHorizontal />
+						{state.cart.map((currentProduct) => (
+							<ProductCardHorizontal product={currentProduct} />
+						))}
 					</div>
 				</div>
 				<div>
 					<h2 className="mb-0">
-						<span className="fw-500">Subtotal (2 Items): </span> Rs. 1798
+						<span className="fw-500">
+							Subtotal ({state.cartItemsNumber} items):{" "}
+						</span>{" "}
+						Rs. 1798
 					</h2>
 					<div className="divider-black"></div>
 					<Link
