@@ -28,7 +28,7 @@ function Cart() {
 						<span className="fw-500">
 							Subtotal ({state.cartItemsNumber} items):{" "}
 						</span>{" "}
-						Rs. 1798
+						Rs. {state.cartPrice}
 					</h2>
 					<div className="divider-black"></div>
 					<Link

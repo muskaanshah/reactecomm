@@ -32,7 +32,12 @@ function ProductCardHorizontal({
 					<span className="mx-0-5">{qty}</span>
 					<button
 						className="borderradius-2 btn-count border-accent bg-secondary"
-						onClick={(e) => dispatch({ type: "ADD_TO_CART", payload: _id })}
+						onClick={(e) =>
+							dispatch({
+								type: "ADD_TO_CART",
+								payload: { value: _id },
+							})
+						}
 					>
 						+
 					</button>

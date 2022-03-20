@@ -48,7 +48,12 @@ function ProductCard({
 				<div className="card-button">
 					<button
 						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
-						onClick={(e) => dispatch({ type: "ADD_TO_CART", payload: _id })}
+						onClick={(e) =>
+							dispatch({
+								type: "ADD_TO_CART",
+								payload: { value: _id },
+							})
+						}
 					>
 						<span className="btn-addtocart-text">ADD TO CART</span>
 						<span className="material-icons-outlined btn-addtocart-icon">
