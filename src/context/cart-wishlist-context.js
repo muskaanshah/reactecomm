@@ -12,6 +12,12 @@ const cartReducer = (state, action) => {
             return addToCart(state, action.payload.value);
         case "REMOVE_FROM_CART":
             return removeFromCart(state, action.payload.value, action.payload.isDeleteItem);
+        case "OPEN_MODAL":
+            const temp = { ...state, closeButton: !state.closeButton, idOfProduct: action.payload.value }
+            console.log(temp);
+            return temp;
+        case "CLOSE_MODAL":
+            return { ...state, closeButton: !state.closeButton }
         default:
             return state;
     }
@@ -25,6 +31,7 @@ const initialState = {
     default: [],
     cart: [],
     wishlist: [],
+    closeButton: false
 };
 
 const CartWishlistProvider = ({ children }) => {

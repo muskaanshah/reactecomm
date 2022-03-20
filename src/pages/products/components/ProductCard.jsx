@@ -27,7 +27,7 @@ function ProductCard({
 					<img className="img-responsive" src={url} />
 				</div>
 				{badge && (
-					<span class={`card-badge ${badgeColors[badge]}`}>{badge}</span>
+					<span className={`card-badge ${badgeColors[badge]}`}>{badge}</span>
 				)}
 				<div className="card-product-details">
 					<button className="card-product-favourite">
