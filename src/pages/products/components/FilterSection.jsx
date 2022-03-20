@@ -81,6 +81,9 @@ function FilterSection() {
 									type="checkbox"
 									name="checkbox"
 									value={currentCategory.categoryName}
+									checked={state.categories.includes(
+										currentCategory.categoryName
+									)}
 									onChange={(e) => categoryDispatch(e)}
 								/>
 								{currentCategory.categoryName}
@@ -99,6 +102,7 @@ function FilterSection() {
 							onChange={(e) =>
 								dispatch({ type: "RATING", payload: { value: e.target.value } })
 							}
+							checked={state.rating === "4"}
 						/>
 						4 stars and above
 					</label>
@@ -111,6 +115,7 @@ function FilterSection() {
 							onChange={(e) =>
 								dispatch({ type: "RATING", payload: { value: e.target.value } })
 							}
+							checked={state.rating === "3"}
 						/>
 						3 stars and above
 					</label>
@@ -123,6 +128,7 @@ function FilterSection() {
 							onChange={(e) =>
 								dispatch({ type: "RATING", payload: { value: e.target.value } })
 							}
+							checked={state.rating === "2"}
 						/>
 						2 stars and above
 					</label>
@@ -135,6 +141,7 @@ function FilterSection() {
 							onChange={(e) =>
 								dispatch({ type: "RATING", payload: { value: e.target.value } })
 							}
+							checked={state.rating === "1"}
 						/>
 						1 star and above
 					</label>
@@ -153,6 +160,7 @@ function FilterSection() {
 									payload: { value: e.target.value },
 								})
 							}
+							checked={state.sortWay === "HIGHEST_TO_LOWEST"}
 						/>
 						Price - High to Low
 					</label>
@@ -168,6 +176,7 @@ function FilterSection() {
 									payload: { value: e.target.value },
 								})
 							}
+							checked={state.priceRange === "LOWEST_TO_HIGHEST"}
 						/>
 						Price - Low to High
 					</label>
