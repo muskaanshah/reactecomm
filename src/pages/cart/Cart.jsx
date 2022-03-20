@@ -6,7 +6,7 @@ import { Modal } from "../../components/Modal/Modal";
 import { useEffect } from "react";
 
 function Cart() {
-	const { state } = useCartWishlist();
+	const { state, dispatch } = useCartWishlist();
 	return (
 		<div>
 			{state.cart.some((item) => item.qty > 0) ? (
@@ -54,7 +54,10 @@ function Cart() {
 								<button className="btn bg-secondary btn-place-order mt-1 fw-600">
 									SHARE MY CART
 								</button>
-								<button className="btn bg-grey-light btn-place-order mt-1 fw-600">
+								<button
+									className="btn bg-grey-light btn-place-order mt-1 fw-600"
+									onClick={() => dispatch({ type: "CLEAR_CART" })}
+								>
 									CLEAR MY CART
 								</button>
 							</div>

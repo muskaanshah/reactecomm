@@ -35,8 +35,8 @@ function Home() {
 			<div className="categories mx-auto">
 				{categories.map((category) => {
 					return (
-						<Link to="/products">
-							<GameCard key={category._id} category={category} />
+						<Link to="/products" key={category._id}>
+							<GameCard category={category} />
 						</Link>
 					);
 				})}

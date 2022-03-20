@@ -13,11 +13,11 @@ const cartReducer = (state, action) => {
         case "REMOVE_FROM_CART":
             return removeFromCart(state, action.payload.value, action.payload.isDeleteItem);
         case "OPEN_MODAL":
-            const temp = { ...state, closeButton: !state.closeButton, idOfProduct: action.payload.value }
-            console.log(temp);
-            return temp;
+            return { ...state, closeButton: !state.closeButton, idOfProduct: action.payload.value }
         case "CLOSE_MODAL":
             return { ...state, closeButton: !state.closeButton }
+        case "CLEAR_CART":
+            return { ...state, cartItemsNumber: 0, cartPrice: 0, cart: [] }
         default:
             return state;
     }
