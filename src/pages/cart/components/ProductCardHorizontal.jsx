@@ -1,11 +1,11 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { Modal } from "../../../components/Modal/Modal";
+import { discount } from "../../../utils/discountCalculation";
 
 function ProductCardHorizontal({
 	product: { _id, name, description, newprice, actualprice, url, qty },
 }) {
 	const { state, dispatch } = useCartWishlist();
-	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
 	return (
 		<>
 			<div className="card-horizontal">
@@ -32,7 +32,9 @@ function ProductCardHorizontal({
 							<span className="card-product-actualprice">Rs.{actualprice}</span>
 						)}
 						{actualprice && (
-							<span className="card-product-discount">{discount}% off</span>
+							<span className="card-product-discount">
+								{discount(actualprice, newprice)}% off
+							</span>
 						)}
 					</div>
 					<div className="card-product-quantity">

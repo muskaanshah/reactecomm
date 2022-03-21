@@ -1,5 +1,6 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { useState, useEffect } from "react";
+import { discount } from "../../../utils/discountCalculation";
 
 function ProductCard({
 	product: {
@@ -14,7 +15,6 @@ function ProductCard({
 	},
 }) {
 	const { dispatch } = useCartWishlist();
-	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
 		"Top 10": "bg-warning",
@@ -48,7 +48,9 @@ function ProductCard({
 							<span className="card-product-actualprice">Rs.{actualprice}</span>
 						)}
 						{actualprice && (
-							<span className="card-product-discount">{discount}% off</span>
+							<span className="card-product-discount">
+								{discount(actualprice, newprice)}% off
+							</span>
 						)}
 					</div>
 				</div>
