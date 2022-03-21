@@ -129,7 +129,8 @@ export const products = [
     category: ["Multiplayer Games", "Fun Games"],
     newprice: 2399,
     actualprice: 2599,
-    rating: 4.1
+    rating: 4.1,
+    outofstock: true
   },
   {
     _id: uuid(),

@@ -118,6 +118,10 @@
 	display: none;
 }
 
+.activeButton .material-icons {
+	color: var(--danger);
+}
+
 @media only screen and (min-width: 650px) {
 	.btn-addtocart-text {
 		display: inline;
