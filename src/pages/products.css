@@ -122,6 +122,16 @@
 	color: var(--danger);
 }
 
+.wishlist-empty {
+	height: calc(100vh - 4rem);
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	justify-content: center;
+	flex-direction: column;
+}
+
 @media only screen and (min-width: 650px) {
 	.btn-addtocart-text {
 		display: inline;
