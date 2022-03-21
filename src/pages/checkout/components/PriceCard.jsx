@@ -1,18 +1,51 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { useEffect, useState } from "react";
 
 function PriceCard() {
 	const { state } = useCartWishlist();
+	// const [totalActualPrice, setActualPrice] = useState(0);
+	// const [totalDiscount, setTotalDiscount] = useState(0);
+	// const [deliveryCharge, setDeliveryCharge] = useState(0);
+	// const [totalPriceAfterDiscount, setTotalPriceAfterDiscount] = useState(0);
+
+	// useEffect(() => {
+	// 	const actualPrice = state.cart.reduce(
+	// 		(acc, curr) =>
+	// 			curr.actualprice
+	// 				? (acc += curr.actualprice * curr.qty)
+	// 				: (acc += curr.newprice * curr.qty),
+	// 		0
+	// 	);
+	// 	const discount = state.cart.reduce(
+	// 		(acc, curr) =>
+	// 			curr.actualprice ? (acc += curr.actualprice - curr.newprice) : acc,
+	// 		0
+	// 	);
+	// 	const delivery = totalActualPrice - totalDiscount > 5000 ? 0 : 99;
+	// 	const total = totalActualPrice - totalDiscount + deliveryCharge;
+	// 	setActualPrice(() => actualPrice);
+	// 	setTotalDiscount(() => discount);
+	// 	setDeliveryCharge(() => delivery);
+	// 	setTotalPriceAfterDiscount(() => total);
+	// }, [state.cart]);
+
 	const totalActualPrice = state.cart.reduce(
 		(acc, curr) =>
-			curr.actualprice ? (acc += curr.actualprice) : (acc += curr.newprice),
+			curr.actualprice
+				? (acc += curr.actualprice * curr.qty)
+				: (acc += curr.newprice * curr.qty),
 		0
 	);
 	const totalDiscount = state.cart.reduce(
 		(acc, curr) =>
-			curr.actualprice ? (acc += curr.actualprice - curr.newprice) : acc,
+			curr.actualprice * curr.qty
+				? (acc += curr.actualprice * curr.qty - curr.newprice * curr.qty)
+				: acc,
 		0
 	);
-	const totalPriceAfterDiscount = totalActualPrice - totalDiscount;
+	const deliveryCharge = totalActualPrice - totalDiscount > 5000 ? 0 : 99;
+	const totalPriceAfterDiscount =
+		totalActualPrice - totalDiscount + deliveryCharge;
 	return (
 		<div className="ordersummary price-card p-1">
 			<span className="flex-end">
@@ -38,7 +71,7 @@ function PriceCard() {
 			</div>
 			<div className="price-attribute">
 				<p>Delivery Charge</p>
-				<p>Rs.199</p>
+				<p>Rs.{deliveryCharge}</p>
 			</div>
 			<div className="divider-black"></div>
 			<div className="price-attribute">
