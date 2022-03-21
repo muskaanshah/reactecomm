@@ -14,7 +14,7 @@ function ProductCard({
 		badge,
 	},
 }) {
-	const { state, dispatch } = useCartWishlist();
+	const { cartState, cartcartDispatch } = useCartWishlist();
 	const [disabled, setDisabled] = useState(false);
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
@@ -27,7 +27,7 @@ function ProductCard({
 			setDisabled(() => true);
 		}
 	}, []);
-	const isInWishlist = state.wishlist.find(
+	const isInWishlist = cartState.wishlist.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
 	return (
@@ -47,11 +47,11 @@ function ProductCard({
 						}`}
 						onClick={() => {
 							isInWishlist
-								? dispatch({
+								? cartDispatch({
 										type: "REMOVE_FROM_WISHLIST",
 										payload: { value: _id },
 								  })
-								: dispatch({
+								: cartDispatch({
 										type: "ADD_TO_WISHLIST",
 										payload: { value: _id },
 								  });
@@ -77,7 +77,7 @@ function ProductCard({
 					<button
 						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
 						onClick={() =>
-							dispatch({
+							cartDispatch({
 								type: "ADD_TO_CART",
 								payload: { value: _id },
 							})

@@ -3,7 +3,7 @@ import "./modal.css";
 import { useEffect } from "react";
 
 function Modal() {
-	const { state, dispatch } = useCartWishlist();
+	const { cartState, cartDispatch } = useCartWishlist();
 	useEffect(() => {
 		document.body.classList.add("scrollBehaviour");
 		return () => {
@@ -16,7 +16,7 @@ function Modal() {
 				<button
 					className="btn-close"
 					onClick={() =>
-						dispatch({
+						cartDispatch({
 							type: "CLOSE_MODAL",
 						})
 					}
@@ -28,11 +28,11 @@ function Modal() {
 					<button
 						className="btn bg-danger color-white"
 						onClick={() => {
-							dispatch({
+							cartDispatch({
 								type: "REMOVE_FROM_CART",
-								payload: { value: state.idOfProduct, isDeleteItem: true },
+								payload: { value: cartState.idOfProduct, isDeleteItem: true },
 							});
-							dispatch({
+							cartDispatch({
 								type: "CLOSE_MODAL",
 							});
 						}}
@@ -43,15 +43,15 @@ function Modal() {
 					<button
 						className="btn bg-success color-white"
 						onClick={() => {
-							dispatch({
+							cartDispatch({
 								type: "REMOVE_FROM_CART",
-								payload: { value: state.idOfProduct, isDeleteItem: true },
+								payload: { value: cartState.idOfProduct, isDeleteItem: true },
 							});
-							dispatch({
+							cartDispatch({
 								type: "ADD_TO_WISHLIST",
-								payload: { value: state.idOfProduct },
+								payload: { value: cartState.idOfProduct },
 							});
-							dispatch({
+							cartDispatch({
 								type: "CLOSE_MODAL",
 							});
 						}}

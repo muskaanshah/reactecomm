@@ -2,9 +2,11 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { useState } from "react";
+import { useProduct } from "../../context/product-context";
 
 function Navbar() {
 	const { state } = useCartWishlist();
+	const { productDispatch } = useProduct();
 	const [drawer, setDrawer] = useState(false);
 	return (
 		<div>
@@ -76,9 +78,9 @@ function Navbar() {
 								shopping_cart
 							</span>
 						</Link>
-						{state.cartItemsNumber > 0 && (
+						{cartState.cartItemsNumber > 0 && (
 							<div className="badge badge-number bg-danger color-white">
-								{state.cartItemsNumber}
+								{cartState.cartItemsNumber}
 							</div>
 						)}
 					</span>

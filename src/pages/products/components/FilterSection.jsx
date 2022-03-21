@@ -14,11 +14,11 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 		})();
 	}, []);
 
-	const { state, dispatch } = useProduct();
+	const { productState, productDispatch } = useProduct();
 	const [categories, setCategories] = useState([]);
-	const categoryDispatch = (e) => {
+	const categoryproductDispatch = (e) => {
 		if (e.target.checked) {
-			dispatch({
+			productDispatch({
 				type: "CATEGORIES",
 				payload: {
 					value: e.target.value,
@@ -26,7 +26,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 				},
 			});
 		} else {
-			dispatch({
+			productDispatch({
 				type: "CATEGORIES",
 				payload: {
 					value: e.target.value,
@@ -47,7 +47,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 					<button
 						className="btn-clear fs-1"
 						onClick={() =>
-							dispatch({
+							productDispatch({
 								type: "CLEAR",
 							})
 						}
@@ -66,9 +66,9 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 						className="slider"
 						min="400"
 						max="5000"
-						value={state.priceRange}
+						value={productState.priceRange}
 						onChange={(e) => {
-							dispatch({
+							productDispatch({
 								type: "PRICE",
 								payload: { value: Number(e.target.value) },
 							});
@@ -84,10 +84,10 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 									type="checkbox"
 									name="checkbox"
 									value={currentCategory.categoryName}
-									checked={state.categories.includes(
+									checked={productState.categories.includes(
 										currentCategory.categoryName
 									)}
-									onChange={(e) => categoryDispatch(e)}
+									onChange={(e) => categoryproductDispatch(e)}
 								/>
 								{currentCategory.categoryName}
 							</label>
@@ -103,9 +103,12 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							name="radio-rating"
 							value="4"
 							onChange={(e) =>
-								dispatch({ type: "RATING", payload: { value: e.target.value } })
+								productDispatch({
+									type: "RATING",
+									payload: { value: e.target.value },
+								})
 							}
-							checked={state.rating === "4"}
+							checked={productState.rating === "4"}
 						/>
 						4 stars and above
 					</label>
@@ -116,9 +119,12 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							name="radio-rating"
 							value="3"
 							onChange={(e) =>
-								dispatch({ type: "RATING", payload: { value: e.target.value } })
+								productDispatch({
+									type: "RATING",
+									payload: { value: e.target.value },
+								})
 							}
-							checked={state.rating === "3"}
+							checked={productState.rating === "3"}
 						/>
 						3 stars and above
 					</label>
@@ -129,9 +135,12 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							name="radio-rating"
 							value="2"
 							onChange={(e) =>
-								dispatch({ type: "RATING", payload: { value: e.target.value } })
+								productDispatch({
+									type: "RATING",
+									payload: { value: e.target.value },
+								})
 							}
-							checked={state.rating === "2"}
+							checked={productState.rating === "2"}
 						/>
 						2 stars and above
 					</label>
@@ -142,9 +151,12 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							name="radio-rating"
 							value="1"
 							onChange={(e) =>
-								dispatch({ type: "RATING", payload: { value: e.target.value } })
+								productDispatch({
+									type: "RATING",
+									payload: { value: e.target.value },
+								})
 							}
-							checked={state.rating === "1"}
+							checked={productState.rating === "1"}
 						/>
 						1 star and above
 					</label>
@@ -158,12 +170,12 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							name="radio-price"
 							value="HIGHEST_TO_LOWEST"
 							onChange={(e) =>
-								dispatch({
+								productDispatch({
 									type: "SORT_BY_PRICE",
 									payload: { value: e.target.value },
 								})
 							}
-							checked={state.sortWay === "HIGHEST_TO_LOWEST"}
+							checked={productState.sortWay === "HIGHEST_TO_LOWEST"}
 						/>
 						Price - High to Low
 					</label>
@@ -174,12 +186,12 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							name="radio-price"
 							value="LOWEST_TO_HIGHEST"
 							onChange={(e) =>
-								dispatch({
+								productDispatch({
 									type: "SORT_BY_PRICE",
 									payload: { value: e.target.value },
 								})
 							}
-							checked={state.priceRange === "LOWEST_TO_HIGHEST"}
+							checked={productState.priceRange === "LOWEST_TO_HIGHEST"}
 						/>
 						Price - Low to High
 					</label>

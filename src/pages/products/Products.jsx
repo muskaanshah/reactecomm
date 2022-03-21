@@ -5,14 +5,14 @@ import { useProduct } from "../../context/product-context";
 import { useState } from "react";
 
 function Products() {
-	const { state } = useProduct();
+	const { productState } = useProduct();
 	const [filterDrawer, setFilterDrawer] = useState(true);
 	return (
 		<div className="container-body">
 			<div className="p-1">
 				<h2 className="page-heading">Showing all products</h2>
 				<div className="products-listing">
-					{state.filteredItems.map((product) => (
+					{productState.filteredItems.map((product) => (
 						<ProductCard key={product._id} product={product} />
 					))}
 				</div>

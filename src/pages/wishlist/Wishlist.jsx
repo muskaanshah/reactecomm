@@ -4,21 +4,21 @@ import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { Link } from "react-router-dom";
 
 function Wishlist() {
-	const { state } = useCartWishlist();
-	console.log(state.wishlist);
+	const { cartState } = useCartWishlist();
+	console.log(cartState.wishlist);
 	return (
 		<div>
-			{state.wishlist.length > 0 ? (
+			{cartState.wishlist.length > 0 ? (
 				<div className="container-body">
 					<div className="p-1">
 						<h2 className="page-heading">
 							My wishlist
 							<span className="fw-400 wishlist-itemnumber fs-0-9 ml-0-5">
-								{state.wishlistItemsNumber} items
+								{cartState.wishlistItemsNumber} items
 							</span>
 						</h2>
 						<div className="wishlist-listing">
-							{state.wishlist.map((currentProduct) => (
+							{cartState.wishlist.map((currentProduct) => (
 								<ProductCard
 									key={currentProduct._id}
 									product={currentProduct}

@@ -1,15 +1,15 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 
 function PriceCard() {
-	const { state } = useCartWishlist();
-	const totalActualPrice = state.cart.reduce(
+	const { cartState } = useCartWishlist();
+	const totalActualPrice = cartState.cart.reduce(
 		(acc, curr) =>
 			curr.actualprice
 				? (acc += curr.actualprice * curr.qty)
 				: (acc += curr.newprice * curr.qty),
 		0
 	);
-	const totalDiscount = state.cart.reduce(
+	const totalDiscount = cartState.cart.reduce(
 		(acc, curr) =>
 			curr.actualprice * curr.qty
 				? (acc += curr.actualprice * curr.qty - curr.newprice * curr.qty)
@@ -31,7 +31,7 @@ function PriceCard() {
 				<button className="btn bg-primary py-0 px-0-5 fs-0-8">Apply</button>
 			</span>
 			<p className="my-0-5 fw-600">
-				PRICE DETAILS ({state.cartItemsNumber} Items)
+				PRICE DETAILS ({cartState.cartItemsNumber} Items)
 			</p>
 			<div className="divider-black"></div>
 			<div className="price-attribute">

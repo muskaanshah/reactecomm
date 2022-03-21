@@ -5,12 +5,12 @@ import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { Modal } from "../../components/Modal/Modal";
 
 function Cart() {
-	const { state, dispatch } = useCartWishlist();
+	const { cartState, cartDispatch } = useCartWishlist();
 	return (
 		<div>
-			{state.cart.some((item) => item.qty > 0) ? (
+			{cartState.cart.some((item) => item.qty > 0) ? (
 				<>
-					{state.closeButton && <Modal />}
+					{cartState.closeButton && <Modal />}
 					<div className={`container-body py-1 px-2`}>
 						<div className="cartproduct">
 							<div className="cart-cartproduct">
@@ -26,7 +26,7 @@ function Cart() {
 								</div>
 								<div className="divider-black"></div>
 								<div className="card-cart-product mt-1">
-									{state.cart
+									{cartState.cart
 										.filter((currentProduct) => currentProduct.qty !== 0)
 										.map((currentProduct) => (
 											<ProductCardHorizontal
@@ -39,9 +39,9 @@ function Cart() {
 							<div>
 								<h2 className="mb-0">
 									<span className="fw-500">
-										Subtotal ({state.cartItemsNumber} items):{" "}
+										Subtotal ({cartState.cartItemsNumber} items):{" "}
 									</span>{" "}
-									Rs. {state.cartPrice}
+									Rs. {cartState.cartPrice}
 								</h2>
 								<div className="divider-black"></div>
 								<Link
@@ -55,7 +55,7 @@ function Cart() {
 								</button>
 								<button
 									className="btn bg-grey-light btn-place-order mt-1 fw-600"
-									onClick={() => dispatch({ type: "CLEAR_CART" })}
+									onClick={() => cartDispatch({ type: "CLEAR_CART" })}
 								>
 									CLEAR MY CART
 								</button>

@@ -9,28 +9,28 @@ import {
 
 const ProductContext = createContext();
 
-const productReducer = (state, action) => {
+const productReducer = (productState, action) => {
     switch (action.type) {
         case "UPDATE_DEFAULT":
-            return { ...state, filteredItems: action.payload.value, default: action.payload.value }
+            return { ...productState, filteredItems: action.payload.value, default: action.payload.value }
         case "CATEGORIES":
-            return setTypes(state, action.payload.value, action.payload.isChecked);
+            return setTypes(productState, action.payload.value, action.payload.isChecked);
         case "SORT_BY_PRICE":
-            return setSortType(state, action.payload.value);
+            return setSortType(productState, action.payload.value);
         case "RATING":
-            return setRating(state, action.payload.value);
+            return setRating(productState, action.payload.value);
         case "PRICE":
-            return setBudget(state, action.payload.value);
+            return setBudget(productState, action.payload.value);
         case "CLEAR":
             return {
-                ...state,
-                filteredItems: state.default,
+                ...productState,
+                filteredItems: productState.default,
                 categories: [],
                 priceRange: 5000,
                 rating: 0
             };
         default:
-            return state;
+            return productState;
     }
 };
 
@@ -55,9 +55,9 @@ const ProductProvider = ({ children }) => {
             }
         })()
     }, [])
-    const [state, dispatch] = useReducer(productReducer, initialState);
+    const [productState, productDispatch] = useReducer(productReducer, initialState);
     return (
-        <ProductContext.Provider value={{ state, dispatch }}>
+        <ProductContext.Provider value={{ productState, productDispatch }}>
             {children}
         </ProductContext.Provider>
     );

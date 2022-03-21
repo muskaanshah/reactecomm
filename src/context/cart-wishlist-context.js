@@ -5,26 +5,26 @@ import { addToWishlist, removeFromWishlist } from "../utils/wishlistFunctions";
 
 const CartWishlistContext = createContext();
 
-const cartReducer = (state, action) => {
+const cartReducer = (cartState, action) => {
     switch (action.type) {
         case "UPDATE_DEFAULT":
-            return { ...state, default: action.payload.value };
+            return { ...cartState, default: action.payload.value };
         case "ADD_TO_CART":
-            return addToCart(state, action.payload.value);
+            return addToCart(cartState, action.payload.value);
         case "REMOVE_FROM_CART":
-            return removeFromCart(state, action.payload.value, action.payload.isDeleteItem);
+            return removeFromCart(cartState, action.payload.value, action.payload.isDeleteItem);
         case "OPEN_MODAL":
-            return { ...state, closeButton: !state.closeButton, idOfProduct: action.payload.value }
+            return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
         case "CLOSE_MODAL":
-            return { ...state, closeButton: !state.closeButton }
+            return { ...cartState, closeButton: !cartState.closeButton }
         case "CLEAR_CART":
-            return { ...state, cartItemsNumber: 0, cartPrice: 0, cart: [] }
+            return { ...cartState, cartItemsNumber: 0, cartPrice: 0, cart: [] }
         case "ADD_TO_WISHLIST":
-            return addToWishlist(state, action.payload.value);
+            return addToWishlist(cartState, action.payload.value);
         case "REMOVE_FROM_WISHLIST":
-            return removeFromWishlist(state, action.payload.value);
+            return removeFromWishlist(cartState, action.payload.value);
         default:
-            return state;
+            return cartState;
     }
 };
 
@@ -50,9 +50,9 @@ const CartWishlistProvider = ({ children }) => {
             }
         })();
     }, []);
-    const [state, dispatch] = useReducer(cartReducer, initialState);
+    const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
     return (
-        <CartWishlistContext.Provider value={{ state, dispatch }}>
+        <CartWishlistContext.Provider value={{ cartState, cartDispatch }}>
             {children}
         </CartWishlistContext.Provider>
     );
