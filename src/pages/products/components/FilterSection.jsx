@@ -9,7 +9,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 				const res = await axios.get("/api/categories");
 				setCategories(res.data.categories);
 			} catch (error) {
-				console.log("Error", error);
+				console.error("Error", error);
 			}
 		})();
 	}, []);

@@ -41,7 +41,7 @@ const CartWishlistProvider = ({ children }) => {
                 const res = await axios.get("/api/products");
                 dispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } });
             } catch (error) {
-                console.log("Inside wishlist Error", error);
+                console.error("Inside wishlist Error", error);
             }
         })();
     }, []);

@@ -11,7 +11,7 @@ function Home() {
 				const res = await axios.get("/api/categories");
 				setCategories(res.data.categories);
 			} catch (error) {
-				console.log("error", error);
+				console.error("error", error);
 			}
 		})();
 	});

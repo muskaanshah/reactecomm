@@ -50,8 +50,8 @@ const ProductProvider = ({ children }) => {
                 const res = await axios.get("/api/products")
                 dispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } })
             }
-            catch {
-                console.log("Error");
+            catch (error) {
+                console.error(error);
             }
         })()
     }, [])
