@@ -24,7 +24,9 @@ function PriceCard() {
 				/>
 				<button className="btn bg-primary py-0 px-0-5 fs-0-8">Apply</button>
 			</span>
-			<p className="my-0-5 fw-600">PRICE DETAILS (2 Items)</p>
+			<p className="my-0-5 fw-600">
+				PRICE DETAILS ({state.cartItemsNumber} Items)
+			</p>
 			<div className="divider-black"></div>
 			<div className="price-attribute">
 				<p>Total MRP</p>
