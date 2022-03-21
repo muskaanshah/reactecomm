@@ -1,4 +1,18 @@
+import { useCartWishlist } from "../../../context/cart-wishlist-context";
+
 function PriceCard() {
+	const { state } = useCartWishlist();
+	const totalActualPrice = state.cart.reduce(
+		(acc, curr) =>
+			curr.actualprice ? (acc += curr.actualprice) : (acc += curr.newprice),
+		0
+	);
+	const totalDiscount = state.cart.reduce(
+		(acc, curr) =>
+			curr.actualprice ? (acc += curr.actualprice - curr.newprice) : acc,
+		0
+	);
+	const totalPriceAfterDiscount = totalActualPrice - totalDiscount;
 	return (
 		<div className="ordersummary price-card p-1">
 			<span className="flex-end">
@@ -14,11 +28,11 @@ function PriceCard() {
 			<div className="divider-black"></div>
 			<div className="price-attribute">
 				<p>Total MRP</p>
-				<p>Rs.2398</p>
+				<p>Rs.{totalActualPrice}</p>
 			</div>
 			<div className="price-attribute">
-				<p>Discount</p>
-				<p className="color-success ls-1">-Rs.800</p>
+				<p>Discount on MRP</p>
+				<p className="color-success ls-1">-Rs.{totalDiscount}</p>
 			</div>
 			<div className="price-attribute">
 				<p>Delivery Charge</p>
@@ -27,7 +41,7 @@ function PriceCard() {
 			<div className="divider-black"></div>
 			<div className="price-attribute">
 				<p className="my-0-5 fw-600">Total Price</p>
-				<p>Rs.1998</p>
+				<p>Rs.{totalPriceAfterDiscount}</p>
 			</div>
 			<a
 				href="/pages/orderplaced.html"
