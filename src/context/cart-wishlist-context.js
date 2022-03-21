@@ -44,7 +44,7 @@ const CartWishlistProvider = ({ children }) => {
         (async () => {
             try {
                 const res = await axios.get("/api/products");
-                dispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } });
+                cartDispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } });
             } catch (error) {
                 console.error("Inside wishlist Error", error);
             }

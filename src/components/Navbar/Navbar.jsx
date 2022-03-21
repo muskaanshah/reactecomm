@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useProduct } from "../../context/product-context";
 
 function Navbar() {
-	const { state } = useCartWishlist();
+	const { cartState } = useCartWishlist();
 	const { productDispatch } = useProduct();
 	const [drawer, setDrawer] = useState(false);
 	return (
