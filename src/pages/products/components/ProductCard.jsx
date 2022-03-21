@@ -1,6 +1,10 @@
+import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { useState, useEffect } from "react";
+import { discount } from "../../../utils/discountCalculation";
+
 function ProductCard({
 	product: {
-		id,
+		_id,
 		url,
 		name,
 		description,
@@ -10,13 +14,19 @@ function ProductCard({
 		badge,
 	},
 }) {
-	let discount = Math.floor(((actualprice - newprice) * 100) / actualprice);
+	const { dispatch } = useCartWishlist();
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
 		"Top 10": "bg-warning",
 		"Only few products left": "bg-danger",
 		"People's favourite": "bg-tealgreen-light",
 	};
+	const [disabled, setDisabled] = useState(false);
+	useEffect(() => {
+		if (outofstock) {
+			setDisabled(() => true);
+		}
+	}, []);
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
@@ -24,7 +34,7 @@ function ProductCard({
 					<img className="img-responsive" src={url} />
 				</div>
 				{badge && (
-					<span class={`card-badge ${badgeColors[badge]}`}>{badge}</span>
+					<span className={`card-badge ${badgeColors[badge]}`}>{badge}</span>
 				)}
 				<div className="card-product-details">
 					<button className="card-product-favourite">
@@ -38,12 +48,23 @@ function ProductCard({
 							<span className="card-product-actualprice">Rs.{actualprice}</span>
 						)}
 						{actualprice && (
-							<span className="card-product-discount">{discount}% off</span>
+							<span className="card-product-discount">
+								{discount(actualprice, newprice)}% off
+							</span>
 						)}
 					</div>
 				</div>
 				<div className="card-button">
-					<button className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1">
+					<button
+						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
+						onClick={(e) =>
+							dispatch({
+								type: "ADD_TO_CART",
+								payload: { value: _id },
+							})
+						}
+						disabled={disabled}
+					>
 						<span className="btn-addtocart-text">ADD TO CART</span>
 						<span className="material-icons-outlined btn-addtocart-icon">
 							add_shopping_cart
@@ -51,7 +72,7 @@ function ProductCard({
 					</button>
 				</div>
 				{outofstock && (
-					<div class="card-outofstock-overlay">
+					<div className="card-outofstock-overlay">
 						<p>Out of stock ☹</p>
 					</div>
 				)}

@@ -9,13 +9,9 @@ function ProductCard() {
 					<img
 						className="img-responsive"
 						src="https://m.media-amazon.com/images/I/71qDTSDIN0L._SY355_.jpg"
-						onclick="window.location = productpath"
 					/>
 				</div>
-				<div
-					className="card-product-details"
-					onclick="window.location = productpath"
-				>
+				<div className="card-product-details">
 					<h3 className="card-title">Codenames</h3>
 					<p className="card-product-description">Multiplayer witty game</p>
 					<div className="card-product-price pb-0">

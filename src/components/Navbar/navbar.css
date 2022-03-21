@@ -37,9 +37,8 @@
 	transition: transform 2s;
 }
 
-.drawer[data-visible="true"] {
+.drawer-open {
 	transform: translate(0%);
-	box-shadow: none;
 	transition: transform 2s;
 }
 
@@ -74,9 +73,10 @@
 .user-login-btn {
 	display: none;
 	box-sizing: border-box;
+	border: 2px solid var(--secondary);
 }
 
-.user-login-btn:hover {
+.btn.user-login-btn:hover {
 	background-color: transparent;
 	border: 2px solid var(--secondary);
 	text-decoration: underline;
@@ -104,11 +104,6 @@
 	background-color: var(--primary);
 	border: 2px solid var(--primary);
 	box-shadow: rgba(149, 157, 165, 0.555) 0px 8px 24px;
-}
-
-.btn-transform:hover {
-	transform: scale(1.02);
-	transition: transform 0.2s;
 }
 
 .btn.btn.bg-primary {
