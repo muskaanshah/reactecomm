@@ -2,9 +2,25 @@ import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCardHorizontal({
-	product: { _id, name, description, newprice, actualprice, url, qty },
+	product: {
+		_id,
+		name,
+		description,
+		newprice,
+		actualprice,
+		url,
+		qty,
+		deliveryDays,
+	},
 }) {
-	const { state, dispatch } = useCartWishlist();
+	const { dispatch } = useCartWishlist();
+	const getDeliveryDate = (deliveryDays) => {
+		const someDate = new Date();
+		const result = someDate.setDate(someDate.getDate() + deliveryDays);
+		return `${new Date(result).getDate()}/${
+			new Date(result).getMonth() + 1
+		}/${new Date(result).getFullYear()}`;
+	};
 	return (
 		<>
 			<div className="card-horizontal">
@@ -62,11 +78,11 @@ function ProductCardHorizontal({
 							+
 						</button>
 					</div>
-					<p className="fs-0-8 pl-1 flex-end">
+					<p className="fs-0-9 pl-1 flex-end">
 						<span className="material-icons color-success-dark fs-1">
 							task_alt
 						</span>
-						Delivery by *date*
+						Delivery by {getDeliveryDate(deliveryDays)}
 					</p>
 				</div>
 			</div>
