@@ -55,6 +55,10 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							});
 						}}
 					/>
+					<span className="pt-0-5" style={{ textAlign: "center" }}>
+						Products within Rs.{" "}
+						<span className="fw-600">{productState.priceRange}</span>
+					</span>
 				</div>
 				<h3>Category</h3>
 				<div className="checkbox-group category-filter">
