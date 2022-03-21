@@ -37,7 +37,15 @@ function ProductCard({
 					<span className={`card-badge ${badgeColors[badge]}`}>{badge}</span>
 				)}
 				<div className="card-product-details">
-					<button className="card-product-favourite">
+					<button
+						className="card-product-favourite"
+						onClick={() =>
+							dispatch({
+								type: "ADD_TO_WISHLIST",
+								payload: { value: _id },
+							})
+						}
+					>
 						<span className="material-icons"> favorite </span>
 					</button>
 					<h3 className="card-title">{name}</h3>
@@ -57,7 +65,7 @@ function ProductCard({
 				<div className="card-button">
 					<button
 						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
-						onClick={(e) =>
+						onClick={() =>
 							dispatch({
 								type: "ADD_TO_CART",
 								payload: { value: _id },
