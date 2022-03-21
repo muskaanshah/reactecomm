@@ -12,6 +12,7 @@ function ProductCard({
 		actualprice,
 		outofstock,
 		badge,
+		rating,
 	},
 }) {
 	const { cartState, cartcartDispatch } = useCartWishlist();
@@ -71,6 +72,7 @@ function ProductCard({
 								{discount(actualprice, newprice)}% off
 							</span>
 						)}
+						<p>{rating}</p>
 					</div>
 				</div>
 				<div className="card-button">

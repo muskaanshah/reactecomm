@@ -6,7 +6,7 @@ import { useProduct } from "../../context/product-context";
 
 function Navbar() {
 	const { cartState } = useCartWishlist();
-	const { productDispatch } = useProduct();
+	const { productState, productDispatch } = useProduct();
 	const [drawer, setDrawer] = useState(false);
 	return (
 		<div>
@@ -48,6 +48,20 @@ function Navbar() {
 						type="text"
 						className="input-text input-text-nav input-search"
 						placeholder="Search"
+						value={productState.searchText}
+						onChange={(e) =>
+							productDispatch({
+								type: "SEARCH_PRODUCT",
+								payload: { value: e.target.value },
+							})
+						}
+						onKeyPress={(e) =>
+							e.key === "Enter" &&
+							productDispatch({
+								type: "SEARCH_FILTER_PRODUCT",
+								payload: { value: e.target.value },
+							})
+						}
 					/>
 				</li>
 				<li className="btn-login">
