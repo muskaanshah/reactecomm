@@ -40,7 +40,22 @@ function Modal() {
 						Delete
 						<span className="material-icons"> delete </span>
 					</button>
-					<button className="btn bg-success color-white">
+					<button
+						className="btn bg-success color-white"
+						onClick={() => {
+							dispatch({
+								type: "REMOVE_FROM_CART",
+								payload: { value: state.idOfProduct, isDeleteItem: true },
+							});
+							dispatch({
+								type: "ADD_TO_WISHLIST",
+								payload: { value: state.idOfProduct },
+							});
+							dispatch({
+								type: "CLOSE_MODAL",
+							});
+						}}
+					>
 						Move to wishlist
 						<span className="material-icons"> shopping_bag </span>
 					</button>

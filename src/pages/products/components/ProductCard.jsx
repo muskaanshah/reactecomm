@@ -14,19 +14,22 @@ function ProductCard({
 		badge,
 	},
 }) {
-	const { dispatch } = useCartWishlist();
+	const { state, dispatch } = useCartWishlist();
+	const [disabled, setDisabled] = useState(false);
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
 		"Top 10": "bg-warning",
 		"Only few products left": "bg-danger",
 		"People's favourite": "bg-tealgreen-light",
 	};
-	const [disabled, setDisabled] = useState(false);
 	useEffect(() => {
 		if (outofstock) {
 			setDisabled(() => true);
 		}
 	}, []);
+	const isInWishlist = state.wishlist.find(
+		(wishlistProduct) => wishlistProduct._id === _id
+	);
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
@@ -37,7 +40,23 @@ function ProductCard({
 					<span className={`card-badge ${badgeColors[badge]}`}>{badge}</span>
 				)}
 				<div className="card-product-details">
-					<button className="card-product-favourite">
+					<button
+						className={`card-product-favourite ${
+							isInWishlist ? "activeButton" : ""
+						}
+						}`}
+						onClick={() => {
+							isInWishlist
+								? dispatch({
+										type: "REMOVE_FROM_WISHLIST",
+										payload: { value: _id },
+								  })
+								: dispatch({
+										type: "ADD_TO_WISHLIST",
+										payload: { value: _id },
+								  });
+						}}
+					>
 						<span className="material-icons"> favorite </span>
 					</button>
 					<h3 className="card-title">{name}</h3>
@@ -57,7 +76,7 @@ function ProductCard({
 				<div className="card-button">
 					<button
 						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
-						onClick={(e) =>
+						onClick={() =>
 							dispatch({
 								type: "ADD_TO_CART",
 								payload: { value: _id },

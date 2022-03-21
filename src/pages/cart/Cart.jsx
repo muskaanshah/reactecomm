@@ -3,7 +3,6 @@ import "./cart.css";
 import { Link } from "react-router-dom";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { Modal } from "../../components/Modal/Modal";
-import { useEffect } from "react";
 
 function Cart() {
 	const { state, dispatch } = useCartWishlist();

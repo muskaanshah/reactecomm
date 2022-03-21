@@ -1,5 +1,4 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
-import { Modal } from "../../../components/Modal/Modal";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCardHorizontal({
@@ -41,7 +40,7 @@ function ProductCardHorizontal({
 						<span className="product-qty mr-0-5">Qty:</span>
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
-							onClick={(e) =>
+							onClick={() =>
 								dispatch({
 									type: "REMOVE_FROM_CART",
 									payload: { value: _id },
@@ -53,7 +52,7 @@ function ProductCardHorizontal({
 						<span className="mx-0-5">{qty}</span>
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
-							onClick={(e) =>
+							onClick={() =>
 								dispatch({
 									type: "ADD_TO_CART",
 									payload: { value: _id },
@@ -71,7 +70,6 @@ function ProductCardHorizontal({
 					</p>
 				</div>
 			</div>
-			{/* {state.closeButton && <Modal />} */}
 		</>
 	);
 }
