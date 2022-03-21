@@ -1,4 +1,4 @@
-import { FinalFiltering } from "./SetFinalFiltering";
+import { FinalFiltering } from "./setFinalFilters";
 
 const setTypes = (state, value, isChecked) => {
     const temp = isChecked

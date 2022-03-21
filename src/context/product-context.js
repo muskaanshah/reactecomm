@@ -5,7 +5,7 @@ import {
     setRating,
     setSortType,
     setTypes
-} from "../utils/SetFilter";
+} from "../utils/setFilter";
 
 const ProductContext = createContext();
 
