@@ -56,7 +56,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 						}}
 					/>
 					<span className="pt-0-5" style={{ textAlign: "center" }}>
-						Products within Rs.{" "}
+						Products within Rs.
 						<span className="fw-600">{productState.priceRange}</span>
 					</span>
 				</div>
