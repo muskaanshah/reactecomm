@@ -3,8 +3,9 @@ const FinalFiltering = (newState, products) => {
         ...newState,
         filteredItems:
             newState.searchText.length > 0
-                ? newState.filteredItems.filter((curItem) => {
+                ? products.filter((curItem) => {
                     return (
+                        curItem.name.toLowerCase().includes(newState.searchText.toLowerCase()) &&
                         curItem.newprice <= newState.priceRange &&
                         curItem.rating >= newState.rating &&
                         curItem.category.some((curCategory) => {
@@ -12,7 +13,7 @@ const FinalFiltering = (newState, products) => {
                                 ? [...newState.categories].indexOf(curCategory) >= 0
                                 : true;
                         })
-                    );
+                    )
                 })
                 : products.filter((curItem) => {
                     return (
