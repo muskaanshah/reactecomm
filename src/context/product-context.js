@@ -4,7 +4,7 @@ import {
     setBudget,
     setRating,
     setSortType,
-    setTypes
+    setTypes,
 } from "../utils/setFiltering";
 
 const ProductContext = createContext();
@@ -21,13 +21,31 @@ const productReducer = (productState, action) => {
             return setRating(productState, action.payload.value);
         case "PRICE":
             return setBudget(productState, action.payload.value);
+        case "SEARCH_PRODUCT":
+            return {
+                ...productState,
+                searchText: action.payload.value
+            };
+        case "SEARCH_FILTER_PRODUCT":
+            const temp = action.payload.value;
+            return {
+                ...productState,
+                searchText: temp,
+                categories: [],
+                priceRange: 5000,
+                rating: 0,
+                filteredItems: productState.default.filter((curItem) =>
+                    curItem.name.toLowerCase().includes(temp.toLowerCase())
+                )
+            };
         case "CLEAR":
             return {
                 ...productState,
                 filteredItems: productState.default,
                 categories: [],
                 priceRange: 5000,
-                rating: 0
+                rating: 0,
+                searchText: ""
             };
         default:
             return productState;
@@ -39,7 +57,8 @@ const initialState = {
     default: [],
     categories: [],
     priceRange: 5000,
-    rating: 0
+    rating: 0,
+    searchText: ""
 };
 
 const ProductProvider = ({ children }) => {

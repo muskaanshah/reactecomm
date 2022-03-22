@@ -1,13 +1,14 @@
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { useState } from "react";
 import { useProduct } from "../../context/product-context";
 
 function Navbar() {
 	const { cartState } = useCartWishlist();
-	const { productDispatch } = useProduct();
+	const { productState, productDispatch } = useProduct();
 	const [drawer, setDrawer] = useState(false);
+	const navigate = useNavigate();
 	return (
 		<div>
 			<ul className="nav bg-primary px-1">
@@ -48,6 +49,22 @@ function Navbar() {
 						type="text"
 						className="input-text input-text-nav input-search"
 						placeholder="Search"
+						value={productState.searchText}
+						onChange={(e) =>
+							productDispatch({
+								type: "SEARCH_PRODUCT",
+								payload: { value: e.target.value },
+							})
+						}
+						onKeyPress={(e) => {
+							if (e.key === "Enter") {
+								productDispatch({
+									type: "SEARCH_FILTER_PRODUCT",
+									payload: { value: e.target.value },
+								});
+								navigate("/products");
+							}
+						}}
 					/>
 				</li>
 				<li className="btn-login">

@@ -14,7 +14,7 @@ function ProductCard({
 		badge,
 	},
 }) {
-	const { cartState, cartcartDispatch } = useCartWishlist();
+	const { cartState, cartDispatch } = useCartWishlist();
 	const [disabled, setDisabled] = useState(false);
 	const badgeColors = {
 		"Best selling": "bg-success-dark",

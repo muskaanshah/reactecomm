@@ -13,7 +13,7 @@ function ProductCardHorizontal({
 		deliveryDays,
 	},
 }) {
-	const { dispatch } = useCartWishlist();
+	const { cartDispatch } = useCartWishlist();
 	const getDeliveryDate = (deliveryDays) => {
 		const someDate = new Date();
 		const result = someDate.setDate(someDate.getDate() + deliveryDays);
@@ -31,7 +31,7 @@ function ProductCardHorizontal({
 					<button
 						className="btn-close"
 						onClick={() =>
-							dispatch({
+							cartDispatch({
 								type: "OPEN_MODAL",
 								payload: { value: _id },
 							})
@@ -57,7 +57,7 @@ function ProductCardHorizontal({
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
 							onClick={() =>
-								dispatch({
+								cartDispatch({
 									type: "REMOVE_FROM_CART",
 									payload: { value: _id },
 								})
@@ -69,7 +69,7 @@ function ProductCardHorizontal({
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
 							onClick={() =>
-								dispatch({
+								cartDispatch({
 									type: "ADD_TO_CART",
 									payload: { value: _id },
 								})

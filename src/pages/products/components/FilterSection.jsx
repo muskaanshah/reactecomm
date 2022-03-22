@@ -16,25 +16,6 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 
 	const { productState, productDispatch } = useProduct();
 	const [categories, setCategories] = useState([]);
-	const categoryproductDispatch = (e) => {
-		if (e.target.checked) {
-			productDispatch({
-				type: "CATEGORIES",
-				payload: {
-					value: e.target.value,
-					isChecked: true,
-				},
-			});
-		} else {
-			productDispatch({
-				type: "CATEGORIES",
-				payload: {
-					value: e.target.value,
-					isChecked: false,
-				},
-			});
-		}
-	};
 	return (
 		<div
 			className={`products-filters pb-2 ${
@@ -74,6 +55,10 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							});
 						}}
 					/>
+					<span className="pt-0-5" style={{ textAlign: "center" }}>
+						Products within Rs.
+						<span className="fw-600">{productState.priceRange}</span>
+					</span>
 				</div>
 				<h3>Category</h3>
 				<div className="checkbox-group category-filter">
@@ -87,7 +72,25 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 									checked={productState.categories.includes(
 										currentCategory.categoryName
 									)}
-									onChange={(e) => categoryproductDispatch(e)}
+									onChange={(e) => {
+										if (e.target.checked) {
+											productDispatch({
+												type: "CATEGORIES",
+												payload: {
+													value: e.target.value,
+													isChecked: true,
+												},
+											});
+										} else {
+											productDispatch({
+												type: "CATEGORIES",
+												payload: {
+													value: e.target.value,
+													isChecked: false,
+												},
+											});
+										}
+									}}
 								/>
 								{currentCategory.categoryName}
 							</label>
