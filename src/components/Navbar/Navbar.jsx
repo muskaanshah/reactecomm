@@ -68,11 +68,6 @@ function Navbar() {
 					/>
 				</li>
 				<li className="btn-login">
-					<a href="/pages/login.html">
-						<span className="material-icons user-login-icon">
-							account_circle{" "}
-						</span>
-					</a>
 					<Link
 						to="/login"
 						className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
