@@ -52,4 +52,4 @@ const removeFromCart = (state, id, isDeleteItem) => {
     };
 };
 
-export { addToCart, removeFromCart };
+export { addToCart, removeFromCart }

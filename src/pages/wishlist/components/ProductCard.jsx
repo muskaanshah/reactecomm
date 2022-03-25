@@ -4,14 +4,14 @@ import { discount } from "../../../utils/discountCalculation";
 function ProductCard({
 	product: { _id, name, description, newprice, actualprice, url },
 }) {
-	const { dispatch } = useCartWishlist();
+	const { cartDispatch } = useCartWishlist();
 	return (
 		<div className="card-product-wrapper">
 			<div className="card card-product">
 				<button
 					className="btn-close"
 					onClick={() =>
-						dispatch({
+						cartDispatch({
 							type: "REMOVE_FROM_WISHLIST",
 							payload: { value: _id },
 						})
@@ -42,11 +42,11 @@ function ProductCard({
 						<span
 							className="btn-addtocart-text"
 							onClick={() => {
-								dispatch({
+								cartDispatch({
 									type: "ADD_TO_CART",
 									payload: { value: _id },
 								});
-								dispatch({
+								cartDispatch({
 									type: "REMOVE_FROM_WISHLIST",
 									payload: { value: _id },
 								});
