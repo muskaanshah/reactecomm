@@ -23,7 +23,7 @@ function Navbar() {
 				payload: { value: false },
 			});
 		}
-	}, [location.pathname]);
+	}, [location.pathname, productDispatch]);
 	return (
 		<>
 			<div>
