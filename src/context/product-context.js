@@ -35,9 +35,14 @@ const productReducer = (productState, action) => {
                 priceRange: 5000,
                 rating: 0,
                 filteredItems: productState.default.filter((curItem) =>
-                    curItem.name.toLowerCase().includes(temp.toLowerCase())
+                    curItem.name.toLowerCase().includes(temp?.toLowerCase())
                 )
             };
+        case "OPEN_CLOSE_SEARCH_MODAL":
+            return {
+                ...productState,
+                searchModal: action.payload.value
+            }
         case "CLEAR":
             return {
                 ...productState,
@@ -58,7 +63,8 @@ const initialState = {
     categories: [],
     priceRange: 5000,
     rating: 0,
-    searchText: ""
+    searchText: "",
+    searchModal: false
 };
 
 const ProductProvider = ({ children }) => {

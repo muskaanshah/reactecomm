@@ -26,15 +26,15 @@ function ProductCard({
 		if (outofstock) {
 			setDisabled(() => true);
 		}
-	}, []);
+	}, [outofstock]);
 	const isInWishlist = cartState.wishlist.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
 	return (
-		<div className="card-product-wrapper">
+		<div className="card-product-wrapper borderradius-1">
 			<div className="card card-product">
 				<div className="card-image-wrapper">
-					<img className="img-responsive" src={url} />
+					<img className="img-responsive" src={url} alt="product" />
 				</div>
 				{badge && (
 					<span className={`card-badge ${badgeColors[badge]}`}>{badge}</span>

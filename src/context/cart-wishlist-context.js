@@ -36,7 +36,7 @@ const initialState = {
     default: [],
     cart: [],
     wishlist: [],
-    closeButton: false
+    closeButton: false,
 };
 
 const CartWishlistProvider = ({ children }) => {
