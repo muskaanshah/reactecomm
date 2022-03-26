@@ -38,9 +38,9 @@ function Login() {
 						/>
 						Remember me
 					</label>
-					<a href="#" className="color-primary fs-0-8">
+					<Link to="/login" className="color-primary fs-0-8">
 						Forgot your password?
-					</a>
+					</Link>
 				</div>
 				<button className="btn bg-primary fw-500 fs-0-9 mb-1">Login</button>
 				<div className="centered">

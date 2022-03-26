@@ -76,6 +76,7 @@ function Cart() {
 						width="200"
 						height="200"
 						frameBorder="0"
+						alt="shopping-bunny"
 					></img>
 				</div>
 			)}

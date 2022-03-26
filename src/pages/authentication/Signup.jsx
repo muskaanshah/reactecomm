@@ -59,9 +59,9 @@ function Signup() {
 							value="remember-me"
 						/>
 						I accept all
-						<a href="#" className="color-accent">
+						<Link to="/signup" className="color-accent">
 							Terms and conditions
-						</a>
+						</Link>
 					</label>
 				</div>
 				<button className="btn bg-primary fw-500 fs-0-9 mb-1">Sign up</button>
