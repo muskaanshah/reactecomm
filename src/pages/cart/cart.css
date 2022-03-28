@@ -80,6 +80,11 @@
 	flex-direction: column;
 }
 
+.product-objectfit-contain {
+	aspect-ratio: 1;
+	object-fit: contain;
+}
+
 @media only screen and (min-width: 650px) {
 	.cartproduct {
 		grid-template-columns: 3fr 2fr;

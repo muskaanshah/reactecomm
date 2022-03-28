@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648460961/e-commerce/13045119221790_agcge3.jpg",
     name: "Codenames",
     description: "Multiplayer witty game",
     category: ["Multiplayer Games", "Fun Games"],
@@ -19,7 +19,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648461358/e-commerce/Splendor-Board-Game-1_vmcntl.jpg",
     name: "Splendor",
     description: "Multiplayer witty game",
     category: ["Multiplayer Games", "Strategic Games"],
@@ -31,7 +31,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648461446/e-commerce/2010021a_waqqrx.jpg",
     name: "Ticket to ride",
     description: "Multiplayer witty game",
     category: ["Multiplayer Games", "Strategic Games"],
@@ -42,7 +42,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://images-na.ssl-images-amazon.com/images/I/91uxP3YJIYL.jpg",
     name: "Lost cities",
     description: "Based on set collection",
     category: ["Two player Games", "Strategic Games", "Card Games"],
@@ -54,7 +54,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://en.gigamic.com/files/catalog/products/images/product/gigamic_gmtu_box_tutti-frutti_box-right_bd.webp",
     name: "Tutti Frutti",
     description: "Fun game which requires a good memory",
     category: ["Two player Games", "Fun Games", "Games for children"],
@@ -65,8 +65,8 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
-    name: "Gheistz",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462042/e-commerce/the_best_ghosts_in_family_board_games_-_Ghost_Blitz_a9qmvv.jpg",
+    name: "Geistes Blitz",
     description: "Fun game involving fast thinking",
     category: ["Multiplayer Games", "Fun Games"],
     newprice: 2299,
@@ -77,7 +77,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462197/e-commerce/81umf-clZOL._SY550__odwzfr.jpg",
     name: "Lotus",
     description: "Based on set collection",
     category: ["Multiplayer Games", "Fun Games", "Strategic Games", "Card Games"],
@@ -88,7 +88,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462271/e-commerce/HANAMIKOJI-BOX-01_WEB_qhuvas.jpg",
     name: "Hanamikoji",
     description: "Based on set collection, strategic thinking",
     category: ["Two player Games", "Strategic Games", "Card Games"],
@@ -100,7 +100,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462344/e-commerce/51Nwvdcl_rL._AC_SY780__j8kyso.jpg",
     name: "Planet",
     description: "Based on area control",
     category: ["Multiplayer Games", "Fun Games", "Card Games"],
@@ -112,7 +112,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462408/e-commerce/s-l300_mirdyz.jpg",
     name: "Ooga Booga",
     description: "A game based on memory",
     category: ["Games for children", "Fun Games"],
@@ -123,7 +123,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462577/e-commerce/f14c5d0c6f8eb33b0ae78ce223ba04a9_t8tja0.jpg",
     name: "Marrakech",
     description: "Based on area control",
     category: ["Multiplayer Games", "Fun Games"],
@@ -134,7 +134,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462535/e-commerce/71ok54azvIL_owjebi.jpg",
     name: "Tsuro",
     description: "Based on area control",
     category: ["Multiplayer Games", "Fun Games"],
@@ -146,8 +146,8 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
-    name: "Skulls",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462657/e-commerce/Skull_lazwmq.jpg",
+    name: "Skull",
     description: "Based on risk taking",
     category: ["Multiplayer Games", "Fun Games", "Card Games"],
     newprice: 1999,
@@ -157,7 +157,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462705/e-commerce/204012109_9999_4F4761A0D7634C1E97757499A103BF5F_iruywm.jpg",
     name: "Bold",
     description: "A game based on memory",
     category: ["Multiplayer Games", "Fun Games", "Card Games"],
@@ -168,7 +168,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462777/e-commerce/81Dgs7fGEwL._SL1500__xlhjwt.jpg",
     name: "Jaipur",
     description: "Based on set collection",
     category: ["Two player Games", "Strategic Games"],
@@ -180,7 +180,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    url: "https://picsum.photos/200/230",
+    url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462860/e-commerce/81_okm4IpfL._SX679__gidadc.jpg",
     name: "Catan",
     description: "Based on area control, trading skills",
     category: ["Multiplayer Games", "Strategic Games"],

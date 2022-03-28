@@ -20,7 +20,11 @@ function ProductCard({
 					<span className="material-icons"> close </span>
 				</button>
 				<div className="card-image-wrapper">
-					<img className="img-responsive" src={url} alt="product" />
+					<img
+						className="img-responsive product-objectfit-contain"
+						src={url}
+						alt="product"
+					/>
 				</div>
 				<div className="card-product-details">
 					<h3 className="card-title">{name}</h3>

@@ -34,7 +34,11 @@ function ProductCard({
 		<div className="card-product-wrapper borderradius-1">
 			<div className="card card-product">
 				<div className="card-image-wrapper">
-					<img className="img-responsive" src={url} alt="product" />
+					<img
+						className="img-responsive product-objectfit-contain"
+						src={url}
+						alt="product"
+					/>
 				</div>
 				{badge && (
 					<span className={`card-badge ${badgeColors[badge]}`}>{badge}</span>

@@ -26,7 +26,7 @@ function ProductCardHorizontal({
 			<div className="card-horizontal">
 				<div className="card-image-wrapper">
 					<img
-						className="img-responsive cart-objectfit-cover"
+						className="img-responsive product-objectfit-contain"
 						src={url}
 						alt="product"
 					/>
