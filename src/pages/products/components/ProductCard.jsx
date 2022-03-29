@@ -1,5 +1,6 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCard({
@@ -16,6 +17,7 @@ function ProductCard({
 }) {
 	const { cartState, cartDispatch } = useCartWishlist();
 	const [disabled, setDisabled] = useState(false);
+	const navigate = useNavigate();
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
 		"Top 10": "bg-warning",
@@ -32,7 +34,7 @@ function ProductCard({
 	);
 	return (
 		<div className="card-product-wrapper borderradius-1">
-			<div className="card card-product">
+			<div className="card card-product" onClick={() => navigate("/sp")}>
 				<div className="card-image-wrapper">
 					<img
 						className="img-responsive product-objectfit-contain"
@@ -49,7 +51,8 @@ function ProductCard({
 							isInWishlist ? "activeButton" : ""
 						}
 						}`}
-						onClick={() => {
+						onClick={(e) => {
+							e.stopPropagation();
 							isInWishlist
 								? cartDispatch({
 										type: "REMOVE_FROM_WISHLIST",
@@ -80,12 +83,13 @@ function ProductCard({
 				<div className="card-button">
 					<button
 						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
-						onClick={() =>
+						onClick={(e) => {
+							e.stopPropagation();
 							cartDispatch({
 								type: "ADD_TO_CART",
 								payload: { value: _id },
-							})
-						}
+							});
+						}}
 						disabled={disabled}
 					>
 						<span className="btn-addtocart-text">ADD TO CART</span>

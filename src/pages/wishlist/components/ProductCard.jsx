@@ -1,21 +1,24 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({
 	product: { _id, name, description, newprice, actualprice, url },
 }) {
 	const { cartDispatch } = useCartWishlist();
+	const navigate = useNavigate();
 	return (
 		<div className="card-product-wrapper">
-			<div className="card card-product">
+			<div className="card card-product" onClick={() => navigate("/sp")}>
 				<button
 					className="btn-close"
-					onClick={() =>
+					onClick={(e) => {
+						e.stopPropagation();
 						cartDispatch({
 							type: "REMOVE_FROM_WISHLIST",
 							payload: { value: _id },
-						})
-					}
+						});
+					}}
 				>
 					<span className="material-icons"> close </span>
 				</button>
@@ -45,7 +48,8 @@ function ProductCard({
 					<button className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1">
 						<span
 							className="btn-addtocart-text"
-							onClick={() => {
+							onClick={(e) => {
+								e.stopPropagation();
 								cartDispatch({
 									type: "ADD_TO_CART",
 									payload: { value: _id },
