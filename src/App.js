@@ -8,6 +8,7 @@ import { Signup } from "./pages/authentication/Signup";
 import { Cart } from "./pages/cart/Cart";
 import { Checkout } from "./pages/checkout/Checkout";
 import Mockman from "mockman-js";
+import { SingleProduct } from "./pages/singleproduct/SingleProduct";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="mock" element={<Mockman />} />
+        <Route path="sp" element={<SingleProduct />} />
         {/* <Route path="about" element={<About />} /> */}
       </Routes>
     </div>
