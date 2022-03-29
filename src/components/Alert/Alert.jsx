@@ -3,7 +3,7 @@ import "./alert.css";
 function Alert({ type, msg }) {
 	return (
 		<div
-			class={`alert borderradius-0-5 ${
+			className={`alert borderradius-0-5 ${
 				type === "success"
 					? "alert-success"
 					: type === "warning"
@@ -11,7 +11,7 @@ function Alert({ type, msg }) {
 					: "alert-error"
 			}`}
 		>
-			<span class="material-icons">
+			<span className="material-icons">
 				{type === "success"
 					? "check_circle"
 					: type === "warning"
