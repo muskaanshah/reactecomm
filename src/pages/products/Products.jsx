@@ -1,4 +1,5 @@
 import "../products.css";
+import "../loader.css";
 import { ProductCard } from "./components/ProductCard";
 import { FilterSection } from "./components/FilterSection";
 import { useProduct } from "../../context/product-context";
@@ -9,24 +10,32 @@ function Products() {
 	const [filterDrawer, setFilterDrawer] = useState(true);
 	return (
 		<div className="container-body">
-			<div className="p-1">
-				<h2 className="page-heading">Showing all products</h2>
-				<div className="products-listing">
-					{productState.filteredItems.map((product) => (
-						<ProductCard key={product._id} product={product} />
-					))}
+			{productState.productLoader ? (
+				<div className="loader-wrapper centered">
+					<div className="loader">Loading...</div>
 				</div>
-			</div>
-			<button
-				className="filter-icon"
-				onClick={() => setFilterDrawer((prev) => !prev)}
-			>
-				<span className="material-icons"> filter_list </span>
-			</button>
-			<FilterSection
-				filterDrawer={filterDrawer}
-				setFilterDrawer={setFilterDrawer}
-			/>
+			) : (
+				<>
+					<div className="p-1">
+						<h2 className="page-heading">Showing all products</h2>
+						<div className="products-listing">
+							{productState.filteredItems.map((product) => (
+								<ProductCard key={product._id} product={product} />
+							))}
+						</div>
+					</div>
+					<button
+						className="filter-icon"
+						onClick={() => setFilterDrawer((prev) => !prev)}
+					>
+						<span className="material-icons"> filter_list </span>
+					</button>
+					<FilterSection
+						filterDrawer={filterDrawer}
+						setFilterDrawer={setFilterDrawer}
+					/>
+				</>
+			)}
 		</div>
 	);
 }
