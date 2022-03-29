@@ -43,6 +43,8 @@ const productReducer = (productState, action) => {
                 ...productState,
                 searchModal: action.payload.value
             }
+        case "SET_LOADER":
+            return { ...productState, productLoader: action.payload.value }
         case "CLEAR":
             return {
                 ...productState,
@@ -64,16 +66,19 @@ const initialState = {
     priceRange: 5000,
     rating: 0,
     searchText: "",
-    searchModal: false
+    searchModal: false,
+    productLoader: true
 };
 
 const ProductProvider = ({ children }) => {
 
     useEffect(() => {
         (async () => {
+            productDispatch({ type: "SET_LOADER", payload: { value: true } })
             try {
                 const res = await axios.get("/api/products")
                 productDispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } })
+                productDispatch({ type: "SET_LOADER", payload: { value: false } })
             }
             catch (error) {
                 console.error(error);
