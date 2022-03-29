@@ -1,4 +1,5 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { Link } from "react-router-dom";
 
 function PriceCard() {
 	const { cartState } = useCartWishlist();
@@ -51,12 +52,9 @@ function PriceCard() {
 				<p className="my-0-5 fw-600">Total Price</p>
 				<p>Rs.{totalPriceAfterDiscount}</p>
 			</div>
-			<a
-				href="/pages/orderplaced.html"
-				className="btn bg-primary btn-place-order mt-1"
-			>
+			<Link to="/" className="btn bg-primary btn-place-order mt-1">
 				PLACE ORDER
-			</a>
+			</Link>
 		</div>
 	);
 }
