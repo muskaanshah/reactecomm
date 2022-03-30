@@ -16,7 +16,7 @@ function Signup() {
 		password: "",
 		reEnteredPassword: "",
 	});
-	const { signupUser, error } = useAuth();
+	const { signupUser, errorSignup } = useAuth();
 	const setForm = (field, value) => {
 		setSignUpFormInput((prev) => ({ ...prev, [field]: value }));
 	};
@@ -135,8 +135,8 @@ function Signup() {
 							</Link>
 						</label>
 					</div>
-					{error.length > 0 && (
-						<div className="fs-0-9 color-danger my-0-5">{error}</div>
+					{errorSignup.length > 0 && (
+						<div className="fs-0-9 color-danger my-0-5">{errorSignup}</div>
 					)}
 					<input
 						type="submit"
