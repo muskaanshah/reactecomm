@@ -15,7 +15,7 @@ function Checkout() {
 					</div>
 					<h2 className="page-heading">Choose your payment method</h2>
 					<div className="flex-column payment-radiobox">
-						<label for="radio-payment" className="p-0-5">
+						<label htmlFor="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -25,7 +25,7 @@ function Checkout() {
 							/>
 							Debit Card
 						</label>
-						<label for="radio-payment" className="p-0-5">
+						<label htmlFor="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -34,7 +34,7 @@ function Checkout() {
 							/>
 							Credit Card
 						</label>
-						<label for="radio-payment" className="p-0-5">
+						<label htmlFor="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -43,7 +43,7 @@ function Checkout() {
 							/>
 							Paytm Wallet
 						</label>
-						<label for="radio-payment" className="p-0-5">
+						<label htmlFor="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"
@@ -52,7 +52,7 @@ function Checkout() {
 							/>
 							UPI
 						</label>
-						<label for="radio-payment" className="p-0-5">
+						<label htmlFor="radio-payment" className="p-0-5">
 							<input
 								id="radio-payment"
 								type="radio"

@@ -6,14 +6,25 @@ function Signup() {
 		<div className="container-body centered">
 			<div className="card card-login border-primary borderradius-1 p-2 py-1 mt-2">
 				<h2 className="text-align-center">Signup</h2>
-				<label htmlFor="full-name" className="fw-600">
-					Full Name
+				<label htmlFor="first-name" className="fw-600">
+					First Name
 					<span className="input-box">
 						<input
 							type="input"
-							id="full-name"
+							id="first-name"
 							className="input-text input-authentication p-0-5 fs-0-9 mb-1-5"
-							placeholder="Enter your full name"
+							placeholder="Enter your first name"
+						/>
+					</span>
+				</label>
+				<label htmlFor="last-name" className="fw-600">
+					Last Name
+					<span className="input-box">
+						<input
+							type="input"
+							id="last-name"
+							className="input-text input-authentication p-0-5 fs-0-9 mb-1-5"
+							placeholder="Enter your last name"
 						/>
 					</span>
 				</label>
@@ -58,7 +69,7 @@ function Signup() {
 							name="checkbox"
 							value="remember-me"
 						/>
-						I accept all
+						I accept all{" "}
 						<Link to="/signup" className="color-accent">
 							Terms and conditions
 						</Link>

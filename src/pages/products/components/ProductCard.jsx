@@ -17,6 +17,7 @@ function ProductCard({
 }) {
 	const { cartState, cartDispatch } = useCartWishlist();
 	const [disabled, setDisabled] = useState(false);
+	const token = localStorage.getItem("encodedToken");
 	const navigate = useNavigate();
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
@@ -53,15 +54,17 @@ function ProductCard({
 						}`}
 						onClick={(e) => {
 							e.stopPropagation();
-							isInWishlist
-								? cartDispatch({
-										type: "REMOVE_FROM_WISHLIST",
-										payload: { value: _id },
-								  })
-								: cartDispatch({
-										type: "ADD_TO_WISHLIST",
-										payload: { value: _id },
-								  });
+							token
+								? isInWishlist
+									? cartDispatch({
+											type: "REMOVE_FROM_WISHLIST",
+											payload: { value: _id },
+									  })
+									: cartDispatch({
+											type: "ADD_TO_WISHLIST",
+											payload: { value: _id },
+									  })
+								: navigate("/login");
 						}}
 					>
 						<span className="material-icons"> favorite </span>
@@ -85,10 +88,12 @@ function ProductCard({
 						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
 						onClick={(e) => {
 							e.stopPropagation();
-							cartDispatch({
-								type: "ADD_TO_CART",
-								payload: { value: _id },
-							});
+							token
+								? cartDispatch({
+										type: "ADD_TO_CART",
+										payload: { value: _id },
+								  })
+								: navigate("/login");
 						}}
 						disabled={disabled}
 					>
