@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
     const encodedToken = localStorage.getItem("encodedToken")
     const [token, setToken] = useState(encodedToken ? encodedToken : "");
     const [errorLogin, setErrorLogin] = useState("");
-    const [errorSignUp, setErrorSignup] = useState("");
+    const [errorSignup, setErrorSignup] = useState("");
     const navigate = useNavigate();
     const loginUser = async (email, password) => {
         try {
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
         }
     }
     return (
-        < AuthContext.Provider value={{ token, errorLogin, errorSignUp, loginUser, signupUser }}>
+        < AuthContext.Provider value={{ token, errorLogin, errorSignup, loginUser, signupUser }}>
             {children}
         </AuthContext.Provider >)
 }

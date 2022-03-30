@@ -33,7 +33,6 @@ function Signup() {
 		e.preventDefault();
 		const { firstName, lastName, email, password } = signupFormInput;
 		signupUser(firstName, lastName, email, password);
-		console.log("signup called");
 	};
 	return (
 		<div className="container-body centered">
