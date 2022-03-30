@@ -83,7 +83,7 @@ function Cart() {
 					</div>
 				)
 			) : (
-				<div className="cart-empty">
+				<div className="cart-empty px-2">
 					<h1>Please login to continue</h1>
 					<Link to="/login" className="btn bg-primary color-secondary">
 						Go to Login page
