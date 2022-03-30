@@ -23,8 +23,22 @@ const AuthProvider = ({ children }) => {
             setError("The credentials you entered are invalid.")
         }
     }
+    const signupUser = async (firstName, lastName, email, password) => {
+        try {
+            const res = await axios.post("api/auth/signup", { firstName: firstName, lastName: lastName, email: email, password: password })
+            if (res.status === 201) {
+                setError("");
+                setToken(res.data.encodedToken);
+                localStorage.setItem("encodedToken", res.data.encodedToken);
+                navigate("/");
+            }
+        }
+        catch (err) {
+            setError("Email already exists.")
+        }
+    }
     return (
-        < AuthContext.Provider value={{ token, error, loginUser }}>
+        < AuthContext.Provider value={{ token, error, loginUser, signupUser }}>
             {children}
         </AuthContext.Provider >)
 }
