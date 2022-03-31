@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { useProduct } from "../../context/product-context";
@@ -9,6 +10,7 @@ function SingleProduct() {
 	const { productState } = useProduct();
 	const { cartState, cartDispatch } = useCartWishlist();
 	const token = localStorage.getItem("encodedToken");
+	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 	const {
 		_id,
@@ -21,10 +23,16 @@ function SingleProduct() {
 		prodDesc,
 		players,
 		playingTime,
+		outofstock,
 	} = productState.default.find((item) => item._id === productId);
 	const isInWishlist = cartState.wishlist.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
+	useEffect(() => {
+		if (outofstock) {
+			setDisabled(true);
+		}
+	}, [outofstock]);
 	return (
 		<div className="container-body">
 			<div className="individual-product">
@@ -71,10 +79,13 @@ function SingleProduct() {
 					</div>
 					<div className="button-block my-1">
 						<button
-							className="btn bg-primary btn-transform color-white ls-1 px-0-5 py-1"
+							className={`btn btn-transform ls-1 px-0-5 py-1 ${
+								disabled ? "btn-disabled" : "bg-primary color-white"
+							}`}
 							onClick={() =>
 								token
-									? cartDispatch({
+									? !disabled &&
+									  cartDispatch({
 											type: "ADD_TO_CART",
 											payload: { value: _id },
 									  })

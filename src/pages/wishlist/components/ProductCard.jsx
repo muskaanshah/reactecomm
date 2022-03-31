@@ -1,15 +1,25 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCard({
-	product: { _id, name, description, newprice, actualprice, url },
+	product: { _id, name, description, newprice, actualprice, url, outofstock },
 }) {
 	const { cartDispatch } = useCartWishlist();
+	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
+	useEffect(() => {
+		if (outofstock) {
+			setDisabled(true);
+		}
+	}, [outofstock]);
 	return (
 		<div className="card-product-wrapper">
-			<div className="card card-product" onClick={() => navigate("/sp")}>
+			<div
+				className="card card-product"
+				onClick={() => navigate(`/product/${_id}`)}
+			>
 				<button
 					className="btn-close"
 					onClick={(e) => {
@@ -45,28 +55,32 @@ function ProductCard({
 					</div>
 				</div>
 				<div className="card-button">
-					<button className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1">
-						<span
-							className="btn-addtocart-text"
-							onClick={(e) => {
-								e.stopPropagation();
-								cartDispatch({
-									type: "ADD_TO_CART",
-									payload: { value: _id },
-								});
-								cartDispatch({
-									type: "REMOVE_FROM_WISHLIST",
-									payload: { value: _id },
-								});
-							}}
-						>
-							MOVE TO CART
-						</span>
+					<button
+						className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1"
+						onClick={(e) => {
+							e.stopPropagation();
+							cartDispatch({
+								type: "ADD_TO_CART",
+								payload: { value: _id },
+							});
+							cartDispatch({
+								type: "REMOVE_FROM_WISHLIST",
+								payload: { value: _id },
+							});
+						}}
+						disabled={disabled}
+					>
+						<span className="btn-addtocart-text">MOVE TO CART</span>
 						<span className="material-icons-outlined btn-addtocart-icon">
 							add_shopping_cart
 						</span>
 					</button>
 				</div>
+				{outofstock && (
+					<div className="card-outofstock-overlay">
+						<p>Out of stock ☹</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);

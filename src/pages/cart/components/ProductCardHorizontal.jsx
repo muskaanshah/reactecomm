@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
 import { getDeliveryDate } from "../../../utils/getDeliveryDate";
@@ -15,9 +16,13 @@ function ProductCardHorizontal({
 	},
 }) {
 	const { cartDispatch } = useCartWishlist();
+	const navigate = useNavigate();
 	return (
 		<>
-			<div className="card-horizontal">
+			<div
+				className="card-horizontal"
+				onClick={() => navigate(`/product/${_id}`)}
+			>
 				<div className="card-image-wrapper">
 					<img
 						className="img-responsive product-objectfit-contain"
@@ -28,12 +33,13 @@ function ProductCardHorizontal({
 				<div className="card-product-details">
 					<button
 						className="btn-close"
-						onClick={() =>
+						onClick={(e) => {
+							e.stopPropagation();
 							cartDispatch({
 								type: "OPEN_MODAL",
 								payload: { value: _id },
-							})
-						}
+							});
+						}}
 					>
 						<span className="material-icons close-button"> close </span>
 					</button>
@@ -54,24 +60,26 @@ function ProductCardHorizontal({
 						<span className="product-qty mr-0-5">Qty:</span>
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
-							onClick={() =>
+							onClick={(e) => {
+								e.stopPropagation();
 								cartDispatch({
 									type: "REMOVE_FROM_CART",
 									payload: { value: _id },
-								})
-							}
+								});
+							}}
 						>
 							-
 						</button>
 						<span className="mx-0-5">{qty}</span>
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
-							onClick={() =>
+							onClick={(e) => {
+								e.stopPropagation();
 								cartDispatch({
 									type: "ADD_TO_CART",
 									payload: { value: _id },
-								})
-							}
+								});
+							}}
 						>
 							+
 						</button>

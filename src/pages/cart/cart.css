@@ -2,6 +2,11 @@
 	width: min(100%, 50rem);
 	box-sizing: border-box;
 	grid-template-columns: minmax(90px, 2fr) 6fr;
+	background-color: white;
+}
+
+.card-horizontal:hover {
+	cursor: pointer;
 }
 
 .card-cart-product {
@@ -42,10 +47,6 @@
 .cart-objectfit-cover {
 	height: 100%;
 	object-fit: cover;
-}
-
-.card-horizontal {
-	background-color: white;
 }
 
 .cartproduct {
