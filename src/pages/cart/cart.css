@@ -90,3 +90,9 @@
 		grid-template-columns: 3fr 2fr;
 	}
 }
+
+@media only screen and (min-width: 1500px) {
+	.cartproduct {
+		max-width: 1400px;
+	}
+}

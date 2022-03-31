@@ -12,3 +12,12 @@
 	bottom: 0;
 	left: 0;
 }
+
+@media only screen and (min-width: 1500px) {
+	.modal {
+		max-width: 25rem;
+	}
+	.modal-body {
+		padding-bottom: 0.5rem;
+	}
+}

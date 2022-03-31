@@ -169,3 +169,11 @@
 		padding: 1;
 	}
 }
+
+@media only screen and (min-width: 1500px) {
+	.container-body-wishlist {
+		max-width: 1400px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

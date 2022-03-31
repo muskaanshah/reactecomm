@@ -10,7 +10,7 @@ function Wishlist() {
 		<div>
 			{token ? (
 				cartState.wishlist.length > 0 ? (
-					<div className="container-body">
+					<div className="container-body container-body-wishlist">
 						<div className="p-1">
 							<h2 className="page-heading">
 								My wishlist

@@ -20,8 +20,7 @@ function Cart() {
 										<h2 className="mb-0">Your cart</h2>
 										<p className="fw-500 m-0 flex-end">
 											<span className="material-icons fs-1-25">
-												{" "}
-												location_on{" "}
+												location_on
 											</span>
 											Delivering to Chennai - 600 010
 										</p>
