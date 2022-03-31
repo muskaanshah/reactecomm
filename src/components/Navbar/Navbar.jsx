@@ -9,8 +9,10 @@ function Navbar() {
 	const { cartState } = useCartWishlist();
 	const { productState, productDispatch } = useProduct();
 	const [drawer, setDrawer] = useState(false);
+	const token = localStorage.getItem("encodedToken");
 	const navigate = useNavigate();
 	const location = useLocation();
+
 	useEffect(() => {
 		if (location.pathname !== "/products") {
 			//no filters applied when user shifts page
@@ -94,13 +96,33 @@ function Navbar() {
 						{productState.searchModal && <SearchList />}
 					</li>
 					<li className="btn-login">
-						<Link
-							to="/login"
-							className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
-							href="/pages/login.html"
-						>
-							Login
-						</Link>
+						{!token ? (
+							<>
+								<Link to="/login">
+									<span className="material-icons user-login-icon">
+										account_circle
+									</span>
+								</Link>
+								<Link
+									to="/login"
+									className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
+								>
+									Login
+								</Link>
+							</>
+						) : (
+							<>
+								<Link to="/logout">
+									<span className="material-icons user-login-icon">logout</span>
+								</Link>
+								<Link
+									to="/logout"
+									className="btn user-logout-btn borderradius-2 color-secondary py-0-5 px-1"
+								>
+									Logout
+								</Link>
+							</>
+						)}
 					</li>
 					<li>
 						<Link to="/wishlist">

@@ -1,6 +1,6 @@
 function AddressCard() {
 	return (
-		<label for="radio-address" className="address-selector p-0-5 centered">
+		<label htmlFor="radio-address" className="address-selector p-0-5 centered">
 			<input
 				id="radio-address"
 				type="radio"
