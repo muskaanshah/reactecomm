@@ -35,7 +35,10 @@ function ProductCard({
 	);
 	return (
 		<div className="card-product-wrapper borderradius-1">
-			<div className="card card-product" onClick={() => navigate("/sp")}>
+			<div
+				className="card card-product"
+				onClick={() => navigate(`/product/${_id}`)}
+			>
 				<div className="card-image-wrapper">
 					<img
 						className="img-responsive product-objectfit-contain"

@@ -17,14 +17,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="products" element={<Products />} />
-        <Route path="wishlist" element={<Wishlist />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="mock" element={<Mockman />} />
-        <Route path="sp" element={<SingleProduct />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/mock" element={<Mockman />} />
+        <Route path="/product/:productId" element={<SingleProduct />} />
         <Route path="/logout" element={<Logout />} />
         {/* <Route path="about" element={<About />} /> */}
       </Routes>
