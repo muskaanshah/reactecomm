@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import axios from "axios";
 import { addToCart, removeFromCart } from "../utils/cartFunctions";
 import { addToWishlist, removeFromWishlist } from "../utils/wishlistFunctions";
+import axios from "axios";
 
 const CartWishlistContext = createContext();
 

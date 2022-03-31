@@ -1,5 +1,5 @@
-import "./logout.css";
 import { Link } from "react-router-dom";
+import "./logout.css";
 
 function Logout() {
 	localStorage.removeItem("encodedToken");

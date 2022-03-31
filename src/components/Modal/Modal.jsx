@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import "./modal.css";
-import { useEffect } from "react";
 
 function Modal() {
 	const { cartState, cartDispatch } = useCartWishlist();

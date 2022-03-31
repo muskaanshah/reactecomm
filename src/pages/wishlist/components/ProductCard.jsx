@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
-import { useNavigate } from "react-router-dom";
 
 function ProductCard({
 	product: { _id, name, description, newprice, actualprice, url },

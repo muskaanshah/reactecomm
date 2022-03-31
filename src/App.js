@@ -1,5 +1,6 @@
-import { Navbar } from "./components/Navbar/Navbar"
 import { Routes, Route } from "react-router-dom";
+import Mockman from "mockman-js";
+import { Navbar } from "./components/Navbar/Navbar"
 import { Home } from "./pages/home/Home";
 import { Products } from "./pages/products/Products";
 import { Wishlist } from "./pages/wishlist/Wishlist";
@@ -7,7 +8,6 @@ import { Login } from "./pages/authentication/Login";
 import { Signup } from "./pages/authentication/Signup";
 import { Cart } from "./pages/cart/Cart";
 import { Checkout } from "./pages/checkout/Checkout";
-import Mockman from "mockman-js";
 import { SingleProduct } from "./pages/singleproduct/SingleProduct";
 import { Logout } from "./pages/logout/Logout";
 

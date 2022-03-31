@@ -1,8 +1,8 @@
-import { GameCard } from "./components/Gamecard";
-import "./home.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { GameCard } from "./components/Gamecard";
+import axios from "axios";
+import "./home.css";
 
 function Home() {
 	useEffect(() => {

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import {
     setBudget,
@@ -6,6 +5,7 @@ import {
     setSortType,
     setTypes,
 } from "../utils/setFiltering";
+import axios from "axios";
 
 const ProductContext = createContext();
 

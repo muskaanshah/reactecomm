@@ -1,6 +1,6 @@
-import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCard({

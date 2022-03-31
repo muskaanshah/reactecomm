@@ -1,8 +1,8 @@
-import { ProductCardHorizontal } from "./components/ProductCardHorizontal";
-import "./cart.css";
 import { Link } from "react-router-dom";
+import { ProductCardHorizontal } from "./components/ProductCardHorizontal";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { Modal } from "../../components/Modal/Modal";
+import "./cart.css";
 
 function Cart() {
 	const { cartState, cartDispatch } = useCartWishlist();

@@ -1,6 +1,6 @@
-import "./checkout.css";
 import { AddressCard } from "./components/AddressCard";
 import { PriceCard } from "./components/PriceCard";
+import "./checkout.css";
 
 function Checkout() {
 	return (

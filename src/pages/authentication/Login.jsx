@@ -1,7 +1,7 @@
-import "./authentication.css";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
+import "./authentication.css";
 
 function Login() {
 	const [emailInput, setEmailInput] = useState("");

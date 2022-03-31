@@ -1,7 +1,7 @@
-import { ProductCard } from "./components/ProductCard";
-import "../products.css";
-import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { Link } from "react-router-dom";
+import { ProductCard } from "./components/ProductCard";
+import { useCartWishlist } from "../../context/cart-wishlist-context";
+import "../products.css";
 
 function Wishlist() {
 	const { cartState } = useCartWishlist();
