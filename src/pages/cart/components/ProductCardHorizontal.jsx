@@ -1,5 +1,6 @@
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
+import { getDeliveryDate } from "../../../utils/getDeliveryDate";
 
 function ProductCardHorizontal({
 	product: {
@@ -14,13 +15,6 @@ function ProductCardHorizontal({
 	},
 }) {
 	const { cartDispatch } = useCartWishlist();
-	const getDeliveryDate = (deliveryDays) => {
-		const someDate = new Date();
-		const result = someDate.setDate(someDate.getDate() + deliveryDays);
-		return `${new Date(result).getDate()}/${
-			new Date(result).getMonth() + 1
-		}/${new Date(result).getFullYear()}`;
-	};
 	return (
 		<>
 			<div className="card-horizontal">
