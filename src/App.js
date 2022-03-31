@@ -12,6 +12,7 @@ import { SingleProduct } from "./pages/singleproduct/SingleProduct";
 import { Logout } from "./pages/logout/Logout";
 import { About } from "./pages/about/About";
 import { Contact } from "./pages/contact/Contact";
+import { PageNotFound } from "./pages/notfound/PageNotFound";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
