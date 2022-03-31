@@ -60,6 +60,7 @@
 }
 
 .user-login-icon,
+.user-logout-icon,
 .wishlist-icon,
 .cart-icon {
 	font-size: 2rem;
@@ -83,7 +84,7 @@
 	display: none;
 	box-sizing: border-box;
 	background-color: transparent;
-	border: 2px solid var(--secondary);
+	border: 1px solid var(--secondary);
 }
 
 .user-logout-btn:hover {

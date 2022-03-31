@@ -113,14 +113,16 @@ function Navbar() {
 						) : (
 							<>
 								<Link to="/logout">
-									<span className="material-icons user-login-icon">logout</span>
+									<span className="material-icons user-logout-icon">
+										logout
+									</span>
 								</Link>
-								<Link
+								{/* <Link
 									to="/logout"
 									className="btn user-logout-btn borderradius-2 color-secondary py-0-5 px-1"
 								>
 									Logout
-								</Link>
+								</Link> */}
 							</>
 						)}
 					</li>

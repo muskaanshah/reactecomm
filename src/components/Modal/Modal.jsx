@@ -26,7 +26,7 @@ function Modal() {
 				<p className="modal-body">Are you sure you want to remove this item?</p>
 				<div className="modal-actionbuttons">
 					<button
-						className="btn bg-grey-light"
+						className="btn bg-grey-light borderradius-0-5"
 						onClick={() => {
 							cartDispatch({
 								type: "REMOVE_FROM_CART",
@@ -41,7 +41,7 @@ function Modal() {
 						<span className="material-icons"> delete </span>
 					</button>
 					<button
-						className="btn bg-primary color-white"
+						className="btn bg-primary color-white borderradius-0-5"
 						onClick={() => {
 							cartDispatch({
 								type: "REMOVE_FROM_CART",
