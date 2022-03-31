@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useProduct } from "../../context/product-context";
 import { itemListCalculation } from "../../utils/itemListCalculation";
 
@@ -8,7 +9,14 @@ function SearchList() {
 			{productState.searchText !== "" &&
 				itemListCalculation(productState)
 					.filter((_, index) => index < 5) // _ because item not used
-					.map((item) => <p className="search-item">{item.name}</p>)}
+					.map((item) => (
+						<Link
+							style={{ color: "inherit", textDecoration: "inherit" }}
+							to={`/product/${item._id}`}
+						>
+							<p className="search-item">{item.name}</p>
+						</Link>
+					))}
 		</div>
 	);
 }

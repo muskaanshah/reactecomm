@@ -161,7 +161,8 @@
 	.user-login-icon {
 		display: none;
 	}
-	.input-text-nav:focus {
+	.input-text-nav:focus,
+	.input-text-nav:not(:placeholder-shown) {
 		width: 200px;
 		transition: width 1s;
 	}

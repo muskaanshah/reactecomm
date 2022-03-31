@@ -16,9 +16,11 @@ export const products = [
         actualprice: 1199,
         rating: 3.5,
         deliveryDays: 5,
-        descriptionExpanded: "Codenames is a 2015 card game for 4-10 players designed by Vlaada Chvátil and published by Czech Games Edition. Two teams compete by each having a 'spymaster' give one-word clues that can point to multiple words on the board. The other players on the team attempt to guess their team's words while avoiding the words of the other team. In a variant with 2-3 players, one spymaster gives clues to the other player or players. Codenames received positive reviews and won the Spiel des Jahres award for the best board game of the year.",
+        prodDesc: [
+            "Codenames is a 2015 card game for 4-10 players designed by Vlaada Chvátil and published by Czech Games Edition. Two teams compete by each having a 'spymaster' give one-word clues that can point to multiple words on the board. The other players on the team attempt to guess their team's words while avoiding the words of the other team. In a variant with 2-3 players, one spymaster gives clues to the other player or players. Codenames received positive reviews and won the Spiel des Jahres award for the best board game of the year.",
+        ],
         players: "2+",
-        playingTime: "15 mins"
+        playingTime: "15 mins",
     },
     {
         _id: uuid(),
@@ -31,9 +33,11 @@ export const products = [
         rating: 4.4,
         badge: "People's favourite",
         deliveryDays: 8,
-        descriptionExpanded: "Splendor is a multiplayer card-based board game, designed by Marc André and illustrated by Pascal Quidault. It was published in 2014 by Space Cowboys, Asmodee. Players are gem merchants of the Renaissance, developing gem mines, transportation, and shops to accumulate prestige point. Spelendor received positive reviews and received numerous awards, including winner of Golden Geek Best Family Board Game, and nominated for the Spiel des Jahres Game of the Year in 2014. The game also received a mobile application and an expansion released in 2017.",
+        prodDesc: [
+            "Splendor is a multiplayer card-based board game, designed by Marc André and illustrated by Pascal Quidault. It was published in 2014 by Space Cowboys, Asmodee. Players are gem merchants of the Renaissance, developing gem mines, transportation, and shops to accumulate prestige point. Spelendor received positive reviews and received numerous awards, including winner of Golden Geek Best Family Board Game, and nominated for the Spiel des Jahres Game of the Year in 2014. The game also received a mobile application and an expansion released in 2017.",
+        ],
         players: "2-4",
-        playingTime: "30-45 mins"
+        playingTime: "30-45 mins",
     },
     {
         _id: uuid(),
@@ -45,9 +49,12 @@ export const products = [
         actualprice: 1999,
         rating: 4.3,
         deliveryDays: 10,
-        descriptionExpanded: "Ticket to Ride is a railway-themed German-style board game designed by Alan R. Moon. It was illustrated by Julien Delval and Cyrille Daujean and published in 2004 by Days of Wonder.The original version of the game is played on a board depicting a railway map of the United States and southern Canada. Localized editions have subsequently been published depicting maps of other countries, cities and regions. Players collect and play train car cards to claim train routes across the map. Points are earned based on the length of the claimed routes, whoever completes the longest continuous railway, and whether the player can connect distant cities that are determined by drawing ticket cards.\n\nThe game won the 2004 Spiel des Jahres, the Origins Award for Best Board Game of 2004, the 2005 Diana Jones award, the 2005 As d'Or Jeu de l'année, and placed second in the Schweizer Spielepreis for Family Games. Ticket to Ride: Europe won the 2005 International Gamers Award. As of October 2014, over three million copies were reported sold, with retail sales of over $150 million.",
+        prodDesc: [
+            "Ticket to Ride is a railway-themed German-style board game designed by Alan R. Moon. It was illustrated by Julien Delval and Cyrille Daujean and published in 2004 by Days of Wonder.The original version of the game is played on a board depicting a railway map of the United States and southern Canada. Localized editions have subsequently been published depicting maps of other countries, cities and regions. Players collect and play train car cards to claim train routes across the map. Points are earned based on the length of the claimed routes, whoever completes the longest continuous railway, and whether the player can connect distant cities that are determined by drawing ticket cards.",
+            "The game won the 2004 Spiel des Jahres, the Origins Award for Best Board Game of 2004, the 2005 Diana Jones award, the 2005 As d'Or Jeu de l'année, and placed second in the Schweizer Spielepreis for Family Games. Ticket to Ride: Europe won the 2005 International Gamers Award. As of October 2014, over three million copies were reported sold, with retail sales of over $150 million.",
+        ],
         players: "2-5",
-        playingTime: "30 mins"
+        playingTime: "30 mins",
     },
     {
         _id: uuid(),
@@ -60,9 +67,12 @@ export const products = [
         rating: 3.7,
         badge: "Top 10",
         deliveryDays: 15,
-        descriptionExpanded: "Lost Cities is a 60-card card game, designed in 1999 by game designer Reiner Knizia and published by several publishers. The objective of the game is to mount profitable expeditions to one or more of the five lost cities (the Himalayas, the Brazilian Rain Forest, the Desert Sands, the Ancient Volcanos and Neptune's Realm).\nLost Cities is a fast-moving game, with players playing or discarding, and then replacing, a single card each turn. Cards represent progress on one of the five color-coded expeditions. Players must decide, during the course of the game, how many of these expeditions to actually embark upon. Card-play rules are quite straightforward, but because players can only move forward on an expedition (by playing cards which are higher-numbered than those already played), making the right choice in a given game situation can be quite difficult. An expedition that has been started will earn points according to how much progress has been made when the game ends, and after three rounds, the player with the highest total score wins the game. Each expedition that is started but not thoroughly charted incurs a negative point penalty (investment costs).",
+        prodDesc: [
+            "Lost Cities is a 60-card card game, designed in 1999 by game designer Reiner Knizia and published by several publishers. The objective of the game is to mount profitable expeditions to one or more of the five lost cities (the Himalayas, the Brazilian Rain Forest, the Desert Sands, the Ancient Volcanos and Neptune's Realm).",
+            "Lost Cities is a fast-moving game, with players playing or discarding, and then replacing, a single card each turn. Cards represent progress on one of the five color-coded expeditions. Players must decide, during the course of the game, how many of these expeditions to actually embark upon. Card-play rules are quite straightforward, but because players can only move forward on an expedition (by playing cards which are higher-numbered than those already played), making the right choice in a given game situation can be quite difficult. An expedition that has been started will earn points according to how much progress has been made when the game ends, and after three rounds, the player with the highest total score wins the game. Each expedition that is started but not thoroughly charted incurs a negative point penalty (investment costs).",
+        ],
         players: "2",
-        playingTime: "30-45 mins"
+        playingTime: "30-45 mins",
     },
     {
         _id: uuid(),
@@ -74,9 +84,12 @@ export const products = [
         // actualprice: 499,
         rating: 1.6,
         deliveryDays: 9,
-        descriptionExpanded: "Tutti Frutti is a game for kids and is used to test the memory power. To set up Tutti Frutti, lay out the 48 double-sided tiles on the table; each side of a tile shows half of a fruit. Each player takes one tile at random to start the game. Then as quickly as possible, everyone picks up fruit tiles one by one and adds them to the stack already in their hand — but to add a tile, you must match the fruit half showing on the top (or bottom) of your stack with an identical fruit half on the tile being added. Thus, you're combining the fruit halves to create a whole fruit. \nPlayers can flip over tile on the table to see the reverse side. Once all the tiles have been claimed or no one wants any more, players compare their tile stacks and the players with the taller pile wins - but only if all the fruits have been combined correctly! If not, he loses and the player with the next tallest stack wins.",
+        prodDesc: [
+            "Tutti Frutti is a game for kids and is used to test the memory power. To set up Tutti Frutti, lay out the 48 double-sided tiles on the table; each side of a tile shows half of a fruit. Each player takes one tile at random to start the game. Then as quickly as possible, everyone picks up fruit tiles one by one and adds them to the stack already in their hand — but to add a tile, you must match the fruit half showing on the top (or bottom) of your stack with an identical fruit half on the tile being added. Thus, you're combining the fruit halves to create a whole fruit.",
+            "Players can flip over tile on the table to see the reverse side. Once all the tiles have been claimed or no one wants any more, players compare their tile stacks and the players with the taller pile wins - but only if all the fruits have been combined correctly! If not, he loses and the player with the next tallest stack wins.",
+        ],
         players: "2-4",
-        playingTime: "10 mins"
+        playingTime: "10 mins",
     },
     {
         _id: uuid(),
@@ -89,23 +102,35 @@ export const products = [
         rating: 5,
         outofstock: true,
         deliveryDays: 9,
-        descriptionExpanded: "The lightning fast shape and color recognition game that is sure to test the reflexes of kids, families and gamers alike. In Ghost Blitz, five wooden items sit on the table waiting to be caught: a white ghost, a green bottle, a cute grey mouse, a blue book, and a comfortable red chair. Each card in the deck shows pictures of two objects, with one or both objects colored the wrong way. With all players playing at the same time, someone reveals a card, then players grab for the 'right' object - but which object is right? \ni) If one object is colored correctly - say, a green bottle and a red mouse - then players need to grab that correctly colored object.\n ii) If both objects are colored incorrectly - say, a green ghost and a red mouse - then you look for the object and color not represented among the four details shown. In this case you see green, red, ghost and mouse, so players need to grab the blue book. \nThe first player to grab the correct object keeps the card, then reveals the next card from the deck. If a player grabs the wrong object, she must discard one card previously collected. Once the card deck runs out, the game ends and whoever has collected the most cards wins!",
+        prodDesc: [
+            "The lightning fast shape and color recognition game that is sure to test the reflexes of kids, families and gamers alike. In Ghost Blitz, five wooden items sit on the table waiting to be caught: a white ghost, a green bottle, a cute grey mouse, a blue book, and a comfortable red chair. Each card in the deck shows pictures of two objects, with one or both objects colored the wrong way. With all players playing at the same time, someone reveals a card, then players grab for the 'right' object - but which object is right?",
+            "i) If one object is colored correctly - say, a green bottle and a red mouse - then players need to grab that correctly colored object.",
+            "ii) If both objects are colored incorrectly - say, a green ghost and a red mouse - then you look for the object and color not represented among the four details shown. In this case you see green, red, ghost and mouse, so players need to grab the blue book.",
+            "The first player to grab the correct object keeps the card, then reveals the next card from the deck. If a player grabs the wrong object, she must discard one card previously collected. Once the card deck runs out, the game ends and whoever has collected the most cards wins!",
+        ],
         players: "2-6",
-        playingTime: "20 mins"
+        playingTime: "20 mins",
     },
     {
         _id: uuid(),
         url: "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1648462197/e-commerce/81umf-clZOL._SY550__odwzfr.jpg",
         name: "Lotus",
         description: "Based on set collection",
-        category: ["Multiplayer Games", "Fun Games", "Strategic Games", "Card Games"],
+        category: [
+            "Multiplayer Games",
+            "Fun Games",
+            "Strategic Games",
+            "Card Games",
+        ],
         newprice: 2999,
         actualprice: 3299,
         rating: 4.2,
         deliveryDays: 3,
-        descriptionExpanded: "Lotus is a beautiful game that grows into a unique work of art every time you play. Clear your head and take in the quiet strength of the lotus garden. It takes skillful care and nurturing to grow these flowers to their full potential, but, once picked, they provide their owner with wisdom. Beware, for there are others who will do anything they can to get their hands on these mystical flowers. You'll need to enlist the help of creatures native to this land to take control of the lotus garden and achieve true enlightenment.",
+        prodDesc: [
+            "Lotus is a beautiful game that grows into a unique work of art every time you play. Clear your head and take in the quiet strength of the lotus garden. It takes skillful care and nurturing to grow these flowers to their full potential, but, once picked, they provide their owner with wisdom. Beware, for there are others who will do anything they can to get their hands on these mystical flowers. You'll need to enlist the help of creatures native to this land to take control of the lotus garden and achieve true enlightenment.",
+        ],
         players: "2-4",
-        playingTime: "45 mins"
+        playingTime: "45 mins",
     },
     {
         _id: uuid(),
@@ -118,9 +143,12 @@ export const products = [
         rating: 4.9,
         badge: "Best selling",
         deliveryDays: 4,
-        descriptionExpanded: "Welcome to the most famed Geisha street in the old capital, Hanamikoji. Geishas are elegant and graceful women who are skilled in art, music, dance, and a variety of performances and ceremonies. Greatly respected and adored, Geishas are masters of entertainment. \nIn Hanamikoji, two players compete to earn the favor of seven illustrious Geishas by collecting each Geisha's preferred performance item. With careful speculation and a few bold moves, can you outsmart your opponent to win the favor of the most Geishas?",
+        prodDesc: [
+            "Welcome to the most famed Geisha street in the old capital, Hanamikoji. Geishas are elegant and graceful women who are skilled in art, music, dance, and a variety of performances and ceremonies. Greatly respected and adored, Geishas are masters of entertainment.",
+            "In Hanamikoji, two players compete to earn the favor of seven illustrious Geishas by collecting each Geisha's preferred performance item. With careful speculation and a few bold moves, can you outsmart your opponent to win the favor of the most Geishas?",
+        ],
         players: "2",
-        playingTime: "20-40 mins"
+        playingTime: "20-40 mins",
     },
     {
         _id: uuid(),
@@ -133,9 +161,12 @@ export const products = [
         rating: 4.1,
         badge: "Top 10",
         deliveryDays: 6,
-        descriptionExpanded: "The spark of life is about to jump from your hands to spread out in the world. Deploy your mountain ranges and your deserts, spread out your oceans and your glaciers. Handle wisely your continents to form environments suitable for the apparition of animal life and maybe you'll manage to create the most densely populated planet! \nIn Planet, each player receives a planet core without anything on it. Each turn, players choose a tile with mountain/ice/forest/desert on it and place it on the planet. Then the player who fulfills the most conditions for the appearance of certain animals gains its card.",
+        prodDesc: [
+            "The spark of life is about to jump from your hands to spread out in the world. Deploy your mountain ranges and your deserts, spread out your oceans and your glaciers. Handle wisely your continents to form environments suitable for the apparition of animal life and maybe you'll manage to create the most densely populated planet!",
+            "In Planet, each player receives a planet core without anything on it. Each turn, players choose a tile with mountain/ice/forest/desert on it and place it on the planet. Then the player who fulfills the most conditions for the appearance of certain animals gains its card.",
+        ],
         players: "2-4",
-        playingTime: "30 mins"
+        playingTime: "30 mins",
     },
     {
         _id: uuid(),
@@ -147,9 +178,11 @@ export const products = [
         actualprice: 999,
         rating: 2.9,
         deliveryDays: 2,
-        descriptionExpanded: "In Ouga Bouga players need to repeat a series of guttural noises, then add to the chain. At the start of each round, players are dealt three cards face-down and those cards remain hidden; each card shows a 'word' and associated illustration – 'Miti' for woolly mammoth and 'Atrrr' for fire. The first player of the round lays a card in the center of the table, makes the noise, then points at another player, saying 'Ha!' That player must add a card, repeat both sounds in order, then choose someone other than the player who chose him. Some cards have actions and add a gesture such as sticking out your tongue or pounding the table.",
+        prodDesc: [
+            "In Ouga Bouga players need to repeat a series of guttural noises, then add to the chain. At the start of each round, players are dealt three cards face-down and those cards remain hidden; each card shows a 'word' and associated illustration - 'Miti' for woolly mammoth and 'Atrrr' for fire. The first player of the round lays a card in the center of the table, makes the noise, then points at another player, saying 'Ha!' That player must add a card, repeat both sounds in order, then choose someone other than the player who chose him. Some cards have actions and add a gesture such as sticking out your tongue or pounding the table.",
+        ],
         players: "3-6",
-        playingTime: "10-20 mins"
+        playingTime: "10-20 mins",
     },
     {
         _id: uuid(),
@@ -161,9 +194,13 @@ export const products = [
         actualprice: 1999,
         rating: 3.4,
         deliveryDays: 8,
-        descriptionExpanded: "In Marrakech each player takes the role of a rug salesperson who tries to outwit the competition. Each player starts with 10 coins and an equal number of carpets. \nOn your turn, you may rotate Assam 90 degrees. Then roll the die and move him forward as many spaces as showing (d6: 1, 2, 2, 3, 3, 4). If Assam reaches the edge of the board, follow the curve and continue moving in the next row. If Assam lands on another player's carpet, you must pay that player 1 coin per square showing that is contiguous with the landed-on square. Then, you place one of your carpets orthogonally adjacent to Assam (but may not directly overlay another carpet). \nThe game ends when all players have played all carpets. Each gets 1 coin per visible square. The player with most coins wins!",
+        prodDesc: [
+            "In Marrakech each player takes the role of a rug salesperson who tries to outwit the competition. Each player starts with 10 coins and an equal number of carpets.",
+            "On your turn, you may rotate Assam 90 degrees. Then roll the die and move him forward as many spaces as showing (d6: 1, 2, 2, 3, 3, 4). If Assam reaches the edge of the board, follow the curve and continue moving in the next row. If Assam lands on another player's carpet, you must pay that player 1 coin per square showing that is contiguous with the landed-on square. Then, you place one of your carpets orthogonally adjacent to Assam (but may not directly overlay another carpet).",
+            "The game ends when all players have played all carpets. Each gets 1 coin per visible square. The player with most coins wins!",
+        ],
         players: "2-4",
-        playingTime: "30 mins"
+        playingTime: "30 mins",
     },
     {
         _id: uuid(),
@@ -176,9 +213,11 @@ export const products = [
         rating: 4.1,
         outofstock: true,
         deliveryDays: 9,
-        descriptionExpanded: "A beautiful and beautifully simple game of laying a tile before your own token to continue its path on each turn. The goal is to keep your token on the board longer than anyone else's, but as the board fills up this becomes harder because there are fewer empty spaces left... and another player's tile may also extend your own path in a direction you'd rather not go. Easy to introduce to new players.",
+        prodDesc: [
+            "A beautiful and beautifully simple game of laying a tile before your own token to continue its path on each turn. The goal is to keep your token on the board longer than anyone else's, but as the board fills up this becomes harder because there are fewer empty spaces left... and another player's tile may also extend your own path in a direction you'd rather not go. Easy to introduce to new players.",
+        ],
         players: "2-8",
-        playingTime: "15 mins"
+        playingTime: "15 mins",
     },
     {
         _id: uuid(),
@@ -190,9 +229,11 @@ export const products = [
         actualprice: 2599,
         rating: 3.7,
         deliveryDays: 20,
-        descriptionExpanded: "Skull & Roses is the quintessence of bluffing, a game in which everything is played in the players' heads. Each player plays a face-down card, then each player in turn adds one more card - until someone feels safe enough to state that he can turn a number of cards face up and get only roses. Other players can then overbid him, saying they can turn even more cards face up. The highest bidder must then turn that number of cards face up, starting with his own. If he shows only roses, he wins; if he reveals a skull, he loses, placing one of his cards out of play. Two successful challenges wins the game. Skull & Roses is not a game of luck; it's a game of poker face and meeting eyes.",
+        prodDesc: [
+            "Skull & Roses is the quintessence of bluffing, a game in which everything is played in the players' heads. Each player plays a face-down card, then each player in turn adds one more card - until someone feels safe enough to state that he can turn a number of cards face up and get only roses. Other players can then overbid him, saying they can turn even more cards face up. The highest bidder must then turn that number of cards face up, starting with his own. If he shows only roses, he wins; if he reveals a skull, he loses, placing one of his cards out of play. Two successful challenges wins the game. Skull & Roses is not a game of luck; it's a game of poker face and meeting eyes.",
+        ],
         players: "3-6",
-        playingTime: "15 - 45 mins"
+        playingTime: "15 - 45 mins",
     },
     {
         _id: uuid(),
@@ -204,9 +245,11 @@ export const products = [
         actualprice: 499,
         rating: 2.9,
         deliveryDays: 3,
-        descriptionExpanded: "Bold is a fun and interesting card game by Mattel, and this game involves matching certain elements in the cards, scoring points for successful match-ups, and earning enough points to eventually win the game. It is a nice afternoon game for anywhere between 2 to 4 players, and the rules are easy enough to learn quickly.",
+        prodDesc: [
+            "Bold is a fun and interesting card game by Mattel, and this game involves matching certain elements in the cards, scoring points for successful match-ups, and earning enough points to eventually win the game. It is a nice afternoon game for anywhere between 2 to 4 players, and the rules are easy enough to learn quickly.",
+        ],
         players: "2-4",
-        playingTime: "15 mins"
+        playingTime: "15 mins",
     },
     {
         _id: uuid(),
@@ -219,9 +262,12 @@ export const products = [
         rating: 3.9,
         badge: "Only few products left",
         deliveryDays: 5,
-        descriptionExpanded: "Jaipur is a fast-paced card game, a blend of tactics, risk and luck. On your turn, you can either take or sell cards. If you take cards, you have to choose between taking all the camels, taking one card from the market, or swapping 2-5 cards between the market and your cards. \nIf you sell cards, you get to sell only one type of good, and you receive as many chips for that good as the number of cards you sold. The chips' values decrease as the game progresses, so you'd better hurry! On the other hand, you receive increasingly high rewards for selling three, four, or five cards of the same good at a time, so you'd better wait!",
+        prodDesc: [
+            "Jaipur is a fast-paced card game, a blend of tactics, risk and luck. On your turn, you can either take or sell cards. If you take cards, you have to choose between taking all the camels, taking one card from the market, or swapping 2-5 cards between the market and your cards.",
+            "If you sell cards, you get to sell only one type of good, and you receive as many chips for that good as the number of cards you sold. The chips' values decrease as the game progresses, so you'd better hurry! On the other hand, you receive increasingly high rewards for selling three, four, or five cards of the same good at a time, so you'd better wait!",
+        ],
         players: "2",
-        playingTime: "30 mins"
+        playingTime: "30 mins",
     },
     {
         _id: uuid(),
@@ -233,8 +279,9 @@ export const products = [
         actualprice: 2399,
         rating: 3.7,
         deliveryDays: 4,
-        descriptionExpanded: "In CATAN (formerly The Settlers of Catan), players try to be the dominant force on the island of Catan by building settlements, cities, and roads. On each turn dice are rolled to determine what resources the island produces. Players build by spending resources (sheep, wheat, wood, brick and ore) that are depicted by these resource cards; each land type, with the exception of the unproductive desert, produces a specific resource: hills produce brick, forests produce wood, mountains produce ore, fields produce wheat, and pastures produce sheep.",
+        prodDesc:
+            "In CATAN (formerly The Settlers of Catan), players try to be the dominant force on the island of Catan by building settlements, cities, and roads. On each turn dice are rolled to determine what resources the island produces. Players build by spending resources (sheep, wheat, wood, brick and ore) that are depicted by these resource cards; each land type, with the exception of the unproductive desert, produces a specific resource: hills produce brick, forests produce wood, mountains produce ore, fields produce wheat, and pastures produce sheep.",
         players: "3-4",
-        playingTime: "60-120 mins"
-    }
+        playingTime: "60-120 mins",
+    },
 ];

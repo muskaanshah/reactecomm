@@ -18,7 +18,7 @@ function SingleProduct() {
 		actualprice,
 		url,
 		rating,
-		descriptionExpanded,
+		prodDesc,
 		players,
 		playingTime,
 	} = productState.default.find((item) => item._id === productId);
@@ -44,12 +44,16 @@ function SingleProduct() {
 								<span className="card-product-newprice fs-1-25 fw-600">
 									₹{newprice}
 								</span>
-								<span className="card-product-actualprice fs-1">
-									₹{actualprice}
-								</span>
-								<span className="card-product-discount fs-1">
-									{discount(actualprice, newprice)}% off
-								</span>
+								{actualprice && (
+									<span className="card-product-actualprice fs-1">
+										₹{actualprice}
+									</span>
+								)}
+								{actualprice && (
+									<span className="card-product-discount fs-1">
+										{discount(actualprice, newprice)}% off
+									</span>
+								)}
 							</div>
 							<span className="color-success-dark fs-0-8">
 								Inclusive of all taxes
@@ -83,8 +87,8 @@ function SingleProduct() {
 						<button
 							className={`btn ls-1 px-0-5 py-1 ${
 								isInWishlist
-									? "btn-primary-outline color-primary bg-white"
-									: "bg-primary color-white"
+									? "bg-primary color-white"
+									: "btn-primary-outline color-primary bg-white"
 							}`}
 							onClick={(e) => {
 								token
@@ -101,20 +105,23 @@ function SingleProduct() {
 							}}
 						>
 							<span className="material-icons-outlined"> favorite_border </span>
-							<span>{isInWishlist ? "WISHLIST" : "WISHLISTED"}</span>
+							<span>{isInWishlist ? "WISHLISTED" : "WISHLIST"}</span>
 						</button>
 					</div>
 					<h4 className="my-0-5">Players: {players}</h4>
 					<h4 className="my-0-5">Playing time: {playingTime}</h4>
 					<h3>Product Details</h3>
-					<p className="para-max650">{descriptionExpanded}</p>
+					<div className="para-max650">
+						{prodDesc.map((desc) => (
+							<p>{desc}</p>
+						))}
+					</div>
 					<h4>Ratings and Reviews</h4>
 					<div>
 						<input
 							type="text"
 							className="input-text input-text-review mr-1"
 							placeholder="Write your review"
-							id="#"
 						/>
 					</div>
 				</div>
