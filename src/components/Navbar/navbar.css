@@ -34,12 +34,12 @@
 	background-color: var(--primary);
 	left: 0;
 	width: 19rem;
-	transition: transform 2s;
+	transition: transform 1s;
 }
 
 .drawer-open {
 	transform: translate(0%);
-	transition: transform 2s;
+	transition: transform 1s;
 }
 
 .hamburger-menu > button {

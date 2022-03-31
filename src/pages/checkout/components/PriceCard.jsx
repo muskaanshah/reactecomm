@@ -37,20 +37,20 @@ function PriceCard() {
 			<div className="divider-black"></div>
 			<div className="price-attribute">
 				<p>Total MRP</p>
-				<p>Rs.{totalActualPrice}</p>
+				<p>₹{totalActualPrice}</p>
 			</div>
 			<div className="price-attribute">
 				<p>Discount on MRP</p>
-				<p className="color-success ls-1">-Rs.{totalDiscount}</p>
+				<p className="color-success ls-1">-₹{totalDiscount}</p>
 			</div>
 			<div className="price-attribute">
 				<p>Delivery Charge</p>
-				<p>Rs.{deliveryCharge}</p>
+				<p>₹{deliveryCharge}</p>
 			</div>
 			<div className="divider-black"></div>
 			<div className="price-attribute">
 				<p className="my-0-5 fw-600">Total Price</p>
-				<p>Rs.{totalPriceAfterDiscount}</p>
+				<p>₹{totalPriceAfterDiscount}</p>
 			</div>
 			<Link to="/" className="btn bg-primary btn-place-order mt-1">
 				PLACE ORDER

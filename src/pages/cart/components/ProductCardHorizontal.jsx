@@ -46,9 +46,9 @@ function ProductCardHorizontal({
 					<h3 className="card-title">{name}</h3>
 					<p className="card-product-description">{description}</p>
 					<div className="card-product-price">
-						<span className="card-product-newprice">Rs.{newprice}</span>
+						<span className="card-product-newprice">₹{newprice}</span>
 						{actualprice && (
-							<span className="card-product-actualprice">Rs.{actualprice}</span>
+							<span className="card-product-actualprice">₹{actualprice}</span>
 						)}
 						{actualprice && (
 							<span className="card-product-discount">

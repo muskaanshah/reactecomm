@@ -22,9 +22,9 @@ function SingleProduct() {
 							</p>
 							<div className="card-product-price p-0">
 								<span className="card-product-newprice fs-1-25 fw-600">
-									Rs.799
+									₹799
 								</span>
-								<span className="card-product-actualprice fs-1">Rs.1199</span>
+								<span className="card-product-actualprice fs-1">₹1199</span>
 								<span className="card-product-discount fs-1">30% off</span>
 							</div>
 							<span className="color-success-dark fs-0-8">

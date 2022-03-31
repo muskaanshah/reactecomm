@@ -27,7 +27,7 @@ function ProductCard({
 	};
 	useEffect(() => {
 		if (outofstock) {
-			setDisabled(() => true);
+			setDisabled(true);
 		}
 	}, [outofstock]);
 	const isInWishlist = cartState.wishlist.find(
@@ -72,9 +72,9 @@ function ProductCard({
 					<h3 className="card-title">{name}</h3>
 					<p className="card-product-description">{description}</p>
 					<div className="card-product-price pb-0">
-						<span className="card-product-newprice">Rs.{newprice}</span>
+						<span className="card-product-newprice">₹{newprice}</span>
 						{actualprice && (
-							<span className="card-product-actualprice">Rs.{actualprice}</span>
+							<span className="card-product-actualprice">₹{actualprice}</span>
 						)}
 						{actualprice && (
 							<span className="card-product-discount">

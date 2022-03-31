@@ -34,14 +34,14 @@
 	margin-top: 4rem;
 	overflow: auto;
 	border-left: 1px solid var(--primary);
-	transition: transform 2s;
+	transition: transform 1s;
 	background-color: var(--white);
 	z-index: 3;
 }
 
 .products-filters-open {
 	transform: translateX(100%);
-	transition: transform 2s;
+	transition: transform 1s;
 }
 
 .container-body {
