@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { useProduct } from "../../context/product-context";
 import { SearchList } from "../SearchList/SearchList";
@@ -26,6 +26,12 @@ function Navbar() {
 			});
 		}
 	}, [location.pathname, productDispatch]);
+	const navActiveStyle = ({ isActive }) => {
+		return {
+			textDecoration: isActive ? "underline" : "",
+			fontWeight: isActive ? "600" : "400",
+		};
+	};
 	return (
 		<>
 			<div>
@@ -50,16 +56,24 @@ function Navbar() {
 						</li>
 						<div className={`drawer ${drawer && `drawer-open`}`}>
 							<li className="nav-item" onClick={() => setDrawer(false)}>
-								<Link to="/">Home</Link>
+								<NavLink style={navActiveStyle} to="/">
+									Home
+								</NavLink>
 							</li>
 							<li className="nav-item" onClick={() => setDrawer(false)}>
-								<Link to="/products">Products</Link>
+								<NavLink style={navActiveStyle} to="/products">
+									Products
+								</NavLink>
 							</li>
 							<li className="nav-item" onClick={() => setDrawer(false)}>
-								<Link to="/">About us</Link>
+								<NavLink style={navActiveStyle} to="/about">
+									About us
+								</NavLink>
 							</li>
 							<li className="nav-item" onClick={() => setDrawer(false)}>
-								<Link to="/">Contact</Link>
+								<NavLink style={navActiveStyle} to="/contact">
+									Contact
+								</NavLink>
 							</li>
 						</div>
 					</div>

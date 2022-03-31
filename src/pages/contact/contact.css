@@ -1,0 +1,37 @@
+.contact-body {
+	background: url("https://static.wixstatic.com/media/e63f64_7c71239ac9734877b55bcbb17597bd74~mv2.jpg/v1/fill/w_1349,h_668,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/e63f64_7c71239ac9734877b55bcbb17597bd74~mv2.jpg");
+	height: calc(100vh - 4rem);
+	margin-top: 4rem;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	overflow-y: hidden;
+}
+
+.brown-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(67, 40, 24, 0.8);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-weight: 500;
+	color: var(--white);
+}
+
+.contact-single {
+	display: flex;
+	gap: 2rem;
+	align-items: flex-start;
+}
+
+.contact-single > .material-icons-outlined {
+	font-size: 2rem;
+}
+
+.input-subscribe {
+	width: 70%;
+}

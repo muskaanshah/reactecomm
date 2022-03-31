@@ -10,6 +10,8 @@ import { Cart } from "./pages/cart/Cart";
 import { Checkout } from "./pages/checkout/Checkout";
 import { SingleProduct } from "./pages/singleproduct/SingleProduct";
 import { Logout } from "./pages/logout/Logout";
+import { About } from "./pages/about/About";
+import { Contact } from "./pages/contact/Contact";
 
 function App() {
   return (
@@ -26,7 +28,8 @@ function App() {
         <Route path="/mock" element={<Mockman />} />
         <Route path="/product/:productId" element={<SingleProduct />} />
         <Route path="/logout" element={<Logout />} />
-        {/* <Route path="about" element={<About />} /> */}
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   );

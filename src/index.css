@@ -14,7 +14,6 @@ body {
 	padding: 0;
 	background-color: var(--white);
 	color: var(--black);
-	margin-bottom: 4rem;
 }
 
 .scrollBehaviour {
@@ -46,6 +45,10 @@ body {
 
 .btn-disabled:hover {
 	cursor: not-allowed;
+}
+
+.container-body {
+	padding-bottom: 4rem;
 }
 
 ::-webkit-scrollbar-track {

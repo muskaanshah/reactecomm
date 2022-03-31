@@ -33,10 +33,8 @@ function Wishlist() {
 						<h1>
 							You havent added anything in your wishlist! Let's start shopping
 						</h1>
-						<Link to="/products">
-							<button className="btn bg-primary color-secondary">
-								Start Shopping
-							</button>
+						<Link to="/products" className="btn bg-primary color-secondary">
+							Start Shopping
 						</Link>
 						<img
 							src="https://media3.giphy.com/media/RH2BuvH61QJAPsIUKY/giphy.gif?cid=790b76119f5d8520cdfc31e63a3e817cb138b74a405699aa&rid=giphy.gif&ct=g"

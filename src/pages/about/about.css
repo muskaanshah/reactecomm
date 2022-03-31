@@ -1,0 +1,17 @@
+.about-wrapper {
+	text-align: center;
+}
+
+.about-heading {
+	margin-top: 6rem;
+}
+
+.about-body {
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.about-img {
+	width: 50%;
+}

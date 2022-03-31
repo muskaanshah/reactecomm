@@ -17,7 +17,7 @@ function Home() {
 	});
 	const [categories, setCategories] = useState([]);
 	return (
-		<>
+		<div className="container-body">
 			<div className="landingpage">
 				<picture>
 					<source
@@ -50,7 +50,7 @@ function Home() {
 				</p>
 				<p className="homequoteauthor fs-1-25 fw-500 mt-0">-Nate Silver</p>
 			</div>
-		</>
+		</div>
 	);
 }
 
