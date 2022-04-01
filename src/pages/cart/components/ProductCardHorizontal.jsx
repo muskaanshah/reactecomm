@@ -23,7 +23,7 @@ function ProductCardHorizontal({
 				className="card-horizontal"
 				onClick={() => navigate(`/product/${_id}`)}
 			>
-				<div className="card-image-wrapper">
+				<div className="card-image-wrapper centered">
 					<img
 						className="img-responsive product-objectfit-contain"
 						src={url}
