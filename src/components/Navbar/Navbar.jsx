@@ -108,6 +108,23 @@ function Navbar() {
 							}}
 						/>
 						{productState.searchModal && <SearchList />}
+						{productState.searchText.length !== 0 && (
+							<span
+								className="material-icons-outlined"
+								onClick={() => {
+									productDispatch({
+										type: "SEARCH_PRODUCT",
+										payload: { value: "" },
+									});
+									productDispatch({
+										type: "SEARCH_FILTER_PRODUCT",
+										payload: { value: "" },
+									});
+								}}
+							>
+								close
+							</span>
+						)}
 					</li>
 					<li className="btn-login">
 						{!token ? (
