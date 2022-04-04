@@ -56,9 +56,9 @@ function PriceCard() {
 			{couponDiscount !== 0 && (
 				<div className="price-attribute">
 					<div className="price-coupon-remove">
-						<p>Coupon Discount</p>
+						<p className="my-0">Coupon Discount</p>
 						<p
-							className="fs-0-8 text-underline"
+							className="fs-0-8 text-underline my-0"
 							onClick={() => setCouponDiscount(0)}
 						>
 							Remove
