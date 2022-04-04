@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { GameCard } from "./components/Gamecard";
 import axios from "axios";
 import "./home.css";
+import { useProduct } from "../../context/product-context";
 
 function Home() {
 	useEffect(() => {
@@ -16,6 +17,7 @@ function Home() {
 		})();
 	});
 	const [categories, setCategories] = useState([]);
+	const { productDispatch } = useProduct();
 	return (
 		<div className="container-body">
 			<div className="landingpage">
@@ -35,7 +37,19 @@ function Home() {
 			<div className="categories mx-auto">
 				{categories.map((category) => {
 					return (
-						<Link to="/products" key={category._id}>
+						<Link
+							to="/products"
+							key={category._id}
+							onClick={() =>
+								productDispatch({
+									type: "CATEGORIES",
+									payload: {
+										value: category.categoryName,
+										isChecked: true,
+									},
+								})
+							}
+						>
 							<GameCard category={category} />
 						</Link>
 					);

@@ -13,6 +13,7 @@ function Products() {
 			{productState.productLoader ? (
 				<div className="loader-wrapper centered">
 					<div className="loader">Loading...</div>
+					<div>Loading...</div>
 				</div>
 			) : (
 				<>

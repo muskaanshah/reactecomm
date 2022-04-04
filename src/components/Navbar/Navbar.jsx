@@ -28,7 +28,6 @@ function Navbar() {
 	}, [location.pathname, productDispatch]);
 	const navActiveStyle = ({ isActive }) => {
 		return {
-			textDecoration: isActive ? "underline" : "",
 			fontWeight: isActive ? "600" : "400",
 		};
 	};
