@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Mockman from "mockman-js";
 import { Navbar } from "./components/Navbar/Navbar"
 import { Home } from "./pages/home/Home";
@@ -15,6 +16,10 @@ import { Contact } from "./pages/contact/Contact";
 import { PageNotFound } from "./pages/notfound/PageNotFound";
 
 function App() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <div className="App">
       <Navbar />

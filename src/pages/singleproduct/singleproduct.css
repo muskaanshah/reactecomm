@@ -23,7 +23,7 @@
 }
 
 .individual-productimg {
-	width: min(100%, 350px);
+	width: min(100%, 260px);
 }
 
 .btn-addtocart-block {
@@ -59,7 +59,7 @@
 @media only screen and (min-width: 650px) {
 	.individual-product {
 		display: grid;
-		grid-template-columns: 350px 1fr;
+		grid-template-columns: 260px 1fr;
 		align-items: start;
 		padding-top: 2rem;
 	}
@@ -67,7 +67,7 @@
 
 @media only screen and (min-width: 1000px) {
 	.individual-product {
-		width: 800px;
+		width: 850px;
 		margin-left: auto;
 		margin-right: auto;
 	}

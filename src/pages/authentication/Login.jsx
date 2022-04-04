@@ -21,7 +21,7 @@ function Login() {
 						Email Address
 						<span className="input-box">
 							<input
-								type="input"
+								type="email"
 								id="email-address"
 								className="input-text input-authentication p-0-5 fs-0-9 mb-1-5"
 								placeholder="Enter your email address"
