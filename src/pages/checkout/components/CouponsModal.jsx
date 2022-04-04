@@ -31,6 +31,12 @@ function CouponsModal({
 			setCouponModal(false);
 		}
 	};
+	const availableCouponsLength = couponsAvailable.filter(
+		(coupon) => coupon.minimumPrice <= totalPriceBeforeCoupon
+	);
+	const notAvailableCouponsLength = couponsAvailable.filter(
+		(coupon) => coupon.minimumPrice > totalPriceBeforeCoupon
+	);
 	useEffect(() => {
 		document.body.classList.add("scrollBehaviour");
 		return () => {
@@ -66,35 +72,43 @@ function CouponsModal({
 					</button>
 				</div>
 				<p className="color-danger my-0-5">{notApplicable}</p>
-				<p className="my-0 fw-600">Coupons applicable for you:</p>
-				{couponsAvailable.map(
-					(coupon) =>
-						coupon.minimumPrice <= totalPriceBeforeCoupon && (
-							<div
-								className="coupon-code-wrapper px-1"
-								onClick={() => {
-									setCodeInput(coupon.code);
-									setNotApplicable("");
-								}}
-							>
-								<p className="color-primary fw-600 coupon-code px-0-5">
-									{coupon.code}
-								</p>
-								<p>{coupon.description}</p>
-							</div>
-						)
+				{availableCouponsLength.length !== 0 && (
+					<>
+						<p className="my-0 fw-600">Coupons applicable for you:</p>
+						{couponsAvailable.map(
+							(coupon) =>
+								coupon.minimumPrice <= totalPriceBeforeCoupon && (
+									<div
+										className="coupon-code-wrapper px-1"
+										onClick={() => {
+											setCodeInput(coupon.code);
+											setNotApplicable("");
+										}}
+									>
+										<p className="color-primary fw-600 coupon-code px-0-5">
+											{coupon.code}
+										</p>
+										<p>{coupon.description}</p>
+									</div>
+								)
+						)}
+					</>
 				)}
-				<p className="mb-0 mt-1-5 fw-600">Coupons not applicable:</p>
-				{couponsAvailable.map(
-					(coupon) =>
-						coupon.minimumPrice > totalPriceBeforeCoupon && (
-							<div className="coupon-code-wrapper-notapplicable px-1">
-								<p className="color-primary fw-600 coupon-code px-0-5">
-									{coupon.code}
-								</p>
-								<p>{coupon.description}</p>
-							</div>
-						)
+				{notAvailableCouponsLength.length !== 0 && (
+					<>
+						<p className="mb-0 mt-1-5 fw-600">Coupons not applicable:</p>
+						{couponsAvailable.map(
+							(coupon) =>
+								coupon.minimumPrice > totalPriceBeforeCoupon && (
+									<div className="coupon-code-wrapper-notapplicable px-1">
+										<p className="color-primary fw-600 coupon-code px-0-5">
+											{coupon.code}
+										</p>
+										<p>{coupon.description}</p>
+									</div>
+								)
+						)}
+					</>
 				)}
 			</div>
 		</div>

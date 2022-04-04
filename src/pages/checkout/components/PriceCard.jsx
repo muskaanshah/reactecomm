@@ -47,10 +47,12 @@ function PriceCard() {
 				<p>Total MRP</p>
 				<p>₹{totalActualPrice}</p>
 			</div>
-			<div className="price-attribute">
-				<p>Discount on MRP</p>
-				<p className="color-success ls-1">-₹{totalDiscount}</p>
-			</div>
+			{totalDiscount !== 0 && (
+				<div className="price-attribute">
+					<p>Discount on MRP</p>
+					<p className="color-success ls-1">-₹{totalDiscount}</p>
+				</div>
+			)}
 			{couponDiscount !== 0 && (
 				<div className="price-attribute">
 					<div className="price-coupon-remove">
