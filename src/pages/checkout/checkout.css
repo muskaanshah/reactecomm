@@ -27,10 +27,82 @@
 }
 
 .input-couponcode {
-	width: 200px;
+	/* width: auto; */
 	margin-bottom: 0;
 	background-color: transparent;
 	outline: none;
 	border: none;
 	border-bottom: 1px solid var(--black);
+}
+
+.coupons-modal-header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.coupons-modal-header > p,
+.coupons-modal-header > input {
+	flex-grow: 1;
+}
+
+input[type="text"] {
+	font: inherit;
+}
+
+.coupon-code {
+	border: 2px dashed var(--primary);
+}
+
+.coupon-code-wrapper,
+.coupon-code-wrapper-notapplicable {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.coupon-code-wrapper:hover {
+	cursor: pointer;
+	background-color: rgb(240, 240, 240);
+}
+
+.price-coupon-remove {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
+}
+
+.price-coupon-remove:hover {
+	cursor: pointer;
+}
+
+.coupons-modal {
+	width: min(90%, 30rem);
+	position: absolute;
+	overflow: auto;
+	max-height: 60vh;
+}
+
+.coupons-modal-wrapper {
+	height: 100vh;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.295);
+	z-index: 2;
+	top: 4rem;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.coupons-modal-header > span {
+	cursor: pointer;
+}
+
+.coupons-modal::-webkit-scrollbar {
+	width: 0;
+	background-color: var(--white);
 }
