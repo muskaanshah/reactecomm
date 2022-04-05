@@ -129,9 +129,7 @@ function Navbar() {
 						{!token ? (
 							<>
 								<Link to="/login">
-									<span className="material-icons user-login-icon">
-										account_circle
-									</span>
+									<span className="material-icons user-login-icon">login</span>
 								</Link>
 								<Link
 									to="/login"
