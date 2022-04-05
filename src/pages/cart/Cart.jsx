@@ -47,15 +47,16 @@ function Cart() {
 									<div className="divider-black"></div>
 									<Link
 										to="/checkout"
-										className="btn bg-primary btn-place-order mt-1 fw-600 color-white"
+										className="btn bg-primary btn-place-order mt-1 fw-600 color-white br-4px"
 									>
 										PROCEED TO CHECKOUT
 									</Link>
-									<button className="btn bg-secondary btn-place-order mt-1 fw-600">
+									{/* Will be implemented later
+									<button className="btn bg-secondary btn-place-order mt-1 fw-600 br-4px">
 										SHARE MY CART
-									</button>
+									</button> */}
 									<button
-										className="btn bg-grey-light btn-place-order mt-1 fw-600"
+										className="btn bg-grey-light btn-place-order mt-1 fw-600 br-4px"
 										onClick={() => cartDispatch({ type: "CLEAR_CART" })}
 									>
 										CLEAR MY CART

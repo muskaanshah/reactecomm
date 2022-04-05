@@ -1,8 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./contact.css";
 
 function Contact() {
-	const [email, setEmail] = useState("");
+	// const [email, setEmail] = useState("");
 	return (
 		<div className="contact-body">
 			<div className="brown-overlay">
@@ -26,6 +26,7 @@ function Contact() {
 						<span className="material-icons-outlined">schedule</span>
 						<p className="my-0 fs-1-25">Everyday: 11:00 am - 10:00 pm</p>
 					</div>
+					{/* Will implement this later
 					<h3 className="my-0">
 						Subscribe to be the first to know about our website launch
 					</h3>
@@ -50,7 +51,7 @@ function Contact() {
 								className="btn bg-secondary color-primary fw-500"
 							/>
 						</div>
-					</form>
+					</form> */}
 				</div>
 			</div>
 		</div>

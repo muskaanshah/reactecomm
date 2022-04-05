@@ -83,7 +83,7 @@ function PriceCard() {
 		paymentObject.open();
 	};
 	return (
-		<div className="ordersummary price-card p-1">
+		<div className="ordersummary price-card p-1 br-4px">
 			{couponDiscount === 0 && (
 				<span className="flex-end">
 					<span className="material-icons fs-1"> local_offer </span>

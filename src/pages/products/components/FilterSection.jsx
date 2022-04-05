@@ -47,6 +47,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 						className="slider"
 						min="400"
 						max="5000"
+						step="200"
 						value={productState.priceRange}
 						onChange={(e) => {
 							productDispatch({
@@ -59,6 +60,41 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 						Products within Rs.
 						<span className="fw-600">{productState.priceRange}</span>
 					</span>
+				</div>
+				<h3>Sort By</h3>
+				<div className="radio-group sortby-filter">
+					<label htmlFor="htol">
+						<input
+							id="htol"
+							type="radio"
+							name="radio-price"
+							value="HIGHEST_TO_LOWEST"
+							onChange={(e) =>
+								productDispatch({
+									type: "SORT_BY_PRICE",
+									payload: { value: e.target.value },
+								})
+							}
+							checked={productState.sortWay === "HIGHEST_TO_LOWEST"}
+						/>
+						Price - High to Low
+					</label>
+					<label htmlFor="ltoh">
+						<input
+							id="ltoh"
+							type="radio"
+							name="radio-price"
+							value="LOWEST_TO_HIGHEST"
+							onChange={(e) =>
+								productDispatch({
+									type: "SORT_BY_PRICE",
+									payload: { value: e.target.value },
+								})
+							}
+							checked={productState.priceRange === "LOWEST_TO_HIGHEST"}
+						/>
+						Price - Low to High
+					</label>
 				</div>
 				<h3>Category</h3>
 				<div className="checkbox-group category-filter">
@@ -162,41 +198,6 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 							checked={productState.rating === "1"}
 						/>
 						1 star and above
-					</label>
-				</div>
-				<h3>Sort By</h3>
-				<div className="radio-group sortby-filter">
-					<label htmlFor="htol">
-						<input
-							id="htol"
-							type="radio"
-							name="radio-price"
-							value="HIGHEST_TO_LOWEST"
-							onChange={(e) =>
-								productDispatch({
-									type: "SORT_BY_PRICE",
-									payload: { value: e.target.value },
-								})
-							}
-							checked={productState.sortWay === "HIGHEST_TO_LOWEST"}
-						/>
-						Price - High to Low
-					</label>
-					<label htmlFor="ltoh">
-						<input
-							id="ltoh"
-							type="radio"
-							name="radio-price"
-							value="LOWEST_TO_HIGHEST"
-							onChange={(e) =>
-								productDispatch({
-									type: "SORT_BY_PRICE",
-									payload: { value: e.target.value },
-								})
-							}
-							checked={productState.priceRange === "LOWEST_TO_HIGHEST"}
-						/>
-						Price - Low to High
 					</label>
 				</div>
 			</div>

@@ -20,7 +20,7 @@ function ProductCardHorizontal({
 	return (
 		<>
 			<div
-				className="card-horizontal"
+				className="card-horizontal br-4px"
 				onClick={() => navigate(`/product/${_id}`)}
 			>
 				<div className="card-image-wrapper centered">

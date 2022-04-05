@@ -39,9 +39,8 @@ body {
 	width: 13rem;
 }
 
-.card-product-wrapper {
-	display: flex;
-	justify-content: center;
+.btn:hover {
+	cursor: pointer;
 }
 
 .btn-disabled:hover {

@@ -127,6 +127,7 @@ function SingleProduct() {
 							<p>{desc}</p>
 						))}
 					</div>
+					{/* Will implement this later
 					<h4>Ratings and Reviews</h4>
 					<div>
 						<input
@@ -134,7 +135,7 @@ function SingleProduct() {
 							className="input-text input-text-review mr-1"
 							placeholder="Write your review"
 						/>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

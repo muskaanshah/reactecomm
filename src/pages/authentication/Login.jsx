@@ -45,6 +45,7 @@ function Login() {
 							/>
 						</span>
 					</label>
+					{/* Will implement this later
 					<div className="login-space-between mb-1">
 						<label htmlFor="remember-me" className="fw-500 fs-0-9">
 							<input
@@ -58,7 +59,7 @@ function Login() {
 						<Link to="/login" className="color-primary fs-0-8">
 							Forgot your password?
 						</Link>
-					</div>
+					</div> */}
 					{errorLogin.length > 0 && (
 						<div className="fs-0-9 color-danger my-0-5">{errorLogin}</div>
 					)}
