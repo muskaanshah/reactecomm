@@ -125,35 +125,6 @@ function Navbar() {
 							</span>
 						)}
 					</li>
-					<li className="btn-login">
-						{!token ? (
-							<>
-								<Link to="/login">
-									<span className="material-icons user-login-icon">login</span>
-								</Link>
-								<Link
-									to="/login"
-									className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
-								>
-									Login
-								</Link>
-							</>
-						) : (
-							<>
-								<Link to="/logout">
-									<span className="material-icons user-logout-icon">
-										logout
-									</span>
-								</Link>
-								{/* <Link
-									to="/logout"
-									className="btn user-logout-btn borderradius-2 color-secondary py-0-5 px-1"
-								>
-									Logout
-								</Link> */}
-							</>
-						)}
-					</li>
 					<li>
 						<Link to="/wishlist">
 							<span className="material-icons-outlined wishlist-icon">
@@ -174,6 +145,29 @@ function Navbar() {
 								</div>
 							)}
 						</span>
+					</li>
+					<li className="btn-login">
+						{!token ? (
+							<>
+								<Link to="/login">
+									<span className="material-icons user-login-icon">login</span>
+								</Link>
+								<Link
+									to="/login"
+									className="btn user-login-btn borderradius-2 bg-secondary color-primary py-0-5 px-1"
+								>
+									Login
+								</Link>
+							</>
+						) : (
+							<Link to="/userprofile">
+								<img
+									class="avatar avatar-sm borderradius-full"
+									src="https://i.ibb.co/YWTbNKm/Deepika-Padukone-1200-PTI-0.jpg"
+									alt="avatar"
+								/>
+							</Link>
+						)}
 					</li>
 				</ul>
 			</div>
