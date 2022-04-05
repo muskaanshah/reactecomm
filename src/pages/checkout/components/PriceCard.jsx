@@ -89,7 +89,7 @@ function PriceCard() {
 					<span className="material-icons fs-1"> local_offer </span>
 					<span className="fw-600">Apply coupon</span>
 					<button
-						className="btn bg-primary py-0 px-0-5 fs-0-8"
+						className="btn bg-primary py-0 px-0-5 fs-0-8 br-4px"
 						onClick={() => setCouponModal(true)}
 					>
 						Apply
@@ -134,7 +134,7 @@ function PriceCard() {
 				<p>₹{totalPriceAfterDiscount}</p>
 			</div>
 			<button
-				className="btn bg-primary btn-place-order mt-1"
+				className="btn bg-primary btn-place-order mt-1 br-4px"
 				onClick={displayRazorpay}
 			>
 				PLACE ORDER

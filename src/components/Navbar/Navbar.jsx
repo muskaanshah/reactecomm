@@ -79,7 +79,7 @@ function Navbar() {
 					<li className="search">
 						<input
 							type="text"
-							className="input-text input-text-nav input-search"
+							className="input-text input-search"
 							placeholder="Search"
 							value={productState.searchText}
 							onChange={(e) => {

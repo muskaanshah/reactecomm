@@ -100,6 +100,7 @@
 	border: 0;
 	border-bottom: 1px solid var(--secondary);
 	color: var(--secondary);
+	transition: width 1s;
 }
 
 .input-search::placeholder {
@@ -146,6 +147,10 @@
 	border-bottom: 0.5px solid var(--grey);
 }
 
+.badge-number {
+	font-size: 12px;
+}
+
 @media only screen and (max-width: 370px) {
 	.input-search {
 		width: 40px;
@@ -171,8 +176,8 @@
 	.user-login-icon {
 		display: none;
 	}
-	.input-text-nav:focus,
-	.input-text-nav:not(:placeholder-shown) {
+	.input-search:focus,
+	.input-search:not(:placeholder-shown) {
 		width: 200px;
 		transition: width 1s;
 	}
