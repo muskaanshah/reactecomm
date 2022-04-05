@@ -106,7 +106,8 @@ function Navbar() {
 								}
 							}}
 						/>
-						{productState.searchModal && <SearchList />}
+						{(productState.searchModal ||
+							productState.searchText.length === 0) && <SearchList />}
 						{productState.searchText.length !== 0 && (
 							<span
 								className="material-icons-outlined"

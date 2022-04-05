@@ -45,7 +45,7 @@ function CouponsModal({
 	}, []);
 	return (
 		<div className="coupons-modal-wrapper">
-			<div className="coupons-modal p-1 br-0-5 bg-white">
+			<div className="coupons-modal p-1 br-0-5 bg-white br-4px">
 				<div className="coupons-modal-header">
 					<p className="fw-500">APPLY COUPON</p>
 					<span
