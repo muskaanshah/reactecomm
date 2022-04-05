@@ -67,7 +67,7 @@ const initialState = {
     rating: 0,
     searchText: "",
     searchModal: false,
-    productLoader: true
+    productLoader: false
 };
 
 const ProductProvider = ({ children }) => {
