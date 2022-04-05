@@ -14,15 +14,15 @@
 
 .categories {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 20rem);
-	grid-column-gap: 2rem;
-	grid-row-gap: 2rem;
-	padding: 2rem;
+	grid-template-columns: repeat(auto-fill, 17rem);
+	gap: 2rem;
+	padding: 1rem;
 	justify-content: center;
 }
 
 .game-card {
-	width: 18rem;
+	width: 100%;
+	height: 100%;
 	position: relative;
 }
 
@@ -41,9 +41,9 @@
 
 .game-card:hover,
 .card-product:hover {
-	box-shadow: rgba(71, 71, 71, 0.4) 0px 8px 24px;
+	/* box-shadow: rgba(71, 71, 71, 0.4) 0px 8px 24px; */
 	cursor: pointer;
-	transform: scale(1.01);
+	transform: scale(1.03);
 	transition: transform 0.5s;
 }
 

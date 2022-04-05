@@ -151,6 +151,14 @@
 	font-size: 12px;
 }
 
+.btn-visibility {
+	visibility: visible;
+}
+
+.btn-visibility-none {
+	visibility: hidden;
+}
+
 @media only screen and (max-width: 370px) {
 	.input-search {
 		width: 40px;

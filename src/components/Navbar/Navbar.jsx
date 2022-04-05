@@ -108,23 +108,25 @@ function Navbar() {
 						/>
 						{(productState.searchModal ||
 							productState.searchText.length === 0) && <SearchList />}
-						{productState.searchText.length !== 0 && (
-							<span
-								className="material-icons-outlined"
-								onClick={() => {
-									productDispatch({
-										type: "SEARCH_PRODUCT",
-										payload: { value: "" },
-									});
-									productDispatch({
-										type: "SEARCH_FILTER_PRODUCT",
-										payload: { value: "" },
-									});
-								}}
-							>
-								close
-							</span>
-						)}
+						<span
+							className={`${
+								productState.searchText.length !== 0
+									? "btn-visibility"
+									: "btn-visibility-none"
+							} material-icons-outlined`}
+							onClick={() => {
+								productDispatch({
+									type: "SEARCH_PRODUCT",
+									payload: { value: "" },
+								});
+								productDispatch({
+									type: "SEARCH_FILTER_PRODUCT",
+									payload: { value: "" },
+								});
+							}}
+						>
+							close
+						</span>
 					</li>
 					<li>
 						<Link to="/wishlist">
