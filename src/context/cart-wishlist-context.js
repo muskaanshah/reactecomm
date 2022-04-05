@@ -23,6 +23,10 @@ const cartReducer = (cartState, action) => {
             return addToWishlist(cartState, action.payload.value);
         case "REMOVE_FROM_WISHLIST":
             return removeFromWishlist(cartState, action.payload.value);
+        case "CLEAR_ORDER_CART":
+            return { ...cartState, cart: [], cartItemsNumber: 0 }
+        case "ORDER_SUMMARY":
+            return { ...cartState, order: { ...action.payload.value } }
         default:
             return cartState;
     }
@@ -37,6 +41,7 @@ const initialState = {
     cart: [],
     wishlist: [],
     closeButton: false,
+    order: {}
 };
 
 const CartWishlistProvider = ({ children }) => {

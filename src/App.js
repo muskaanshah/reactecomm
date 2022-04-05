@@ -15,6 +15,7 @@ import { About } from "./pages/about/About";
 import { Contact } from "./pages/contact/Contact";
 import { PageNotFound } from "./pages/notfound/PageNotFound";
 import { UserProfile } from "./pages/userProfile/UserProfile";
+import { OrderSummary } from "./pages/ordersummary/OrderSummary";
 
 function App() {
   const { pathname } = useLocation();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/order" element={<OrderSummary />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

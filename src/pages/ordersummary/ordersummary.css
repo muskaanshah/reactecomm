@@ -1,0 +1,19 @@
+.order-items {
+	background-color: white;
+	width: min(90%, 25rem);
+}
+
+.order-item {
+	display: flex;
+	justify-content: flex-start;
+	gap: 0.5rem;
+}
+
+.order-item > div {
+	flex-grow: 1;
+}
+
+.order-item > img {
+	max-width: 6rem;
+	object-fit: contain;
+}

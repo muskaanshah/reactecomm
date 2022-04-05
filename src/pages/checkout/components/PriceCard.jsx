@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { CouponsModal } from "./CouponsModal";
 
 function PriceCard() {
 	const [couponModal, setCouponModal] = useState(false);
 	const [couponDiscount, setCouponDiscount] = useState(0);
-	const { cartState } = useCartWishlist();
+	const { cartState, cartDispatch } = useCartWishlist();
+	const navigate = useNavigate();
+
 	const totalActualPrice = cartState.cart.reduce(
 		(acc, curr) =>
 			curr.actualprice
@@ -25,6 +27,61 @@ function PriceCard() {
 	const totalPriceBeforeCoupon = totalActualPrice - totalDiscount;
 	const totalPriceAfterDiscount =
 		totalActualPrice - totalDiscount + deliveryCharge - couponDiscount;
+
+	//Razorpay Payment Integration
+	const loadScript = async (url) => {
+		return new Promise((resolve) => {
+			const script = document.createElement("script");
+			script.src = url;
+
+			script.onload = () => {
+				resolve(true);
+			};
+
+			script.onerror = () => {
+				resolve(false);
+			};
+
+			document.body.appendChild(script);
+		});
+	};
+	const displayRazorpay = async () => {
+		const res = await loadScript(
+			"https://checkout.razorpay.com/v1/checkout.js"
+		);
+
+		if (!res) {
+			console.error("Unable to fetch RazorPay SDK");
+			return;
+		}
+
+		const options = {
+			key: "rzp_test_f1OzauHEGKTHtG",
+			amount: totalPriceAfterDiscount * 100,
+			currency: "INR",
+			name: "Board At Home",
+			description: "Thank you for shopping with us",
+			image:
+				"https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png",
+			handler: function (response) {
+				const tempObj = {
+					items: [...cartState.cart],
+					amount: totalPriceAfterDiscount,
+					paymentId: response.razorpay_payment_id,
+				};
+				cartDispatch({ type: "ORDER_SUMMARY", payload: { value: tempObj } });
+				navigate("/order");
+				cartDispatch({
+					type: "CLEAR_ORDER_CART",
+				});
+			},
+			theme: {
+				color: "#432818",
+			},
+		};
+		const paymentObject = new window.Razorpay(options);
+		paymentObject.open();
+	};
 	return (
 		<div className="ordersummary price-card p-1">
 			{couponDiscount === 0 && (
@@ -76,9 +133,12 @@ function PriceCard() {
 				<p className="my-0-5 fw-600">Total Price</p>
 				<p>₹{totalPriceAfterDiscount}</p>
 			</div>
-			<Link to="/" className="btn bg-primary btn-place-order mt-1">
+			<button
+				className="btn bg-primary btn-place-order mt-1"
+				onClick={displayRazorpay}
+			>
 				PLACE ORDER
-			</Link>
+			</button>
 			{couponModal && (
 				<CouponsModal
 					totalPriceBeforeCoupon={totalPriceBeforeCoupon}

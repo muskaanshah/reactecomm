@@ -13,55 +13,6 @@ function Checkout() {
 						<AddressCard />
 						<AddressCard />
 					</div>
-					<h2 className="page-heading">Choose your payment method</h2>
-					<div className="flex-column payment-radiobox">
-						<label htmlFor="radio-payment" className="p-0-5">
-							<input
-								id="radio-payment"
-								type="radio"
-								name="radio-payment"
-								value="paymentmethod1"
-								checked
-							/>
-							Debit Card
-						</label>
-						<label htmlFor="radio-payment" className="p-0-5">
-							<input
-								id="radio-payment"
-								type="radio"
-								name="radio-payment"
-								value="paymentmethod2"
-							/>
-							Credit Card
-						</label>
-						<label htmlFor="radio-payment" className="p-0-5">
-							<input
-								id="radio-payment"
-								type="radio"
-								name="radio-payment"
-								value="paymentmethod3"
-							/>
-							Paytm Wallet
-						</label>
-						<label htmlFor="radio-payment" className="p-0-5">
-							<input
-								id="radio-payment"
-								type="radio"
-								name="radio-payment"
-								value="paymentmethod4"
-							/>
-							UPI
-						</label>
-						<label htmlFor="radio-payment" className="p-0-5">
-							<input
-								id="radio-payment"
-								type="radio"
-								name="radio-payment"
-								value="paymentmethod4"
-							/>
-							Cash on Delivery
-						</label>
-					</div>
 				</div>
 				<div>
 					<h2 className="page-heading">Order Summary</h2>
