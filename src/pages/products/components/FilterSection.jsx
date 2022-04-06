@@ -91,7 +91,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 									payload: { value: e.target.value },
 								})
 							}
-							checked={productState.priceRange === "LOWEST_TO_HIGHEST"}
+							checked={productState.sortWay === "LOWEST_TO_HIGHEST"}
 						/>
 						Price - Low to High
 					</label>
