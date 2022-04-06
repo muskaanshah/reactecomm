@@ -104,6 +104,7 @@ function FilterSection({ filterDrawer, setFilterDrawer }) {
 								<input
 									type="checkbox"
 									name="checkbox"
+									className="category-checkbox"
 									value={currentCategory.categoryName}
 									checked={productState.categories.includes(
 										currentCategory.categoryName
