@@ -52,6 +52,7 @@ const productReducer = (productState, action) => {
                 categories: [],
                 priceRange: 5000,
                 rating: 0,
+                sortWay: "",
                 searchText: ""
             };
         default:
