@@ -3,8 +3,10 @@ import { useAlert } from "../../context/alert-context";
 import "./alert.css";
 
 function Alert() {
-	const { alertState, alertDispatch } = useAlert();
-	const { alertType, active, alertMsg } = alertState();
+	const {
+		alertState: { alertType, active, alertMsg },
+		alertDispatch,
+	} = useAlert();
 	let alertClass = "";
 	let spanClass = "info";
 
