@@ -1,9 +1,9 @@
-import "../products.css";
-import "../loader.css";
+import { useState } from "react";
+import { useProduct } from "../../context";
 import { ProductCard } from "./components/ProductCard";
 import { FilterSection } from "./components/FilterSection";
-import { useProduct } from "../../context/product-context";
-import { useState } from "react";
+import "../products.css";
+import "../loader.css";
 
 function Products() {
 	const { productState } = useProduct();

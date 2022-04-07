@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useProduct } from "../../context";
 import { GameCard } from "./components/Gamecard";
 import axios from "axios";
 import "./home.css";
-import { useProduct } from "../../context/product-context";
 
 function Home() {
 	useEffect(() => {

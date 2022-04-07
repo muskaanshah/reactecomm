@@ -1,21 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Mockman from "mockman-js";
+import { Home, Products, Wishlist, Login, Signup, Cart, Checkout, SingleProduct, Logout, About, Contact, PageNotFound, UserProfile, OrderSummary } from "./pages";
 import { Navbar } from "./components/Navbar/Navbar"
-import { Home } from "./pages/home/Home";
-import { Products } from "./pages/products/Products";
-import { Wishlist } from "./pages/wishlist/Wishlist";
-import { Login } from "./pages/authentication/Login";
-import { Signup } from "./pages/authentication/Signup";
-import { Cart } from "./pages/cart/Cart";
-import { Checkout } from "./pages/checkout/Checkout";
-import { SingleProduct } from "./pages/singleproduct/SingleProduct";
-import { Logout } from "./pages/logout/Logout";
-import { About } from "./pages/about/About";
-import { Contact } from "./pages/contact/Contact";
-import { PageNotFound } from "./pages/notfound/PageNotFound";
-import { UserProfile } from "./pages/userProfile/UserProfile";
-import { OrderSummary } from "./pages/ordersummary/OrderSummary";
 import { Alert } from "./components/Alert/Alert";
 
 function App() {

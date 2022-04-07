@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAlert } from "../../context/alert-context";
-import { useCartWishlist } from "../../context/cart-wishlist-context";
-import { useProduct } from "../../context/product-context";
+import { useAlert, useCartWishlist, useProduct } from "../../context";
 import { discount } from "../../utils/discountCalculation";
 import "./singleproduct.css";
 

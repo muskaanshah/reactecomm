@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
-import { useCartWishlist } from "../../context/cart-wishlist-context";
-import { useProduct } from "../../context/product-context";
+import { useCartWishlist, useProduct } from "../../context";
 import { SearchList } from "../SearchList/SearchList";
 import "./navbar.css";
 

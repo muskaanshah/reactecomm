@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from "../../../context/alert-context";
-import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { useAlert, useCartWishlist } from "../../../context";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCard({

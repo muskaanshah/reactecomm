@@ -1,5 +1,5 @@
-import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { Link } from "react-router-dom";
+import { useCartWishlist } from "../../context";
 
 import "./ordersummary.css";
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useProduct } from "../../context/product-context";
+import { useProduct } from "../../context";
 import { itemListCalculation } from "../../utils/itemListCalculation";
 
 function SearchList() {

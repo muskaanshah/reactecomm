@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useProduct } from "../../../context/product-context";
+import { useProduct } from "../../../context";
 import axios from "axios";
 
 function FilterSection({ filterDrawer, setFilterDrawer }) {

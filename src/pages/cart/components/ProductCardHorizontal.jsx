@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useCartWishlist } from "../../../context/cart-wishlist-context";
+import { useCartWishlist } from "../../../context";
 import { discount } from "../../../utils/discountCalculation";
 import { getDeliveryDate } from "../../../utils/getDeliveryDate";
 
