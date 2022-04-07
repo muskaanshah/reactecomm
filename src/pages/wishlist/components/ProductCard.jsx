@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAlert } from "../../../context/alert-context";
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { discount } from "../../../utils/discountCalculation";
 
@@ -7,6 +8,7 @@ function ProductCard({
 	product: { _id, name, description, newprice, actualprice, url, outofstock },
 }) {
 	const { cartDispatch } = useCartWishlist();
+	const { alertDispatch } = useAlert();
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -65,6 +67,10 @@ function ProductCard({
 						cartDispatch({
 							type: "REMOVE_FROM_WISHLIST",
 							payload: { value: _id },
+						});
+						alertDispatch({
+							type: "ACTIVATE_ALERT",
+							payload: { alertType: "success", alertMsg: "Added to cart" },
 						});
 					}}
 					disabled={disabled}

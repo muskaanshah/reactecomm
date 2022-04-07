@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useAlert } from "../../context/alert-context";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import "./modal.css";
 
 function Modal() {
 	const { cartState, cartDispatch } = useCartWishlist();
+	const { alertDispatch } = useAlert();
 	useEffect(() => {
 		document.body.classList.add("scrollBehaviour");
 		return () => {
@@ -53,6 +55,13 @@ function Modal() {
 							});
 							cartDispatch({
 								type: "CLOSE_MODAL",
+							});
+							alertDispatch({
+								type: "ACTIVATE_ALERT",
+								payload: {
+									alertType: "success",
+									alertMsg: "Added to wishlist",
+								},
 							});
 						}}
 					>

@@ -16,6 +16,7 @@ import { Contact } from "./pages/contact/Contact";
 import { PageNotFound } from "./pages/notfound/PageNotFound";
 import { UserProfile } from "./pages/userProfile/UserProfile";
 import { OrderSummary } from "./pages/ordersummary/OrderSummary";
+import { Alert } from "./components/Alert/Alert";
 
 function App() {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <Alert />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
