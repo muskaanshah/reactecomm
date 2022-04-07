@@ -4,35 +4,36 @@ import "./alert.css";
 
 function Alert() {
 	const { alertState, alertDispatch } = useAlert();
+	const { alertType, active, alertMsg } = alertState();
 	let alertClass = "";
 	let spanClass = "info";
 
-	if (alertState.alertType === "success") {
+	if (alertType === "success") {
 		alertClass = "alert-success";
 		spanClass = "check_circle";
 	}
-	if (alertState.alertType === "warning") {
+	if (alertType === "warning") {
 		alertClass = "alert-warning";
 		spanClass = "warning";
 	}
-	if (alertState.alertType === "error") {
+	if (alertType === "error") {
 		alertClass = "alert-error";
 		spanClass = "error";
 	}
 
 	useEffect(() => {
-		if (alertState.active) {
+		if (active) {
 			setTimeout(() => {
 				alertDispatch({ type: "DEACTIVATE_ALERT" });
 			}, 3000);
 		}
-	}, [alertState.active, alertDispatch]);
+	}, [active, alertDispatch]);
 	return (
 		<>
-			{alertState.active && (
+			{active && (
 				<div className={`alert borderradius-0-5 ${alertClass}`}>
 					<span className="material-icons">{spanClass}</span>
-					{alertState.alertMsg}
+					{alertMsg}
 				</div>
 			)}
 		</>
