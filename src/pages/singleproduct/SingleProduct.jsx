@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAlert } from "../../context/alert-context";
 import { useCartWishlist } from "../../context/cart-wishlist-context";
 import { useProduct } from "../../context/product-context";
 import { discount } from "../../utils/discountCalculation";
@@ -9,6 +10,7 @@ function SingleProduct() {
 	const { productId } = useParams();
 	const { productState } = useProduct();
 	const { cartState, cartDispatch } = useCartWishlist();
+	const { alertDispatch } = useAlert();
 	const token = localStorage.getItem("encodedToken");
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
@@ -82,15 +84,23 @@ function SingleProduct() {
 							className={`btn btn-transform ls-1 px-0-5 py-1 ${
 								disabled ? "btn-disabled" : "bg-primary color-white"
 							}`}
-							onClick={() =>
-								token
-									? !disabled &&
-									  cartDispatch({
+							onClick={() => {
+								if (token) {
+									if (!disabled) {
+										cartDispatch({
 											type: "ADD_TO_CART",
 											payload: { value: _id },
-									  })
-									: navigate("/login")
-							}
+										});
+										alertDispatch({
+											type: "ACTIVATE_ALERT",
+											payload: {
+												alertType: "success",
+												alertMsg: "Added to cart",
+											},
+										});
+									}
+								} else navigate("/login");
+							}}
 						>
 							<span className="material-icons-outlined">add_shopping_cart</span>
 							<span>ADD TO CART</span>
@@ -102,17 +112,26 @@ function SingleProduct() {
 									: "btn-primary-outline color-primary bg-white"
 							}`}
 							onClick={(e) => {
-								token
-									? isInWishlist
-										? cartDispatch({
-												type: "REMOVE_FROM_WISHLIST",
-												payload: { value: _id },
-										  })
-										: cartDispatch({
-												type: "ADD_TO_WISHLIST",
-												payload: { value: _id },
-										  })
-									: navigate("/login");
+								if (token) {
+									if (isInWishlist) {
+										cartDispatch({
+											type: "REMOVE_FROM_WISHLIST",
+											payload: { value: _id },
+										});
+									} else {
+										cartDispatch({
+											type: "ADD_TO_WISHLIST",
+											payload: { value: _id },
+										});
+										alertDispatch({
+											type: "ACTIVATE_ALERT",
+											payload: {
+												alertType: "success",
+												alertMsg: "Added to wishlist",
+											},
+										});
+									}
+								} else navigate("/login");
 							}}
 						>
 							<span className="material-icons-outlined"> favorite_border </span>

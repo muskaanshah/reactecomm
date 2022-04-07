@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAlert } from "../../../context/alert-context";
 import { useCartWishlist } from "../../../context/cart-wishlist-context";
 import { CouponsModal } from "./CouponsModal";
 
@@ -7,6 +8,7 @@ function PriceCard() {
 	const [couponModal, setCouponModal] = useState(false);
 	const [couponDiscount, setCouponDiscount] = useState(0);
 	const { cartState, cartDispatch } = useCartWishlist();
+	const { alertDispatch } = useAlert();
 	const navigate = useNavigate();
 
 	const totalActualPrice = cartState.cart.reduce(
@@ -51,7 +53,13 @@ function PriceCard() {
 		);
 
 		if (!res) {
-			console.error("Unable to fetch RazorPay SDK");
+			alertDispatch({
+				type: "ACTIVATE_ALERT",
+				payload: {
+					alertType: "error",
+					alertMsg: "Unable to fetch RazorPay SDK",
+				},
+			});
 			return;
 		}
 
