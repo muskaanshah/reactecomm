@@ -52,8 +52,7 @@ https://user-images.githubusercontent.com/67731665/162073440-5e8c738b-4648-481a-
 ## **Notes for reviewer-**
 1. Have to use api for cart and wishlist
 2. Have to add address management
-3. Have to add alerts
-4. Multiple same products can be added to the cart via the products page, that is the functionality, the count of items increase in the cart
+3. Multiple same products can be added to the cart via the products page, that is the functionality, the count of items increase in the cart
   
 ## Resources -
 - [Google Icons](https://fonts.google.com/)
