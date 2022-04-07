@@ -25,10 +25,23 @@ function Navbar() {
 			});
 		}
 	}, [location.pathname, productDispatch]);
+
 	const navActiveStyle = ({ isActive }) => {
 		return {
 			fontWeight: isActive ? "600" : "400",
 		};
+	};
+
+	const searchEnterHandler = () => {
+		productDispatch({
+			type: "SEARCH_FILTER_PRODUCT",
+			payload: { value: productState.searchText },
+		});
+		navigate("/products");
+		productDispatch({
+			type: "OPEN_CLOSE_SEARCH_MODAL",
+			payload: { value: false },
+		});
 	};
 	return (
 		<>
@@ -76,6 +89,16 @@ function Navbar() {
 						</div>
 					</div>
 					<li className="search">
+						<span
+							className={`${
+								productState.searchText.length !== 0
+									? "btn-visibility"
+									: "btn-visibility-none"
+							} material-icons-outlined`}
+							onClick={() => searchEnterHandler()}
+						>
+							search
+						</span>
 						<input
 							type="text"
 							className="input-text input-search"
@@ -92,17 +115,7 @@ function Navbar() {
 								});
 							}}
 							onKeyPress={(e) => {
-								if (e.key === "Enter") {
-									productDispatch({
-										type: "SEARCH_FILTER_PRODUCT",
-										payload: { value: e.target.value },
-									});
-									navigate("/products");
-									productDispatch({
-										type: "OPEN_CLOSE_SEARCH_MODAL",
-										payload: { value: false },
-									});
-								}
+								if (e.key === "Enter") searchEnterHandler();
 							}}
 						/>
 						{(productState.searchModal ||
