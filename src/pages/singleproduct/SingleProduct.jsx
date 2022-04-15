@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist, useProduct } from "../../context";
 import { discount } from "../../utils/discountCalculation";
 import "./singleproduct.css";
@@ -12,6 +12,7 @@ function SingleProduct() {
 	const token = localStorage.getItem("encodedToken");
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
 	const {
 		_id,
 		name,
@@ -97,7 +98,7 @@ function SingleProduct() {
 											},
 										});
 									}
-								} else navigate("/login");
+								} else navigate("/login", { state: { from: location } });
 							}}
 						>
 							<span className="material-icons-outlined">add_shopping_cart</span>
@@ -129,7 +130,7 @@ function SingleProduct() {
 											},
 										});
 									}
-								} else navigate("/login");
+								} else navigate("/login", { state: { from: location } });
 							}}
 						>
 							<span className="material-icons-outlined"> favorite_border </span>

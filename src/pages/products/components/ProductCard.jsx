@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { discount } from "../../../utils/discountCalculation";
 
@@ -20,6 +20,7 @@ function ProductCard({
 	const [disabled, setDisabled] = useState(false);
 	const token = localStorage.getItem("encodedToken");
 	const navigate = useNavigate();
+	const location = useLocation();
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
 		"Top 10": "bg-warning",
@@ -76,7 +77,9 @@ function ProductCard({
 									},
 								});
 							}
-						} else navigate("/login");
+						} else {
+							navigate("/login", { state: { from: location } });
+						}
 					}}
 				>
 					<span className="material-icons"> favorite </span>
@@ -109,7 +112,7 @@ function ProductCard({
 								type: "ACTIVATE_ALERT",
 								payload: { alertType: "success", alertMsg: "Added to cart" },
 							});
-						} else navigate("/login");
+						} else navigate("/login", { state: { from: location } });
 					}}
 					disabled={disabled}
 				>
