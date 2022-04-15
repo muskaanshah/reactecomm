@@ -4,6 +4,7 @@ import Mockman from "mockman-js";
 import { Home, Products, Wishlist, Login, Signup, Cart, Checkout, SingleProduct, Logout, About, Contact, PageNotFound, UserProfile, OrderSummary } from "./pages";
 import { Navbar } from "./components/Navbar/Navbar"
 import { Alert } from "./components/Alert/Alert";
+import { RequiresAuth } from "./utils/RequiresAuth";
 
 function App() {
   const { pathname } = useLocation();
@@ -17,10 +18,18 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/wishlist" element={
+          <RequiresAuth>
+            <Wishlist />
+          </RequiresAuth>
+        } />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={
+          <RequiresAuth>
+            <Cart />
+          </RequiresAuth>
+        } />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/mock" element={<Mockman />} />
         <Route path="/product/:productId" element={<SingleProduct />} />

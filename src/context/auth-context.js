@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -10,6 +10,8 @@ const AuthProvider = ({ children }) => {
     const [errorLogin, setErrorLogin] = useState("");
     const [errorSignup, setErrorSignup] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || '/'
     const loginUser = async (email, password) => {
         try {
             const res = await axios.post("api/auth/login", { email: email, password: password })
@@ -17,7 +19,7 @@ const AuthProvider = ({ children }) => {
                 setErrorLogin("");
                 setToken(res.data.encodedToken);
                 localStorage.setItem("encodedToken", res.data.encodedToken);
-                navigate("/");
+                navigate(from, { replace: true })
             }
         }
         catch (err) {
@@ -31,7 +33,7 @@ const AuthProvider = ({ children }) => {
                 setErrorSignup("");
                 setToken(res.data.encodedToken);
                 localStorage.setItem("encodedToken", res.data.encodedToken);
-                navigate("/");
+                navigate(from, { replace: true })
             }
         }
         catch (err) {
