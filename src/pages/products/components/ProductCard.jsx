@@ -56,7 +56,7 @@ function ProductCard({ product }) {
 				const newCart = await addToCart(cartState, product);
 				cartDispatch({
 					type: "ADD_TO_CART",
-					payload: { newCart },
+					payload: { value: newCart },
 				});
 			}
 			alertDispatch({

@@ -26,7 +26,7 @@ function Modal() {
 			type: "REMOVE_FROM_CART",
 			payload: { value: newCart },
 		});
-		const newCart2 = await addToWishlist(cartState, product);
+		const newCart2 = await addToWishlist(newCart, product);
 		cartDispatch({
 			type: "ADD_TO_WISHLIST",
 			payload: { value: newCart2 },
