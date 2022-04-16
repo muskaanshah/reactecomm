@@ -3,7 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { addToCart, updateCartQty } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
-import { addToWishlist } from "../../../utils/wishlistFunctions";
+import {
+	addToWishlist,
+	removeFromWishlist,
+} from "../../../utils/wishlistFunctions";
 
 function ProductCard({ product }) {
 	const {
@@ -67,9 +70,10 @@ function ProductCard({ product }) {
 		e.stopPropagation();
 		if (token) {
 			if (isInWishlist) {
+				const newCart = await removeFromWishlist(cartState, _id);
 				cartDispatch({
 					type: "REMOVE_FROM_WISHLIST",
-					payload: { value: _id },
+					payload: { value: newCart },
 				});
 			} else {
 				const newCart = await addToWishlist(cartState, product);

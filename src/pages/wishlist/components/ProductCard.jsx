@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { discount } from "../../../utils/discountCalculation";
+import { removeFromWishlist } from "../../../utils/wishlistFunctions";
 
 function ProductCard({ product }) {
 	const { _id, name, description, newprice, actualprice, url, outofstock } =
 		product;
-	const { cartDispatch } = useCartWishlist();
+	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
@@ -22,11 +23,12 @@ function ProductCard({ product }) {
 		>
 			<button
 				className="btn-close"
-				onClick={(e) => {
+				onClick={async (e) => {
 					e.stopPropagation();
+					const newCart = await removeFromWishlist(cartState, _id);
 					cartDispatch({
 						type: "REMOVE_FROM_WISHLIST",
-						payload: { value: _id },
+						payload: { value: newCart },
 					});
 				}}
 			>

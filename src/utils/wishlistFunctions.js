@@ -53,14 +53,35 @@ const addToWishlist = async (state, product) => {
     }
 }
 
-const removeFromWishlist = (state, id) => {
-    const temp2 = {
-        ...state,
-        wishlistItemsNumber: state.wishlistItemsNumber - 1,
-        idOfProduct: id,
-        wishlist: state.wishlist.filter((currentProduct) => currentProduct._id !== id),
-    };
-    return temp2;
+// const removeFromWishlist = (state, id) => {
+//     const temp2 = {
+//         ...state,
+//         wishlistItemsNumber: state.wishlistItemsNumber - 1,
+//         idOfProduct: id,
+//         wishlist: state.wishlist.filter((currentProduct) => currentProduct._id !== id),
+//     };
+//     return temp2;
+// };
+
+const removeFromWishlist = async (state, id) => {
+    try {
+        const res = await axios.delete(`/api/user/wishlist/${id}`, {
+            headers: {
+                authorization: localStorage.getItem("encodedToken"),
+            },
+        });
+        if (res.status === 200) {
+            const temp1 = {
+                ...state,
+                wishlistItemsNumber: state.wishlistItemsNumber - 1,
+                idOfProduct: id,
+                wishlist: res.data.wishlist
+            }
+            return temp1
+        }
+    } catch (err) {
+        console.log(err)
+    }
 };
 
 export { addToWishlist, removeFromWishlist };

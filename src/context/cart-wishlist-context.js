@@ -39,7 +39,7 @@ const cartReducer = (cartState, action) => {
         case "ADD_TO_WISHLIST":
             return { ...cartState, ...action.payload.value }
         case "REMOVE_FROM_WISHLIST":
-            return removeFromWishlist(cartState, action.payload.value);
+            return { ...cartState, ...action.payload.value }
         case "CLEAR_ORDER_CART":
             return { ...cartState, cart: [], cartItemsNumber: 0 }
         case "ORDER_SUMMARY":
