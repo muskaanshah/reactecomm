@@ -58,10 +58,10 @@ function ProductCard({ product }) {
 					payload: { newCart },
 				});
 			}
-			// alertDispatch({
-			// 	type: "ACTIVATE_ALERT",
-			// 	payload: { alertType: "success", alertMsg: "Added to cart" },
-			// });
+			alertDispatch({
+				type: "ACTIVATE_ALERT",
+				payload: { alertType: "success", alertMsg: "Added to cart" },
+			});
 		} else navigate("/login", { state: { from: location } });
 	};
 	return (
