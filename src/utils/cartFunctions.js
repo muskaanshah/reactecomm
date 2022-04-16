@@ -90,6 +90,7 @@ const addToCart = async (state, product) => {
 // };
 
 const removeFromCart = async (state, id) => {
+    const itemFind = state.cart.find((currentItem) => currentItem._id === id);
     try {
         const res = await axios.delete(`/api/user/cart/${id}`, {
             headers: {
@@ -97,14 +98,58 @@ const removeFromCart = async (state, id) => {
             },
         });
         if (res.status === 200) {
-            return {
+            const temp1 = {
                 ...state,
+                cartItemsNumber: state.cartItemsNumber - itemFind.qty,
+                idOfProduct: id,
                 cart: res.data.cart
             }
+            return {
+                ...temp1,
+                cartPrice: temp1.cart.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
+            };
         }
     } catch (err) {
         console.log(err)
     }
 };
 
-export { addToCart, removeFromCart }
+const updateCartQty = async (state, id, action) => {
+    try {
+        const res = await axios.post(
+            `/api/user/cart/${id}`,
+            {
+                action: {
+                    type: action,
+                },
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            }
+        );
+        if (res.status === 200) {
+            const temp1 = {
+                ...state,
+                cartItemsNumber: action === "increment" ? state.cartItemsNumber + 1 : state.cartItemsNumber - 1,
+                idOfProduct: id,
+                cart: res.data.cart
+            }
+            return {
+                ...temp1,
+                cartPrice: temp1.cart.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
+            };
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export { addToCart, removeFromCart, updateCartQty }

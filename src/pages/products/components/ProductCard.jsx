@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
-import { addToCart } from "../../../utils/cartFunctions";
+import { addToCart, updateCartQty } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
 
 function ProductCard({ product }) {
@@ -38,11 +38,26 @@ function ProductCard({ product }) {
 	const handleAddTocart = async (e) => {
 		e.stopPropagation();
 		if (token) {
-			const newCart = await addToCart(cartState, product);
-			cartDispatch({
-				type: "ADD_TO_CART",
-				payload: { newCart },
-			});
+			const itemFind = cartState.cart.find(
+				(currentItem) => currentItem._id === product._id
+			);
+			if (itemFind) {
+				const newCart = await updateCartQty(
+					cartState,
+					product._id,
+					"increment"
+				);
+				cartDispatch({
+					type: "UPDATE_CART_QUANTITY",
+					payload: { value: newCart },
+				});
+			} else {
+				const newCart = await addToCart(cartState, product);
+				cartDispatch({
+					type: "ADD_TO_CART",
+					payload: { newCart },
+				});
+			}
 			// alertDispatch({
 			// 	type: "ACTIVATE_ALERT",
 			// 	payload: { alertType: "success", alertMsg: "Added to cart" },

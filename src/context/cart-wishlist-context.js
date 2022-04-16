@@ -28,6 +28,8 @@ const cartReducer = (cartState, action) => {
             return { ...cartState, ...action.payload.newCart }
         case "REMOVE_FROM_CART":
             return { ...cartState, ...action.payload.value }
+        case "UPDATE_CART_QUANTITY":
+            return { ...cartState, ...action.payload.value }
         case "OPEN_MODAL":
             return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
         case "CLOSE_MODAL":

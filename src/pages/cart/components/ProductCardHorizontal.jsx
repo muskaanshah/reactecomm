@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useCartWishlist } from "../../../context";
+import { removeFromCart, updateCartQty } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
 import { getDeliveryDate } from "../../../utils/getDeliveryDate";
 
-function ProductCardHorizontal({
-	product: {
+function ProductCardHorizontal({ product }) {
+	const {
 		_id,
 		name,
 		description,
@@ -13,10 +14,33 @@ function ProductCardHorizontal({
 		url,
 		qty,
 		deliveryDays,
-	},
-}) {
-	const { cartDispatch } = useCartWishlist();
+	} = product;
+	const { cartState, cartDispatch } = useCartWishlist();
 	const navigate = useNavigate();
+	const decrementQtyHandler = async (e) => {
+		e.stopPropagation();
+		if (product.qty === 1) {
+			const newCart = await removeFromCart(cartState, product._id);
+			cartDispatch({
+				type: "REMOVE_FROM_CART",
+				payload: { value: newCart },
+			});
+		} else {
+			const newCart = await updateCartQty(cartState, product._id, "decrement");
+			cartDispatch({
+				type: "UPDATE_CART_QUANTITY",
+				payload: { value: newCart },
+			});
+		}
+	};
+	const incrementQtyHandler = async (e) => {
+		e.stopPropagation();
+		const newCart = await updateCartQty(cartState, product._id, "increment");
+		cartDispatch({
+			type: "UPDATE_CART_QUANTITY",
+			payload: { value: newCart },
+		});
+	};
 	return (
 		<>
 			<div
@@ -60,26 +84,14 @@ function ProductCardHorizontal({
 						<span className="product-qty mr-0-5">Qty:</span>
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
-							onClick={(e) => {
-								e.stopPropagation();
-								cartDispatch({
-									type: "REMOVE_FROM_CART",
-									payload: { value: _id },
-								});
-							}}
+							onClick={decrementQtyHandler}
 						>
 							-
 						</button>
 						<span className="mx-0-5">{qty}</span>
 						<button
 							className="borderradius-2 btn-count border-accent bg-secondary"
-							onClick={(e) => {
-								e.stopPropagation();
-								cartDispatch({
-									type: "ADD_TO_CART",
-									payload: { value: _id },
-								});
-							}}
+							onClick={incrementQtyHandler}
 						>
 							+
 						</button>
