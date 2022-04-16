@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { removeFromCart } from "../utils/cartFunctions";
 import { addToWishlist, removeFromWishlist } from "../utils/wishlistFunctions";
 import axios from "axios";
 
@@ -28,7 +27,7 @@ const cartReducer = (cartState, action) => {
         case "ADD_TO_CART":
             return { ...cartState, ...action.payload.newCart }
         case "REMOVE_FROM_CART":
-            return removeFromCart(cartState, action.payload.value, action.payload.isDeleteItem);
+            return { ...cartState, ...action.payload.value }
         case "OPEN_MODAL":
             return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
         case "CLOSE_MODAL":

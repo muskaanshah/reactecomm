@@ -32,9 +32,7 @@ import axios from "axios";
 // };
 
 const addToCart = async (state, product) => {
-    console.log(product);
     try {
-        console.log("Inside post")
         const res = await axios.post(
             `/api/user/cart`,
             {
@@ -46,14 +44,11 @@ const addToCart = async (state, product) => {
                 },
             }
         );
-
-        console.log(res);
         if (res.status === 201) {
             const temp1 = {
                 ...state,
                 cartItemsNumber: Number(state.cartItemsNumber) + 1,
                 idOfProduct: product._id,
-                // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
                 cart: res.data.cart
             };
             const temp2 = {
@@ -71,27 +66,45 @@ const addToCart = async (state, product) => {
     }
 }
 
-const removeFromCart = (state, id, isDeleteItem) => {
-    const itemFind2 = state.cart.find((currentItem) => currentItem._id === id);
-    const temp2 = {
-        ...state,
-        cartItemsNumber: isDeleteItem
-            ? state.cartItemsNumber - itemFind2.qty
-            : state.cartItemsNumber - 1,
-        idOfProduct: id,
-        cart: state.cart.map((currentProduct) =>
-            currentProduct._id === id
-                ? { ...currentProduct, qty: isDeleteItem ? 0 : currentProduct.qty - 1 }
-                : { ...currentProduct }
-        ),
-    };
-    return {
-        ...temp2,
-        cartPrice: temp2.cart.reduce(
-            (acc, curr) => (acc += curr.newprice * curr.qty),
-            0
-        ),
-    };
+// const removeFromCart = (state, id, isDeleteItem) => {
+//     const itemFind2 = state.cart.find((currentItem) => currentItem._id === id);
+//     const temp2 = {
+//         ...state,
+//         cartItemsNumber: isDeleteItem
+//             ? state.cartItemsNumber - itemFind2.qty
+//             : state.cartItemsNumber - 1,
+//         idOfProduct: id,
+//         cart: state.cart.map((currentProduct) =>
+//             currentProduct._id === id
+//                 ? { ...currentProduct, qty: isDeleteItem ? 0 : currentProduct.qty - 1 }
+//                 : { ...currentProduct }
+//         ),
+//     };
+//     return {
+//         ...temp2,
+//         cartPrice: temp2.cart.reduce(
+//             (acc, curr) => (acc += curr.newprice * curr.qty),
+//             0
+//         ),
+//     };
+// };
+
+const removeFromCart = async (state, id) => {
+    try {
+        const res = await axios.delete(`/api/user/cart/${id}`, {
+            headers: {
+                authorization: localStorage.getItem("encodedToken"),
+            },
+        });
+        if (res.status === 200) {
+            return {
+                ...state,
+                cart: res.data.cart
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
 };
 
 export { addToCart, removeFromCart }

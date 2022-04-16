@@ -39,7 +39,6 @@ function ProductCard({ product }) {
 		e.stopPropagation();
 		if (token) {
 			const newCart = await addToCart(cartState, product);
-			console.log("new", newCart);
 			cartDispatch({
 				type: "ADD_TO_CART",
 				payload: { newCart },

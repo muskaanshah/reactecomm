@@ -1,10 +1,21 @@
 import { useEffect } from "react";
 import { useAlert, useCartWishlist } from "../../context";
+import { removeFromCart } from "../../utils/cartFunctions";
 import "./modal.css";
 
 function Modal() {
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
+	const removeItemHandler = async () => {
+		const newCart = await removeFromCart(cartState, cartState.idOfProduct);
+		cartDispatch({
+			type: "REMOVE_FROM_CART",
+			payload: { value: newCart },
+		});
+		cartDispatch({
+			type: "CLOSE_MODAL",
+		});
+	};
 	useEffect(() => {
 		document.body.classList.add("scrollBehaviour");
 		return () => {
@@ -28,15 +39,7 @@ function Modal() {
 				<div className="modal-actionbuttons">
 					<button
 						className="btn bg-grey-light borderradius-0-5"
-						onClick={() => {
-							cartDispatch({
-								type: "REMOVE_FROM_CART",
-								payload: { value: cartState.idOfProduct, isDeleteItem: true },
-							});
-							cartDispatch({
-								type: "CLOSE_MODAL",
-							});
-						}}
+						onClick={removeItemHandler}
 					>
 						Delete
 						<span className="material-icons"> delete </span>
