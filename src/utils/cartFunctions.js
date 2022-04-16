@@ -16,7 +16,7 @@ const addToCart = async (state, product) => {
         if (res.status === 201) {
             const temp1 = {
                 ...state,
-                cartItemsNumber: Number(state.cartItemsNumber) + 1,
+                cartItemsNumber: state.cartItemsNumber + 1,
                 idOfProduct: product._id,
                 cart: res.data.cart
             };

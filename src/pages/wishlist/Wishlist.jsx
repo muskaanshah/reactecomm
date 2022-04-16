@@ -5,11 +5,9 @@ import "../products.css";
 
 function Wishlist() {
 	const { cartState } = useCartWishlist();
-	// const token = localStorage.getItem("encodedToken");
 	return (
 		<div>
-			{/* {token ? ( */}
-			{cartState.wishlist.length > 0 ? (
+			{cartState?.wishlist?.length > 0 ? (
 				<div className="container-body container-body-wishlist">
 					<div className="p-1">
 						<h2 className="page-heading">
@@ -45,14 +43,6 @@ function Wishlist() {
 					></img>
 				</div>
 			)}
-			{/* // ) : (
-			<div className="cart-empty">
-			<h1>Please login to continue</h1>
-			<Link to="/login" className="btn bg-primary color-secondary">
-			Go to Login page
-			</Link>
-				</div>
-			// ) */}
 		</div>
 	);
 }

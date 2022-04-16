@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { addToWishlist, removeFromWishlist } from "../utils/wishlistFunctions";
+import { removeFromWishlist } from "../utils/wishlistFunctions";
 import axios from "axios";
 
 const CartWishlistContext = createContext();
@@ -37,7 +37,7 @@ const cartReducer = (cartState, action) => {
         case "CLEAR_CART":
             return { ...cartState, cartItemsNumber: 0, cartPrice: 0, cart: [] }
         case "ADD_TO_WISHLIST":
-            return addToWishlist(cartState, action.payload.value);
+            return { ...cartState, ...action.payload.value }
         case "REMOVE_FROM_WISHLIST":
             return removeFromWishlist(cartState, action.payload.value);
         case "CLEAR_ORDER_CART":

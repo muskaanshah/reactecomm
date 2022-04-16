@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { addToCart, updateCartQty } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
+import { addToWishlist } from "../../../utils/wishlistFunctions";
 
 function ProductCard({ product }) {
 	const {
@@ -27,14 +28,11 @@ function ProductCard({ product }) {
 		"Only few products left": "bg-danger",
 		"People's favourite": "bg-tealgreen-light",
 	};
-	useEffect(() => {
-		if (outofstock) {
-			setDisabled(true);
-		}
-	}, [outofstock]);
+
 	const isInWishlist = cartState.wishlist?.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
+
 	const handleAddTocart = async (e) => {
 		e.stopPropagation();
 		if (token) {
@@ -64,6 +62,39 @@ function ProductCard({ product }) {
 			});
 		} else navigate("/login", { state: { from: location } });
 	};
+
+	const handleAddToWishlist = async (e) => {
+		e.stopPropagation();
+		if (token) {
+			if (isInWishlist) {
+				cartDispatch({
+					type: "REMOVE_FROM_WISHLIST",
+					payload: { value: _id },
+				});
+			} else {
+				const newCart = await addToWishlist(cartState, product);
+				cartDispatch({
+					type: "ADD_TO_WISHLIST",
+					payload: { value: newCart },
+				});
+				alertDispatch({
+					type: "ACTIVATE_ALERT",
+					payload: {
+						alertType: "success",
+						alertMsg: "Added to wishlist",
+					},
+				});
+			}
+		} else {
+			navigate("/login", { state: { from: location } });
+		}
+	};
+
+	useEffect(() => {
+		if (outofstock) {
+			setDisabled(true);
+		}
+	}, [outofstock]);
 	return (
 		<div
 			className="card card-product br-4px"
@@ -85,31 +116,7 @@ function ProductCard({ product }) {
 						isInWishlist ? "activeButton" : ""
 					}
 						}`}
-					onClick={(e) => {
-						e.stopPropagation();
-						if (token) {
-							if (isInWishlist) {
-								cartDispatch({
-									type: "REMOVE_FROM_WISHLIST",
-									payload: { value: _id },
-								});
-							} else {
-								cartDispatch({
-									type: "ADD_TO_WISHLIST",
-									payload: { value: _id },
-								});
-								alertDispatch({
-									type: "ACTIVATE_ALERT",
-									payload: {
-										alertType: "success",
-										alertMsg: "Added to wishlist",
-									},
-								});
-							}
-						} else {
-							navigate("/login", { state: { from: location } });
-						}
-					}}
+					onClick={handleAddToWishlist}
 				>
 					<span className="material-icons"> favorite </span>
 				</button>
