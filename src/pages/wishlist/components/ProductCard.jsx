@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { discount } from "../../../utils/discountCalculation";
 
-function ProductCard({
-	product: { _id, name, description, newprice, actualprice, url, outofstock },
-}) {
+function ProductCard({ product }) {
+	const { _id, name, description, newprice, actualprice, url, outofstock } =
+		product;
 	const { cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const [disabled, setDisabled] = useState(false);
@@ -61,7 +61,7 @@ function ProductCard({
 						e.stopPropagation();
 						cartDispatch({
 							type: "ADD_TO_CART",
-							payload: { value: _id },
+							payload: { value: product },
 						});
 						cartDispatch({
 							type: "REMOVE_FROM_WISHLIST",

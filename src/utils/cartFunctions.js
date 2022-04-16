@@ -1,33 +1,75 @@
-const addToCart = (state, id) => {
-    const itemFind = state.cart.find((currentItem) => currentItem._id === id);
-    const temp1 = {
-        ...state,
-        cartItemsNumber: state.cartItemsNumber + 1,
-        idOfProduct: id,
-        // cartPrice: state.cartPrice + price, - easier way, used logic in below return
-        // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
-        cart: itemFind
-            ? state.cart.map((currentProduct) =>
-                currentProduct._id === id
-                    ? { ...currentProduct, qty: currentProduct.qty + 1 }
-                    : currentProduct
-            )
-            : state.default.reduce(
-                (acc, currentProduct) =>
-                    currentProduct._id === id
-                        ? [...acc, { ...currentProduct, qty: 1 }]
-                        : acc,
-                state.cart
-            ),
-    };
-    return {
-        ...temp1,
-        cartPrice: temp1.cart.reduce(
-            (acc, curr) => (acc += curr.newprice * curr.qty),
-            0
-        ),
-    };
-};
+import axios from "axios";
+
+// const addToCart = (state, id) => {
+//     const itemFind = state.cart.find((currentItem) => currentItem._id === id);
+//     const temp1 = {
+//         ...state,
+//         cartItemsNumber: state.cartItemsNumber + 1,
+//         idOfProduct: id,
+//         // cartPrice: state.cartPrice + price, - easier way, used logic in below return
+//         // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
+//         cart: itemFind
+//             ? state.cart.map((currentProduct) =>
+//                 currentProduct._id === id
+//                     ? { ...currentProduct, qty: currentProduct.qty + 1 }
+//                     : currentProduct
+//             )
+//             : state.default.reduce(
+//                 (acc, currentProduct) =>
+//                     currentProduct._id === id
+//                         ? [...acc, { ...currentProduct, qty: 1 }]
+//                         : acc,
+//                 state.cart
+//             ),
+//     };
+//     return {
+//         ...temp1,
+//         cartPrice: temp1.cart.reduce(
+//             (acc, curr) => (acc += curr.newprice * curr.qty),
+//             0
+//         ),
+//     };
+// };
+
+const addToCart = async (state, product) => {
+    console.log(product);
+    try {
+        console.log("Inside post")
+        const res = await axios.post(
+            `/api/user/cart`,
+            {
+                product,
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            }
+        );
+
+        console.log(res);
+        if (res.status === 201) {
+            const temp1 = {
+                ...state,
+                cartItemsNumber: Number(state.cartItemsNumber) + 1,
+                idOfProduct: product._id,
+                // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
+                cart: res.data.cart
+            };
+            const temp2 = {
+                ...temp1,
+                cartPrice: temp1.cart.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
+            };
+            return temp2;
+        }
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
 
 const removeFromCart = (state, id, isDeleteItem) => {
     const itemFind2 = state.cart.find((currentItem) => currentItem._id === id);

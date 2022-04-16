@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
+import { addToCart } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
 
-function ProductCard({
-	product: {
+function ProductCard({ product }) {
+	const {
 		_id,
 		url,
 		name,
@@ -13,8 +14,7 @@ function ProductCard({
 		actualprice,
 		outofstock,
 		badge,
-	},
-}) {
+	} = product;
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const [disabled, setDisabled] = useState(false);
@@ -32,9 +32,24 @@ function ProductCard({
 			setDisabled(true);
 		}
 	}, [outofstock]);
-	const isInWishlist = cartState.wishlist.find(
+	const isInWishlist = cartState.wishlist?.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
+	const handleAddTocart = async (e) => {
+		e.stopPropagation();
+		if (token) {
+			const newCart = await addToCart(cartState, product);
+			console.log("new", newCart);
+			cartDispatch({
+				type: "ADD_TO_CART",
+				payload: { newCart },
+			});
+			// alertDispatch({
+			// 	type: "ACTIVATE_ALERT",
+			// 	payload: { alertType: "success", alertMsg: "Added to cart" },
+			// });
+		} else navigate("/login", { state: { from: location } });
+	};
 	return (
 		<div
 			className="card card-product br-4px"
@@ -101,19 +116,7 @@ function ProductCard({
 			<div className="card-button">
 				<button
 					className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1 br-4px"
-					onClick={(e) => {
-						e.stopPropagation();
-						if (token) {
-							cartDispatch({
-								type: "ADD_TO_CART",
-								payload: { value: _id },
-							});
-							alertDispatch({
-								type: "ACTIVATE_ALERT",
-								payload: { alertType: "success", alertMsg: "Added to cart" },
-							});
-						} else navigate("/login", { state: { from: location } });
-					}}
+					onClick={handleAddTocart}
 					disabled={disabled}
 				>
 					<span className="btn-addtocart-text">ADD TO CART</span>
