@@ -5,6 +5,16 @@ const AddressContext = createContext();
 
 const AddressProvider = ({ children }) => {
     const [address, setAddress] = useState([]);
+    const objFormData = {
+        name: "",
+        street: "",
+        city: "",
+        state: "",
+        country: "",
+        zipCode: "",
+        mobile: "",
+    };
+    const [formData, setFormData] = useState(objFormData);
 
     useEffect(() => {
         (async () => {
@@ -21,7 +31,7 @@ const AddressProvider = ({ children }) => {
         })();
     }, []);
     return (
-        < AddressContext.Provider value={{ address }}>
+        < AddressContext.Provider value={{ address, setAddress, formData, setFormData, objFormData }}>
             {children}
         </AddressContext.Provider >
     )

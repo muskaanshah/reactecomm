@@ -1,26 +1,37 @@
-import { useState } from "react";
+import { useAddress } from "../../../context";
+import { addAddress, updateAddress } from "../../../utils/addressFunctions";
 
 function AddressForm({ setAddAddressForm }) {
-	const objFormData = {
-		name: "",
-		street: "",
-		city: "",
-		state: "",
-		country: "",
-		zipCode: "",
-		mobile: "",
-	};
-	const [formData, setFormData] = useState(objFormData);
+	const { setAddress, setFormData, formData, objFormData } = useAddress();
 
 	const setFormHandler = (e, field) => {
 		setFormData({ ...formData, [field]: e.target.value });
+	};
+
+	const saveAddressHandler = (e) => {
+		e.preventDefault();
+		formData._id
+			? updateAddress(
+					setAddress,
+					setAddAddressForm,
+					setFormData,
+					objFormData,
+					formData
+			  )
+			: addAddress(
+					setAddress,
+					setAddAddressForm,
+					setFormData,
+					objFormData,
+					formData
+			  );
 	};
 
 	return (
 		<div className="coupons-modal-wrapper">
 			<div className="address-form px-1 pb-1 bg-white br-4px">
 				<p>Add new address</p>
-				<form>
+				<form onSubmit={(e) => saveAddressHandler(e)}>
 					<input
 						type="text"
 						className="input-text input-address fs-0-9"
@@ -84,8 +95,11 @@ function AddressForm({ setAddAddressForm }) {
 							value="Save"
 						/>
 						<button
-							className="btn py-0-5 border-primary br-4px"
-							onClick={() => setAddAddressForm(false)}
+							className="btn py-0-5 border-primary color-primary br-4px"
+							onClick={() => {
+								setAddAddressForm(false);
+								setFormData(objFormData);
+							}}
 						>
 							Cancel
 						</button>

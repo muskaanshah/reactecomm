@@ -4,12 +4,27 @@ import { AddressForm } from "./AddressForm";
 
 function AddressSection() {
 	const [addAddressForm, setAddAddressForm] = useState(false);
-	const { address } = useAddress();
+	const { address, setFormData } = useAddress();
+
+	const editAddressHandler = (addressVal) => {
+		const objEdit = {
+			_id: addressVal._id,
+			name: addressVal.name,
+			street: addressVal.street,
+			city: addressVal.city,
+			country: addressVal.country,
+			state: addressVal.state,
+			zipCode: addressVal.zipCode,
+			mobile: addressVal.mobile,
+		};
+		setAddAddressForm(true);
+		setFormData(objEdit);
+	};
 	return (
 		<div className="address-section px-1">
 			<h3 className="mb-0">My Addresses</h3>
 			{address.map((cur) => (
-				<div className="address">
+				<div className="address" key={cur._id}>
 					<div>
 						<p className="my-0 fw-600">{cur.name}</p>
 						<p className="my-0">{cur.street}</p>
@@ -19,7 +34,7 @@ function AddressSection() {
 						<p className="my-0">Contact: {cur.mobile}</p>
 					</div>
 					<div className="address-icons">
-						<button className="btn">
+						<button className="btn" onClick={() => editAddressHandler(cur)}>
 							<span className="material-icons-outlined">edit</span>
 						</button>
 						<button className="btn color-danger">
