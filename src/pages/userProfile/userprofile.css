@@ -47,6 +47,11 @@
 	background-color: var(--white);
 }
 
+.address-wrapper {
+	overflow-y: auto;
+	max-height: 30vh;
+}
+
 .logout-buttons-section {
 	display: flex;
 	gap: 1rem;

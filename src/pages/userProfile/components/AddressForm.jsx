@@ -1,8 +1,9 @@
-import { useAddress } from "../../../context";
+import { useAddress, useAlert } from "../../../context";
 import { addAddress, updateAddress } from "../../../utils/addressFunctions";
 
 function AddressForm({ setAddAddressForm }) {
 	const { setAddress, setFormData, formData, objFormData } = useAddress();
+	const { alertDispatch } = useAlert();
 
 	const setFormHandler = (e, field) => {
 		setFormData({ ...formData, [field]: e.target.value });
@@ -16,14 +17,16 @@ function AddressForm({ setAddAddressForm }) {
 					setAddAddressForm,
 					setFormData,
 					objFormData,
-					formData
+					formData,
+					alertDispatch
 			  )
 			: addAddress(
 					setAddress,
 					setAddAddressForm,
 					setFormData,
 					objFormData,
-					formData
+					formData,
+					alertDispatch
 			  );
 	};
 
