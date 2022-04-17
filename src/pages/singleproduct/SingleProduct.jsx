@@ -74,7 +74,7 @@ function SingleProduct() {
 			} else {
 				const newCart = await addToWishlist(cartState, product, alertDispatch);
 				cartDispatch({
-					type: "UPDATE_CART_WISHLISTT",
+					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
 				});
 			}
