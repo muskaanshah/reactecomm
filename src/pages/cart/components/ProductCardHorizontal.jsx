@@ -22,13 +22,13 @@ function ProductCardHorizontal({ product }) {
 		if (product.qty === 1) {
 			const newCart = await removeFromCart(cartState, product._id);
 			cartDispatch({
-				type: "REMOVE_FROM_CART",
+				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart },
 			});
 		} else {
 			const newCart = await updateCartQty(cartState, product._id, "decrement");
 			cartDispatch({
-				type: "UPDATE_CART_QUANTITY",
+				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart },
 			});
 		}
@@ -37,7 +37,7 @@ function ProductCardHorizontal({ product }) {
 		e.stopPropagation();
 		const newCart = await updateCartQty(cartState, product._id, "increment");
 		cartDispatch({
-			type: "UPDATE_CART_QUANTITY",
+			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
 	};

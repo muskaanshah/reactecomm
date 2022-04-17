@@ -10,7 +10,7 @@ function Modal() {
 	const handleRemoveItem = async () => {
 		const newCart = await removeFromCart(cartState, cartState.idOfProduct);
 		cartDispatch({
-			type: "REMOVE_FROM_CART",
+			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
 		cartDispatch({
@@ -23,12 +23,12 @@ function Modal() {
 	const handleAddToWishlist = async () => {
 		const newCart = await removeFromCart(cartState, cartState.idOfProduct);
 		cartDispatch({
-			type: "REMOVE_FROM_CART",
+			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
 		const newCart2 = await addToWishlist(newCart, product);
 		cartDispatch({
-			type: "ADD_TO_WISHLIST",
+			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart2 },
 		});
 

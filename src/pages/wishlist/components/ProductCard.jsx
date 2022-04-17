@@ -17,7 +17,7 @@ function ProductCard({ product }) {
 		e.stopPropagation();
 		const newCart = await removeFromWishlist(cartState, _id);
 		cartDispatch({
-			type: "REMOVE_FROM_WISHLIST",
+			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
 	};
@@ -29,19 +29,19 @@ function ProductCard({ product }) {
 		e.stopPropagation();
 		const newCart = await removeFromWishlist(cartState, _id);
 		cartDispatch({
-			type: "REMOVE_FROM_WISHLIST",
+			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
 		if (itemFind) {
 			const newCart2 = await updateCartQty(newCart, product._id, "increment");
 			cartDispatch({
-				type: "UPDATE_CART_QUANTITY",
+				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart2 },
 			});
 		} else {
 			const newCart2 = await addToCart(newCart, product);
 			cartDispatch({
-				type: "ADD_TO_CART",
+				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart2 },
 			});
 		}

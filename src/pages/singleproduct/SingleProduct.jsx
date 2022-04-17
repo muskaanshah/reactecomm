@@ -44,13 +44,13 @@ function SingleProduct() {
 				if (itemFind) {
 					const newCart = await updateCartQty(cartState, _id, "increment");
 					cartDispatch({
-						type: "UPDATE_CART_QUANTITY",
+						type: "UPDATE_CART_WISHLIST",
 						payload: { value: newCart },
 					});
 				} else {
 					const newCart = await addToCart(cartState, product);
 					cartDispatch({
-						type: "ADD_TO_CART",
+						type: "UPDATE_CART_WISHLIST",
 						payload: { value: newCart },
 					});
 				}
@@ -70,13 +70,13 @@ function SingleProduct() {
 			if (isInWishlist) {
 				const newCart = await removeFromWishlist(cartState, _id);
 				cartDispatch({
-					type: "REMOVE_FROM_WISHLIST",
+					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
 				});
 			} else {
 				const newCart = await addToWishlist(cartState, product);
 				cartDispatch({
-					type: "ADD_TO_WISHLIST",
+					type: "UPDATE_CART_WISHLISTT",
 					payload: { value: newCart },
 				});
 				alertDispatch({

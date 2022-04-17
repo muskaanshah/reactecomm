@@ -23,11 +23,7 @@ const cartReducer = (cartState, action) => {
             return { ...cartState, cart: action.payload.value };
         case "UPDATE_DEFAULT_WISHLIST":
             return { ...cartState, wishlist: action.payload.value };
-        case "ADD_TO_CART":
-            return { ...cartState, ...action.payload.value }
-        case "REMOVE_FROM_CART":
-            return { ...cartState, ...action.payload.value }
-        case "UPDATE_CART_QUANTITY":
+        case "UPDATE_CART_WISHLIST":
             return { ...cartState, ...action.payload.value }
         case "OPEN_MODAL":
             return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
@@ -35,10 +31,6 @@ const cartReducer = (cartState, action) => {
             return { ...cartState, closeButton: !cartState.closeButton }
         case "CLEAR_CART":
             return { ...cartState, cartItemsNumber: 0, cartPrice: 0, cart: [] }
-        case "ADD_TO_WISHLIST":
-            return { ...cartState, ...action.payload.value }
-        case "REMOVE_FROM_WISHLIST":
-            return { ...cartState, ...action.payload.value }
         case "CLEAR_ORDER_CART":
             return { ...cartState, cart: [], cartItemsNumber: 0 }
         case "ORDER_SUMMARY":
