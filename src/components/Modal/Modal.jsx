@@ -8,7 +8,11 @@ function Modal() {
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const handleRemoveItem = async () => {
-		const newCart = await removeFromCart(cartState, cartState.idOfProduct);
+		const newCart = await removeFromCart(
+			cartState,
+			cartState.idOfProduct,
+			alertDispatch
+		);
 		cartDispatch({
 			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
@@ -21,26 +25,22 @@ function Modal() {
 		(product) => product._id === cartState.idOfProduct
 	);
 	const handleAddToWishlist = async () => {
-		const newCart = await removeFromCart(cartState, cartState.idOfProduct);
+		const newCart = await removeFromCart(
+			cartState,
+			cartState.idOfProduct,
+			alertDispatch
+		);
 		cartDispatch({
 			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
-		const newCart2 = await addToWishlist(newCart, product);
+		const newCart2 = await addToWishlist(newCart, product, alertDispatch);
 		cartDispatch({
 			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart2 },
 		});
-
 		cartDispatch({
 			type: "CLOSE_MODAL",
-		});
-		alertDispatch({
-			type: "ACTIVATE_ALERT",
-			payload: {
-				alertType: "success",
-				alertMsg: "Added to wishlist",
-			},
 		});
 	};
 

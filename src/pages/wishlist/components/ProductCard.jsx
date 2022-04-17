@@ -15,7 +15,7 @@ function ProductCard({ product }) {
 
 	const handleRemoveFromWishlist = async (e) => {
 		e.stopPropagation();
-		const newCart = await removeFromWishlist(cartState, _id);
+		const newCart = await removeFromWishlist(cartState, _id, alertDispatch);
 		cartDispatch({
 			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
@@ -27,28 +27,29 @@ function ProductCard({ product }) {
 
 	const handleAddToCart = async (e) => {
 		e.stopPropagation();
-		const newCart = await removeFromWishlist(cartState, _id);
+		const newCart = await removeFromWishlist(cartState, _id, alertDispatch);
 		cartDispatch({
 			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },
 		});
 		if (itemFind) {
-			const newCart2 = await updateCartQty(newCart, product._id, "increment");
+			const newCart2 = await updateCartQty(
+				newCart,
+				product._id,
+				"increment",
+				alertDispatch
+			);
 			cartDispatch({
 				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart2 },
 			});
 		} else {
-			const newCart2 = await addToCart(newCart, product);
+			const newCart2 = await addToCart(newCart, product, alertDispatch);
 			cartDispatch({
 				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart2 },
 			});
 		}
-		alertDispatch({
-			type: "ACTIVATE_ALERT",
-			payload: { alertType: "success", alertMsg: "Added to cart" },
-		});
 	};
 
 	useEffect(() => {

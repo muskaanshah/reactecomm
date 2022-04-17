@@ -39,30 +39,27 @@ function ProductCard({ product }) {
 		(currentItem) => currentItem._id === product._id
 	);
 
-	const handleAddTocart = async (e) => {
+	const handleAddToCart = async (e) => {
 		e.stopPropagation();
 		if (token) {
 			if (itemFind) {
 				const newCart = await updateCartQty(
 					cartState,
 					product._id,
-					"increment"
+					"increment",
+					alertDispatch
 				);
 				cartDispatch({
 					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
 				});
 			} else {
-				const newCart = await addToCart(cartState, product);
+				const newCart = await addToCart(cartState, product, alertDispatch);
 				cartDispatch({
 					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
 				});
 			}
-			alertDispatch({
-				type: "ACTIVATE_ALERT",
-				payload: { alertType: "success", alertMsg: "Added to cart" },
-			});
 		} else navigate("/login", { state: { from: location } });
 	};
 
@@ -70,23 +67,16 @@ function ProductCard({ product }) {
 		e.stopPropagation();
 		if (token) {
 			if (isInWishlist) {
-				const newCart = await removeFromWishlist(cartState, _id);
+				const newCart = await removeFromWishlist(cartState, _id, alertDispatch);
 				cartDispatch({
 					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
 				});
 			} else {
-				const newCart = await addToWishlist(cartState, product);
+				const newCart = await addToWishlist(cartState, product, alertDispatch);
 				cartDispatch({
 					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
-				});
-				alertDispatch({
-					type: "ACTIVATE_ALERT",
-					payload: {
-						alertType: "success",
-						alertMsg: "Added to wishlist",
-					},
 				});
 			}
 		} else {
@@ -141,7 +131,7 @@ function ProductCard({ product }) {
 			<div className="card-button">
 				<button
 					className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1 br-4px"
-					onClick={handleAddTocart}
+					onClick={handleAddToCart}
 					disabled={disabled}
 				>
 					<span className="btn-addtocart-text">ADD TO CART</span>

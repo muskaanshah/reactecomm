@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
+import { useAlert } from "./alert-context";
 
 const CartWishlistContext = createContext();
 
@@ -41,6 +42,8 @@ const cartReducer = (cartState, action) => {
 };
 
 const CartWishlistProvider = ({ children }) => {
+    const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
+    const { alertDispatch } = useAlert();
     useEffect(() => {
         console.log("I am here");
         (async () => {
@@ -63,10 +66,10 @@ const CartWishlistProvider = ({ children }) => {
                     cartDispatch({ type: "UPDATE_DEFAULT_CART", payload: { value: res.data.cart } });
                 }
             } catch (err) {
-                // setToastMessage({
-                //     type: "red",
-                //     text: err.message,
-                // });
+                alertDispatch({
+                    type: "ACTIVATE_ALERT",
+                    payload: { alertType: "error", alertMsg: err.message },
+                });
             }
         })();
         (async () => {
@@ -80,15 +83,14 @@ const CartWishlistProvider = ({ children }) => {
                     cartDispatch({ type: "UPDATE_DEFAULT_WISHLIST", payload: { value: res.data.wishlist } });
                 }
             } catch (err) {
-                // setToastMessage({
-                //     type: "red",
-                //     text: err.message,
-                // });
+                alertDispatch({
+                    type: "ACTIVATE_ALERT",
+                    payload: { alertType: "error", alertMsg: err.message },
+                });
             }
         })();
-    }, []);
-    const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
-    console.log({ cartState });
+    }, [alertDispatch]);
+
     return (
         <CartWishlistContext.Provider value={{ cartState, cartDispatch }}>
             {children}

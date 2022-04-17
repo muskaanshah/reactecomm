@@ -42,25 +42,23 @@ function SingleProduct() {
 		if (token) {
 			if (!disabled) {
 				if (itemFind) {
-					const newCart = await updateCartQty(cartState, _id, "increment");
+					const newCart = await updateCartQty(
+						cartState,
+						_id,
+						"increment",
+						alertDispatch
+					);
 					cartDispatch({
 						type: "UPDATE_CART_WISHLIST",
 						payload: { value: newCart },
 					});
 				} else {
-					const newCart = await addToCart(cartState, product);
+					const newCart = await addToCart(cartState, product, alertDispatch);
 					cartDispatch({
 						type: "UPDATE_CART_WISHLIST",
 						payload: { value: newCart },
 					});
 				}
-				alertDispatch({
-					type: "ACTIVATE_ALERT",
-					payload: {
-						alertType: "success",
-						alertMsg: "Added to cart",
-					},
-				});
 			}
 		} else navigate("/login", { state: { from: location } });
 	};
@@ -68,23 +66,16 @@ function SingleProduct() {
 	const handleAddToWishlist = async () => {
 		if (token) {
 			if (isInWishlist) {
-				const newCart = await removeFromWishlist(cartState, _id);
+				const newCart = await removeFromWishlist(cartState, _id, alertDispatch);
 				cartDispatch({
 					type: "UPDATE_CART_WISHLIST",
 					payload: { value: newCart },
 				});
 			} else {
-				const newCart = await addToWishlist(cartState, product);
+				const newCart = await addToWishlist(cartState, product, alertDispatch);
 				cartDispatch({
 					type: "UPDATE_CART_WISHLISTT",
 					payload: { value: newCart },
-				});
-				alertDispatch({
-					type: "ACTIVATE_ALERT",
-					payload: {
-						alertType: "success",
-						alertMsg: "Added to wishlist",
-					},
 				});
 			}
 		} else {

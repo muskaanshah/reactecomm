@@ -1,26 +1,6 @@
 import axios from "axios";
 
-// const addToWishlist = (state, id) => {
-//     const itemFind = state.wishlist.find((currentItem) => currentItem._id === id);
-//     const temp1 = {
-//         ...state,
-//         wishlistItemsNumber: !itemFind ? state.wishlistItemsNumber + 1 : state.wishlistItemsNumber,
-//         idOfProduct: id,
-//         // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
-//         wishlist: !itemFind
-//             ? state.default.reduce(
-//                 (acc, currentProduct) =>
-//                     currentProduct._id === id
-//                         ? [...acc, currentProduct]
-//                         : acc,
-//                 state.wishlist
-//             )
-//             : state.wishlist
-//     };
-//     return temp1;
-// };
-
-const addToWishlist = async (state, product) => {
+const addToWishlist = async (state, product, alertDispatch) => {
     const isInWishlist = state.wishlist?.find(
         (wishlistProduct) => wishlistProduct._id === product._id
     );
@@ -44,26 +24,29 @@ const addToWishlist = async (state, product) => {
                     idOfProduct: product._id,
                     wishlist: res.data.wishlist
                 };
+                alertDispatch({
+                    type: "ACTIVATE_ALERT",
+                    payload: {
+                        alertType: "success",
+                        alertMsg: "Added to wishlist",
+                    },
+                });
                 return temp1;
             }
         }
         catch (err) {
-            console.error(err)
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "error",
+                    alertMsg: err.message,
+                },
+            });
         }
     }
 }
 
-// const removeFromWishlist = (state, id) => {
-//     const temp2 = {
-//         ...state,
-//         wishlistItemsNumber: state.wishlistItemsNumber - 1,
-//         idOfProduct: id,
-//         wishlist: state.wishlist.filter((currentProduct) => currentProduct._id !== id),
-//     };
-//     return temp2;
-// };
-
-const removeFromWishlist = async (state, id) => {
+const removeFromWishlist = async (state, id, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/wishlist/${id}`, {
             headers: {
@@ -80,7 +63,13 @@ const removeFromWishlist = async (state, id) => {
             return temp1
         }
     } catch (err) {
-        console.log(err)
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 

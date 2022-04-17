@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useCartWishlist } from "../../../context";
+import { useAlert, useCartWishlist } from "../../../context";
 import { removeFromCart, updateCartQty } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
 import { getDeliveryDate } from "../../../utils/getDeliveryDate";
@@ -16,17 +16,27 @@ function ProductCardHorizontal({ product }) {
 		deliveryDays,
 	} = product;
 	const { cartState, cartDispatch } = useCartWishlist();
+	const { alertDispatch } = useAlert();
 	const navigate = useNavigate();
 	const decrementQtyHandler = async (e) => {
 		e.stopPropagation();
 		if (product.qty === 1) {
-			const newCart = await removeFromCart(cartState, product._id);
+			const newCart = await removeFromCart(
+				cartState,
+				product._id,
+				alertDispatch
+			);
 			cartDispatch({
 				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart },
 			});
 		} else {
-			const newCart = await updateCartQty(cartState, product._id, "decrement");
+			const newCart = await updateCartQty(
+				cartState,
+				product._id,
+				"decrement",
+				alertDispatch
+			);
 			cartDispatch({
 				type: "UPDATE_CART_WISHLIST",
 				payload: { value: newCart },
@@ -35,7 +45,12 @@ function ProductCardHorizontal({ product }) {
 	};
 	const incrementQtyHandler = async (e) => {
 		e.stopPropagation();
-		const newCart = await updateCartQty(cartState, product._id, "increment");
+		const newCart = await updateCartQty(
+			cartState,
+			product._id,
+			"increment",
+			alertDispatch
+		);
 		cartDispatch({
 			type: "UPDATE_CART_WISHLIST",
 			payload: { value: newCart },

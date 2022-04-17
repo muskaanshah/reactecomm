@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const addToCart = async (state, product) => {
+const addToCart = async (state, product, alertDispatch) => {
     try {
         const res = await axios.post(
             `/api/user/cart`,
@@ -27,15 +27,28 @@ const addToCart = async (state, product) => {
                     0
                 ),
             };
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Added to cart",
+                },
+            });
             return temp2;
         }
     }
     catch (err) {
-        console.error(err)
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 }
 
-const removeFromCart = async (state, id) => {
+const removeFromCart = async (state, id, alertDispatch) => {
     const itemFind = state.cart.find((currentItem) => currentItem._id === id);
     try {
         const res = await axios.delete(`/api/user/cart/${id}`, {
@@ -59,11 +72,17 @@ const removeFromCart = async (state, id) => {
             };
         }
     } catch (err) {
-        console.log(err)
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const updateCartQty = async (state, id, action) => {
+const updateCartQty = async (state, id, action, alertDispatch) => {
     try {
         const res = await axios.post(
             `/api/user/cart/${id}`,
@@ -85,16 +104,32 @@ const updateCartQty = async (state, id, action) => {
                 idOfProduct: id,
                 cart: res.data.cart
             }
-            return {
+            const temp2 = {
                 ...temp1,
                 cartPrice: temp1.cart.reduce(
                     (acc, curr) => (acc += curr.newprice * curr.qty),
                     0
                 ),
             };
+            if (action === "increment") {
+                alertDispatch({
+                    type: "ACTIVATE_ALERT",
+                    payload: {
+                        alertType: "success",
+                        alertMsg: "Added to cart",
+                    },
+                });
+            }
+            return temp2
         }
     } catch (err) {
-        console.log(err)
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 }
 
