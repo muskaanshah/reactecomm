@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useAlert, useCartWishlist, useProduct } from "../../context";
+import { useAlert, useCartWishlist } from "../../context";
+import { addToCart, updateCartQty } from "../../utils/cartFunctions";
 import { discount } from "../../utils/discountCalculation";
+import {
+	addToWishlist,
+	removeFromWishlist,
+} from "../../utils/wishlistFunctions";
 import "./singleproduct.css";
 
 function SingleProduct() {
 	const { productId } = useParams();
-	const { productState } = useProduct();
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const token = localStorage.getItem("encodedToken");
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const product = cartState.default.find((item) => item._id === productId);
 	const {
 		_id,
 		name,
@@ -25,10 +30,67 @@ function SingleProduct() {
 		players,
 		playingTime,
 		outofstock,
-	} = productState.default.find((item) => item._id === productId);
+	} = product;
 	const isInWishlist = cartState.wishlist.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
+	const itemFind = cartState.cart.find(
+		(currentItem) => currentItem._id === _id
+	);
+
+	const handleAddToCart = async () => {
+		if (token) {
+			if (!disabled) {
+				if (itemFind) {
+					const newCart = await updateCartQty(cartState, _id, "increment");
+					cartDispatch({
+						type: "UPDATE_CART_QUANTITY",
+						payload: { value: newCart },
+					});
+				} else {
+					const newCart = await addToCart(cartState, product);
+					cartDispatch({
+						type: "ADD_TO_CART",
+						payload: { value: newCart },
+					});
+				}
+				alertDispatch({
+					type: "ACTIVATE_ALERT",
+					payload: {
+						alertType: "success",
+						alertMsg: "Added to cart",
+					},
+				});
+			}
+		} else navigate("/login", { state: { from: location } });
+	};
+
+	const handleAddToWishlist = async () => {
+		if (token) {
+			if (isInWishlist) {
+				const newCart = await removeFromWishlist(cartState, _id);
+				cartDispatch({
+					type: "REMOVE_FROM_WISHLIST",
+					payload: { value: newCart },
+				});
+			} else {
+				const newCart = await addToWishlist(cartState, product);
+				cartDispatch({
+					type: "ADD_TO_WISHLIST",
+					payload: { value: newCart },
+				});
+				alertDispatch({
+					type: "ACTIVATE_ALERT",
+					payload: {
+						alertType: "success",
+						alertMsg: "Added to wishlist",
+					},
+				});
+			}
+		} else {
+			navigate("/login", { state: { from: location } });
+		}
+	};
 	useEffect(() => {
 		if (outofstock) {
 			setDisabled(true);
@@ -83,23 +145,7 @@ function SingleProduct() {
 							className={`btn btn-transform ls-1 px-0-5 py-1 ${
 								disabled ? "btn-disabled" : "bg-primary color-white"
 							}`}
-							onClick={() => {
-								if (token) {
-									if (!disabled) {
-										cartDispatch({
-											type: "ADD_TO_CART",
-											payload: { value: _id },
-										});
-										alertDispatch({
-											type: "ACTIVATE_ALERT",
-											payload: {
-												alertType: "success",
-												alertMsg: "Added to cart",
-											},
-										});
-									}
-								} else navigate("/login", { state: { from: location } });
-							}}
+							onClick={handleAddToCart}
 						>
 							<span className="material-icons-outlined">add_shopping_cart</span>
 							<span>ADD TO CART</span>
@@ -110,28 +156,7 @@ function SingleProduct() {
 									? "bg-primary color-white"
 									: "btn-primary-outline color-primary bg-white"
 							}`}
-							onClick={(e) => {
-								if (token) {
-									if (isInWishlist) {
-										cartDispatch({
-											type: "REMOVE_FROM_WISHLIST",
-											payload: { value: _id },
-										});
-									} else {
-										cartDispatch({
-											type: "ADD_TO_WISHLIST",
-											payload: { value: _id },
-										});
-										alertDispatch({
-											type: "ACTIVATE_ALERT",
-											payload: {
-												alertType: "success",
-												alertMsg: "Added to wishlist",
-											},
-										});
-									}
-								} else navigate("/login", { state: { from: location } });
-							}}
+							onClick={handleAddToWishlist}
 						>
 							<span className="material-icons-outlined"> favorite_border </span>
 							<span>{isInWishlist ? "WISHLISTED" : "WISHLIST"}</span>
