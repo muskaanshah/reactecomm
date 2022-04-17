@@ -6,7 +6,9 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const encodedToken = localStorage.getItem("encodedToken")
-    const [token, setToken] = useState(encodedToken ? encodedToken : "");
+    const [token, setToken] = useState(encodedToken ?? "");
+    const userFromLocalStorage = JSON.parse(localStorage.getItem("user"));
+    const [user, setUser] = useState(userFromLocalStorage ?? "");
     const [errorLogin, setErrorLogin] = useState("");
     const [errorSignup, setErrorSignup] = useState("");
     const navigate = useNavigate();
@@ -17,6 +19,8 @@ const AuthProvider = ({ children }) => {
             const res = await axios.post("api/auth/login", { email: email, password: password })
             if (res.status === 200) {
                 setErrorLogin("");
+                setUser(res.data.foundUser);
+                localStorage.setItem("user", JSON.stringify(res.data.foundUser));
                 setToken(res.data.encodedToken);
                 localStorage.setItem("encodedToken", res.data.encodedToken);
                 navigate(from, { replace: true })
@@ -31,6 +35,7 @@ const AuthProvider = ({ children }) => {
             const res = await axios.post("api/auth/signup", { firstName: firstName, lastName: lastName, email: email, password: password })
             if (res.status === 201) {
                 setErrorSignup("");
+                console.log("user", res)
                 setToken(res.data.encodedToken);
                 localStorage.setItem("encodedToken", res.data.encodedToken);
                 navigate(from, { replace: true })
@@ -41,7 +46,7 @@ const AuthProvider = ({ children }) => {
         }
     }
     return (
-        < AuthContext.Provider value={{ token, errorLogin, errorSignup, loginUser, signupUser }}>
+        < AuthContext.Provider value={{ token, errorLogin, errorSignup, loginUser, signupUser, user }}>
             {children}
         </AuthContext.Provider >)
 }

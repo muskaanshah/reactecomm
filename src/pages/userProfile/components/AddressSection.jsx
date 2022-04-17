@@ -32,27 +32,30 @@ function AddressSection() {
 			<h3 className="mb-0">My Addresses</h3>
 			<div className="address-wrapper">
 				{address.map((cur) => (
-					<div className="address" key={cur._id}>
-						<div>
-							<p className="my-0 fw-600">{cur.name}</p>
-							<p className="my-0">{cur.street}</p>
-							<p className="my-0">
-								{cur.city}, {cur.state} - {cur.zipCode}
-							</p>
-							<p className="my-0">Contact: {cur.mobile}</p>
+					<>
+						<div className="address" key={cur._id}>
+							<div>
+								<p className="my-0 fw-600">{cur.name}</p>
+								<p className="my-0">{cur.street}</p>
+								<p className="my-0">
+									{cur.city}, {cur.state} - {cur.zipCode}
+								</p>
+								<p className="my-0">Contact: {cur.mobile}</p>
+							</div>
+							<div className="address-icons">
+								<button className="btn" onClick={() => editAddressHandler(cur)}>
+									<span className="material-icons-outlined">edit</span>
+								</button>
+								<button
+									className="btn color-danger"
+									onClick={() => deleteAddressHandler(cur)}
+								>
+									<span className="material-icons-outlined">delete</span>
+								</button>
+							</div>
 						</div>
-						<div className="address-icons">
-							<button className="btn" onClick={() => editAddressHandler(cur)}>
-								<span className="material-icons-outlined">edit</span>
-							</button>
-							<button
-								className="btn color-danger"
-								onClick={() => deleteAddressHandler(cur)}
-							>
-								<span className="material-icons-outlined">delete</span>
-							</button>
-						</div>
-					</div>
+						<div className="divider-black my-0-5"></div>
+					</>
 				))}
 			</div>
 			<button

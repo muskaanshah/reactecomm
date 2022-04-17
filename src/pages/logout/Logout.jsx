@@ -3,6 +3,7 @@ import "./logout.css";
 
 function Logout() {
 	localStorage.removeItem("encodedToken");
+	localStorage.removeItem("user");
 	return (
 		<div className="logout">
 			<h1>You have been logged out!</h1>
