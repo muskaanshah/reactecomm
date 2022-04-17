@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { CouponsModal } from "./CouponsModal";
 import { displayRazorpay } from "../../../utils/paymentIntegration";
 
-function PriceCard() {
+function PriceCard({ selectedAddress }) {
 	const [couponModal, setCouponModal] = useState(false);
 	const [couponDiscount, setCouponDiscount] = useState(0);
+	const [disabled, setDisabled] = useState(false);
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const navigate = useNavigate();
@@ -29,6 +30,10 @@ function PriceCard() {
 	const totalPriceBeforeCoupon = totalActualPrice - totalDiscount;
 	const totalPriceAfterDiscount =
 		totalActualPrice - totalDiscount + deliveryCharge - couponDiscount;
+
+	useEffect(() => {
+		setDisabled(selectedAddress === "" ? true : false);
+	}, [selectedAddress]);
 
 	return (
 		<div className="ordersummary price-card p-1 br-4px">
@@ -82,7 +87,9 @@ function PriceCard() {
 				<p>₹{totalPriceAfterDiscount}</p>
 			</div>
 			<button
-				className="btn bg-primary btn-place-order mt-1 br-4px"
+				className={`btn btn-place-order mt-1 br-4px ${
+					disabled ? "btn-disabled bg-grey" : "bg-primary"
+				}`}
 				onClick={() =>
 					displayRazorpay(
 						cartState,
@@ -92,6 +99,7 @@ function PriceCard() {
 						navigate
 					)
 				}
+				disabled={disabled}
 			>
 				PLACE ORDER
 			</button>
