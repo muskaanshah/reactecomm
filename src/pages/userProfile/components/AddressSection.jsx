@@ -1,22 +1,40 @@
+import { useState } from "react";
+import { useAddress } from "../../../context";
+import { AddressForm } from "./AddressForm";
+
 function AddressSection() {
+	const [addAddressForm, setAddAddressForm] = useState(false);
+	const { address } = useAddress();
 	return (
 		<div className="address-section px-1">
 			<h3 className="mb-0">My Addresses</h3>
-			<div className="address">
-				<div>
-					<p className="my-0 fw-600">Adarsh Balika</p>
-					<p className="my-0">#1/4, Outer Ring Road, Kadubeesanhalli</p>
-					<p className="my-0">Bangalore, Karnataka - 560037</p>
-					<p className="my-0">Contact: +91 90000 00012</p>
+			{address.map((cur) => (
+				<div className="address">
+					<div>
+						<p className="my-0 fw-600">{cur.name}</p>
+						<p className="my-0">{cur.street}</p>
+						<p className="my-0">
+							{cur.city}, {cur.state} - {cur.zipCode}
+						</p>
+						<p className="my-0">Contact: {cur.mobile}</p>
+					</div>
+					<div className="address-icons">
+						<button className="btn">
+							<span className="material-icons-outlined">edit</span>
+						</button>
+						<button className="btn color-danger">
+							<span className="material-icons-outlined">delete</span>
+						</button>
+					</div>
 				</div>
-				<div className="address-icons">
-					<span className="material-icons-outlined">edit</span>
-					<span className="material-icons-outlined">delete</span>
-				</div>
-			</div>
-			<button className="btn color-primary border-primary fw-500 py-0-5 my-0-5 br-4px">
+			))}
+			<button
+				className="btn color-primary border-primary fw-500 py-0-5 my-0-5 br-4px"
+				onClick={() => setAddAddressForm(true)}
+			>
 				Add new address
 			</button>
+			{addAddressForm && <AddressForm setAddAddressForm={setAddAddressForm} />}
 		</div>
 	);
 }
