@@ -31,7 +31,7 @@ function Wishlist() {
 					<h1>
 						You havent added anything in your wishlist! Let's start shopping
 					</h1>
-					<Link to="/products" className="btn bg-primary color-secondary">
+					<Link to="/products" className="btn bg-primary color-secondary br-4px">
 						Start Shopping
 					</Link>
 					<img

@@ -14,7 +14,7 @@ function Logout() {
 				alt="sad-pokemon"
 			></img>
 			<h2>You can still view the different products though</h2>
-			<Link to="/products" className="btn bg-primary color-secondary">
+			<Link to="/products" className="btn bg-primary color-secondary br-4px">
 				View products
 			</Link>
 		</div>

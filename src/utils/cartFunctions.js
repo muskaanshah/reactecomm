@@ -146,7 +146,7 @@ const clearCart = async (state, alertDispatch) => {
             if (res.status === 200) {
                 const temp1 = {
                     ...state,
-                    cartItemsNumber: state.cartItemsNumber - currentItem.qty,
+                    cartItemsNumber: 0,
                     cart: res.data.cart
                 }
                 newState = {
