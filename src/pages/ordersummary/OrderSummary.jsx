@@ -13,8 +13,7 @@ function OrderSummary() {
 			<p className="my-0 fw-600">Payment ID: {cartState.order.paymentId}</p>
 			<div className="order-items">
 				{
-					// cartState?.order?.items.map(
-					cartState?.tempCart.map(
+					cartState?.order?.items.map(
 						(item) =>
 							item.qty > 0 && (
 								<div className="order-item p-1">

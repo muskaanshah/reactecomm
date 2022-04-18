@@ -32,8 +32,8 @@ function AddressSection() {
 			<h3 className="mb-0">My Addresses</h3>
 			<div className="address-wrapper">
 				{address.map((cur) => (
-					<>
-						<div className="address" key={cur._id}>
+					<div key={cur._id}>
+						<div className="address">
 							<div>
 								<p className="my-0 fw-600">{cur.name}</p>
 								<p className="my-0">{cur.street}</p>
@@ -55,7 +55,7 @@ function AddressSection() {
 							</div>
 						</div>
 						<div className="divider-black my-0-5"></div>
-					</>
+					</div>
 				))}
 			</div>
 			<button

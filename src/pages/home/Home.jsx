@@ -24,7 +24,7 @@ function Home() {
 				<picture>
 					<source
 						media="(min-width: 1000px)"
-						srcset="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541607/e-commerce/landingpagedesktop_hta9tn.jpg"
+						srcSet="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541607/e-commerce/landingpagedesktop_hta9tn.jpg"
 					/>
 					<img
 						src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541607/e-commerce/landingpage_gobzt1.jpg"

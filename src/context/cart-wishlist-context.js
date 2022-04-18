@@ -34,7 +34,7 @@ const cartReducer = (cartState, action) => {
             // return { ...cartState, cart: [], cartItemsNumber: 0 }
             return { ...cartState, ...action.payload.value, cartItemsNumber: 0, cartPrice: 0, }
         case "ORDER_SUMMARY":
-            return { ...cartState, order: { ...action.payload.value } }
+            return { ...action.payload.value }
         default:
             return cartState;
     }

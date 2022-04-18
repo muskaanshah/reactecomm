@@ -56,16 +56,16 @@ const displayRazorpay = async (
             "https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png",
         handler: function (response) {
             const tempObj = {
+                ...cartState,
+                order: {
                 items: [...cartState.cart],
                 amount: totalPriceAfterDiscount,
-                paymentId: response.razorpay_payment_id,
+                paymentId: response.razorpay_payment_id
+                }
             };
             cartDispatch({ type: "ORDER_SUMMARY", payload: { value: tempObj } });
             navigate("/order");
-            // cartDispatch({
-            //     type: "CLEAR_ORDER_CART",
-            // });
-            handleClearCart(cartState, alertDispatch, cartDispatch);
+            handleClearCart(tempObj, alertDispatch, cartDispatch);
         },
         theme: {
             color: "#432818",
