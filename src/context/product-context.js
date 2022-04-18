@@ -6,6 +6,7 @@ import {
     setTypes,
 } from "../utils/setFiltering";
 import axios from "axios";
+import { useAlert } from "./alert-context";
 
 const ProductContext = createContext();
 
@@ -43,8 +44,8 @@ const productReducer = (productState, action) => {
                 ...productState,
                 searchModal: action.payload.value
             }
-        case "SET_LOADER":
-            return { ...productState, productLoader: action.payload.value }
+        // case "SET_LOADER":
+        //     return { ...productState, productLoader: action.payload.value }
         case "CLEAR":
             return {
                 ...productState,
@@ -68,25 +69,32 @@ const initialState = {
     rating: 0,
     searchText: "",
     searchModal: false,
-    productLoader: false
+    // productLoader: false
 };
 
 const ProductProvider = ({ children }) => {
+    const [productState, productDispatch] = useReducer(productReducer, initialState);
+    const {alertDispatch} = useAlert();
 
     useEffect(() => {
         (async () => {
-            productDispatch({ type: "SET_LOADER", payload: { value: true } })
+            alertDispatch({ type: "SET_LOADER", payload: { value: true } })
             try {
                 const res = await axios.get("/api/products")
                 productDispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } })
-                productDispatch({ type: "SET_LOADER", payload: { value: false } })
+                alertDispatch({ type: "SET_LOADER", payload: { value: false } })
             }
-            catch (error) {
-                console.error(error);
+            catch (err) {
+                alertDispatch({
+                    type: "ACTIVATE_ALERT",
+                    payload: {
+                        alertType: "error",
+                        alertMsg: err.message,
+                    },
+                });
             }
         })()
-    }, [])
-    const [productState, productDispatch] = useReducer(productReducer, initialState);
+    }, [alertDispatch])
     return (
         <ProductContext.Provider value={{ productState, productDispatch }}>
             {children}

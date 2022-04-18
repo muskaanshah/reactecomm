@@ -7,7 +7,7 @@ import { clearCart } from "../../utils/cartFunctions";
 
 function Cart() {
 	const { cartState, cartDispatch } = useCartWishlist();
-	const { alertDispatch } = useAlert();
+	const { alertDispatch, alertState } = useAlert();
 	const handleClearCart = async () => {
 		const newCart = await clearCart(cartState, alertDispatch);
 		cartDispatch({
@@ -18,7 +18,11 @@ function Cart() {
 	return (
 		<div>
 			{
-				// cartState.cart?.some((item) => item.qty > 0) ? (
+				alertState.productLoader ? (
+					<div className="loader-wrapper centered">
+						<div className="loader">Loading...</div>
+					</div>
+				) :
 				cartState?.cart?.length > 0 ? (
 					<>
 						{cartState.closeButton && <Modal />}

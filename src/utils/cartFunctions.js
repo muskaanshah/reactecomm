@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const addToCart = async (state, product, alertDispatch) => {
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } })
     try {
         const res = await axios.post(
             `/api/user/cart`,
@@ -34,6 +35,7 @@ const addToCart = async (state, product, alertDispatch) => {
                     alertMsg: "Added to cart",
                 },
             });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } })
             return temp2;
         }
     }
@@ -45,11 +47,13 @@ const addToCart = async (state, product, alertDispatch) => {
                 alertMsg: err.message,
             },
         });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } })
     }
 }
 
 const removeFromCart = async (state, id, alertDispatch) => {
     const itemFind = state.cart.find((currentItem) => currentItem._id === id);
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } })
     try {
         const res = await axios.delete(`/api/user/cart/${id}`, {
             headers: {
@@ -57,6 +61,7 @@ const removeFromCart = async (state, id, alertDispatch) => {
             },
         });
         if (res.status === 200) {
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } })
             const temp1 = {
                 ...state,
                 cartItemsNumber: state.cartItemsNumber - itemFind.qty,
@@ -79,10 +84,12 @@ const removeFromCart = async (state, id, alertDispatch) => {
                 alertMsg: err.message,
             },
         });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } })
     }
 };
 
 const updateCartQty = async (state, id, action, alertDispatch) => {
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } })
     try {
         const res = await axios.post(
             `/api/user/cart/${id}`,
@@ -120,7 +127,8 @@ const updateCartQty = async (state, id, action, alertDispatch) => {
                     },
                 });
             }
-            return temp2
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } })
+            return temp2;
         }
     } catch (err) {
         alertDispatch({
@@ -130,11 +138,13 @@ const updateCartQty = async (state, id, action, alertDispatch) => {
                 alertMsg: err.message,
             },
         });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } })
     }
 }
 
 const clearCart = async (state, alertDispatch) => {
     let newState;
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } })
     for await (const currentItem of state.cart) {
         try {
             const res = await axios.delete(`/api/user/cart/${currentItem._id}`, {
@@ -142,7 +152,6 @@ const clearCart = async (state, alertDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
-            console.log(res);
             if (res.status === 200) {
                 const temp1 = {
                     ...state,
@@ -156,6 +165,7 @@ const clearCart = async (state, alertDispatch) => {
                         0
                     ),
                 };
+                alertDispatch({ type: "SET_LOADER", payload: { value: false } })
             }
         } catch (err) {
             alertDispatch({
@@ -165,6 +175,7 @@ const clearCart = async (state, alertDispatch) => {
                     alertMsg: err.message,
                 },
             });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } })
         }
     }
     return newState;
@@ -172,6 +183,7 @@ const clearCart = async (state, alertDispatch) => {
 
 const clearCartAfterOrdering = async (state, alertDispatch) => {
     let newState;
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } })
     for await (const currentItem of state.cart) {
         try {
             const res = await axios.delete(`/api/user/cart/${currentItem._id}`, {
@@ -179,12 +191,12 @@ const clearCartAfterOrdering = async (state, alertDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
-            console.log(res.data.cart);
             if (res.status === 200) {
                 newState = {
                     ...state,
                     cart: res.data.cart
                 }
+                alertDispatch({ type: "SET_LOADER", payload: { value: false } })
             }
         } catch (err) {
             alertDispatch({
@@ -194,6 +206,7 @@ const clearCartAfterOrdering = async (state, alertDispatch) => {
                     alertMsg: err.message,
                 },
             });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } })
         }
     }
     return newState;

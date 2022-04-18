@@ -5,6 +5,7 @@ const addToWishlist = async (state, product, alertDispatch) => {
         (wishlistProduct) => wishlistProduct._id === product._id
     );
     if (!isInWishlist) {
+        alertDispatch({ type: "SET_LOADER", payload: { value: true } });
         try {
             const res = await axios.post(
                 `/api/user/wishlist`,
@@ -22,7 +23,7 @@ const addToWishlist = async (state, product, alertDispatch) => {
                     ...state,
                     wishlistItemsNumber: res.data.wishlist.length,
                     idOfProduct: product._id,
-                    wishlist: res.data.wishlist
+                    wishlist: res.data.wishlist,
                 };
                 alertDispatch({
                     type: "ACTIVATE_ALERT",
@@ -31,10 +32,13 @@ const addToWishlist = async (state, product, alertDispatch) => {
                         alertMsg: "Added to wishlist",
                     },
                 });
+                alertDispatch({
+                    type: "SET_LOADER",
+                    payload: { value: false },
+                });
                 return temp1;
             }
-        }
-        catch (err) {
+        } catch (err) {
             alertDispatch({
                 type: "ACTIVATE_ALERT",
                 payload: {
@@ -42,11 +46,13 @@ const addToWishlist = async (state, product, alertDispatch) => {
                     alertMsg: err.message,
                 },
             });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
         }
     }
-}
+};
 
 const removeFromWishlist = async (state, id, alertDispatch) => {
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
     try {
         const res = await axios.delete(`/api/user/wishlist/${id}`, {
             headers: {
@@ -58,9 +64,10 @@ const removeFromWishlist = async (state, id, alertDispatch) => {
                 ...state,
                 wishlistItemsNumber: state.wishlistItemsNumber - 1,
                 idOfProduct: id,
-                wishlist: res.data.wishlist
-            }
-            return temp1
+                wishlist: res.data.wishlist,
+            };
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+            return temp1;
         }
     } catch (err) {
         alertDispatch({
@@ -70,6 +77,7 @@ const removeFromWishlist = async (state, id, alertDispatch) => {
                 alertMsg: err.message,
             },
         });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } });
     }
 };
 
