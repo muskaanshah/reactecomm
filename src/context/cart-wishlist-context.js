@@ -43,6 +43,7 @@ const cartReducer = (cartState, action) => {
 const CartWishlistProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
     const { alertDispatch } = useAlert();
+    const token = localStorage.getItem("encodedToken")
     useEffect(() => {
         (async () => {
             try {
@@ -56,14 +57,14 @@ const CartWishlistProvider = ({ children }) => {
             try {
                 const res = await axios.get("/api/user/cart", {
                     headers: {
-                        authorization: localStorage.getItem("encodedToken"),
+                        authorization: token,
                     },
                 });
                 if (res.status) {
                     cartDispatch({ type: "UPDATE_DEFAULT_CART", payload: { value: res.data.cart } });
                 }
             } catch (err) {
-                alertDispatch({
+                token && alertDispatch({
                     type: "ACTIVATE_ALERT",
                     payload: { alertType: "error", alertMsg: err.message },
                 });
@@ -73,20 +74,20 @@ const CartWishlistProvider = ({ children }) => {
             try {
                 const res = await axios.get("/api/user/wishlist", {
                     headers: {
-                        authorization: localStorage.getItem("encodedToken"),
+                        authorization: token,
                     },
                 });
                 if (res.status) {
                     cartDispatch({ type: "UPDATE_DEFAULT_WISHLIST", payload: { value: res.data.wishlist } });
                 }
             } catch (err) {
-                alertDispatch({
+                token && alertDispatch({
                     type: "ACTIVATE_ALERT",
                     payload: { alertType: "error", alertMsg: err.message },
                 });
             }
         })();
-    }, [alertDispatch]);
+    }, [alertDispatch, token]);
 
     return (
         <CartWishlistContext.Provider value={{ cartState, cartDispatch }}>
