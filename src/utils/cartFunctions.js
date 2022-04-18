@@ -133,4 +133,70 @@ const updateCartQty = async (state, id, action, alertDispatch) => {
     }
 }
 
-export { addToCart, removeFromCart, updateCartQty }
+const clearCart = async (state, alertDispatch) => {
+    let newState;
+    for await (const currentItem of state.cart) {
+        try {
+            const res = await axios.delete(`/api/user/cart/${currentItem._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            console.log(res);
+            if (res.status === 200) {
+                const temp1 = {
+                    ...state,
+                    cartItemsNumber: state.cartItemsNumber - currentItem.qty,
+                    cart: res.data.cart
+                }
+                newState = {
+                    ...temp1,
+                    cartPrice: temp1.cart.reduce(
+                        (acc, curr) => (acc += curr.newprice * curr.qty),
+                        0
+                    ),
+                };
+            }
+        } catch (err) {
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "error",
+                    alertMsg: err.message,
+                },
+            });
+        }
+    }
+    return newState;
+}
+
+const clearCartAfterOrdering = async (state, alertDispatch) => {
+    let newState;
+    for await (const currentItem of state.cart) {
+        try {
+            const res = await axios.delete(`/api/user/cart/${currentItem._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            console.log(res.data.cart);
+            if (res.status === 200) {
+                newState = {
+                    ...state,
+                    cart: res.data.cart
+                }
+            }
+        } catch (err) {
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "error",
+                    alertMsg: err.message,
+                },
+            });
+        }
+    }
+    return newState;
+}
+
+export { addToCart, removeFromCart, updateCartQty, clearCart, clearCartAfterOrdering }

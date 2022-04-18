@@ -1,3 +1,13 @@
+import { clearCartAfterOrdering } from "./cartFunctions";
+
+const handleClearCart = async (cartState, alertDispatch, cartDispatch) => {
+    const newCart = await clearCartAfterOrdering(cartState, alertDispatch);
+    cartDispatch({
+        type: "CLEAR_ORDER_CART",
+        payload: { value: newCart },
+    });
+};
+
 const loadScript = async (url) => {
     return new Promise((resolve) => {
         const script = document.createElement("script");
@@ -52,9 +62,10 @@ const displayRazorpay = async (
             };
             cartDispatch({ type: "ORDER_SUMMARY", payload: { value: tempObj } });
             navigate("/order");
-            cartDispatch({
-                type: "CLEAR_ORDER_CART",
-            });
+            // cartDispatch({
+            //     type: "CLEAR_ORDER_CART",
+            // });
+            handleClearCart(cartState, alertDispatch, cartDispatch);
         },
         theme: {
             color: "#432818",

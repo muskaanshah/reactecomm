@@ -30,10 +30,9 @@ const cartReducer = (cartState, action) => {
             return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
         case "CLOSE_MODAL":
             return { ...cartState, closeButton: !cartState.closeButton }
-        case "CLEAR_CART":
-            return { ...cartState, cartItemsNumber: 0, cartPrice: 0, cart: [] }
         case "CLEAR_ORDER_CART":
-            return { ...cartState, cart: [], cartItemsNumber: 0 }
+            // return { ...cartState, cart: [], cartItemsNumber: 0 }
+            return { ...cartState, ...action.payload.value, cartItemsNumber: 0, cartPrice: 0, }
         case "ORDER_SUMMARY":
             return { ...cartState, order: { ...action.payload.value } }
         default:
@@ -45,7 +44,6 @@ const CartWishlistProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
     const { alertDispatch } = useAlert();
     useEffect(() => {
-        console.log("I am here");
         (async () => {
             try {
                 const res = await axios.get("/api/products");
@@ -61,7 +59,6 @@ const CartWishlistProvider = ({ children }) => {
                         authorization: localStorage.getItem("encodedToken"),
                     },
                 });
-                console.log("res", { res });
                 if (res.status) {
                     cartDispatch({ type: "UPDATE_DEFAULT_CART", payload: { value: res.data.cart } });
                 }

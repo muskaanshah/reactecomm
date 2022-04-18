@@ -35,6 +35,12 @@ function PriceCard({ selectedAddress }) {
 		setDisabled(selectedAddress === "" ? true : false);
 	}, [selectedAddress]);
 
+	useEffect(() => {
+		if (totalActualPrice === 0) {
+			navigate("/");
+		}
+	}, [totalActualPrice, navigate]);
+
 	return (
 		<div className="ordersummary price-card p-1 br-4px">
 			{couponDiscount === 0 && (

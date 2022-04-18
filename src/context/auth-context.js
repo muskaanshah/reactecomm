@@ -35,7 +35,6 @@ const AuthProvider = ({ children }) => {
             const res = await axios.post("api/auth/signup", { firstName: firstName, lastName: lastName, email: email, password: password })
             if (res.status === 201) {
                 setErrorSignup("");
-                console.log("user", res)
                 setToken(res.data.encodedToken);
                 localStorage.setItem("encodedToken", res.data.encodedToken);
                 navigate(from, { replace: true })

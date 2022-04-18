@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 import { ProductCardHorizontal } from "./components/ProductCardHorizontal";
 import { Modal } from "../../components/Modal/Modal";
-import { useCartWishlist } from "../../context";
+import { useAlert, useCartWishlist } from "../../context";
 import "./cart.css";
+import { clearCart } from "../../utils/cartFunctions";
 
 function Cart() {
 	const { cartState, cartDispatch } = useCartWishlist();
-	console.log("Inside cart", cartState.cart);
+	const { alertDispatch } = useAlert();
+	const handleClearCart = async () => {
+		const newCart = await clearCart(cartState, alertDispatch);
+		cartDispatch({
+			type: "UPDATE_CART_WISHLIST",
+			payload: { value: newCart },
+		});
+	};
 	return (
 		<div>
 			{
@@ -58,7 +66,7 @@ function Cart() {
 									</button> */}
 									<button
 										className="btn bg-grey-light btn-place-order mt-1 fw-600 br-4px"
-										onClick={() => cartDispatch({ type: "CLEAR_CART" })}
+										onClick={handleClearCart}
 									>
 										CLEAR MY CART
 									</button>

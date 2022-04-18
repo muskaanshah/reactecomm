@@ -35,7 +35,7 @@ function ProductCard({ product }) {
 	const isInWishlist = cartState.wishlist?.find(
 		(wishlistProduct) => wishlistProduct._id === _id
 	);
-	const itemFind = cartState.cart.find(
+	const itemFind = cartState.cart?.find(
 		(currentItem) => currentItem._id === product._id
 	);
 

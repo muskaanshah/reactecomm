@@ -18,6 +18,7 @@ function Checkout() {
 								curAddress={curAddress}
 								selectedAddress={selectedAddress}
 								setSelectedAddress={setSelectedAddress}
+								key={curAddress._id}
 							/>
 						))}
 					</div>
