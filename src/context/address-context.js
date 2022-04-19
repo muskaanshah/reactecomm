@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useAlert, useAuth } from "./index";
+import { useAlert } from "./alert-context";
 
 const AddressContext = createContext();
 
@@ -17,7 +17,7 @@ const AddressProvider = ({ children }) => {
     const [address, setAddress] = useState([]);
     const { alertDispatch } = useAlert();
     const [formData, setFormData] = useState(objFormData);
-    const { token } = useAuth();
+    const token = localStorage.getItem("encodedToken");
 
     useEffect(() => {
         (async () => {
