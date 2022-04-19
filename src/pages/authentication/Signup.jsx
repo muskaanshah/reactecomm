@@ -131,9 +131,9 @@ function Signup() {
 						<div className="fs-0-9 color-danger my-0-5">{validation.msg}</div>
 					)}
 					<div className="login-space-between mb-1">
-						<label htmlFor="remember-me" className="fw-500 fs-0-9">
+						<label htmlFor="termscheckbox" className="fw-500 fs-0-9">
 							<input
-								id="remember-me"
+								id="termscheckbox"
 								type="checkbox"
 								name="checkbox"
 								value="remember-me"
