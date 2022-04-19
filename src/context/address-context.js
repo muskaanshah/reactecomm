@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useAlert } from "./alert-context";
+import { useAlert, useAuth } from "./index";
 
 const AddressContext = createContext();
 
@@ -17,7 +17,7 @@ const AddressProvider = ({ children }) => {
     const [address, setAddress] = useState([]);
     const { alertDispatch } = useAlert();
     const [formData, setFormData] = useState(objFormData);
-    const token = localStorage.getItem("encodedToken");
+    const { token } = useAuth();
 
     useEffect(() => {
         (async () => {
@@ -27,22 +27,25 @@ const AddressProvider = ({ children }) => {
                         authorization: token,
                     },
                 });
-                setAddress(prev => [...prev, ...res.data.address]);
+                setAddress((prev) => [...prev, ...res.data.address]);
             } catch (err) {
-                token && alertDispatch({
-                    type: "ACTIVATE_ALERT",
-                    payload: { alertType: "error", alertMsg: err.message },
-                });
+                token &&
+                    alertDispatch({
+                        type: "ACTIVATE_ALERT",
+                        payload: { alertType: "error", alertMsg: err.message },
+                    });
             }
         })();
     }, [alertDispatch, token]);
     return (
-        < AddressContext.Provider value={{ address, setAddress, formData, setFormData, objFormData }}>
+        <AddressContext.Provider
+            value={{ address, setAddress, formData, setFormData, objFormData }}
+        >
             {children}
-        </AddressContext.Provider >
-    )
-}
+        </AddressContext.Provider>
+    );
+};
 
-const useAddress = () => useContext(AddressContext)
+const useAddress = () => useContext(AddressContext);
 
-export { AddressProvider, useAddress }
+export { AddressProvider, useAddress };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useAlert, useCartWishlist, useProduct } from "../../context";
+import { useAlert, useAuth, useCartWishlist, useProduct } from "../../context";
 import { addToCart, updateCartQty } from "../../utils/cartFunctions";
 import { discount } from "../../utils/discountCalculation";
 import {
@@ -14,7 +14,7 @@ function SingleProduct() {
     const { cartState, cartDispatch } = useCartWishlist();
     const { alertDispatch, alertState } = useAlert();
     const { productState } = useProduct();
-    const token = localStorage.getItem("encodedToken");
+    const { token } = useAuth();
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
