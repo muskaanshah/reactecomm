@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
-import { useAlert } from "./alert-context";
+import { useAlert, useAuth } from "./index";
 
 const CartWishlistContext = createContext();
 
@@ -12,7 +12,7 @@ const initialState = {
     cart: [],
     wishlist: [],
     closeButton: false,
-    order: {}
+    order: {},
 };
 
 const cartReducer = (cartState, action) => {
@@ -22,15 +22,24 @@ const cartReducer = (cartState, action) => {
         case "UPDATE_DEFAULT_WISHLIST":
             return { ...cartState, wishlist: action.payload.value };
         case "UPDATE_CART_WISHLIST":
-            return { ...cartState, ...action.payload.value }
+            return { ...cartState, ...action.payload.value };
         case "OPEN_MODAL":
-            return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
+            return {
+                ...cartState,
+                closeButton: !cartState.closeButton,
+                idOfProduct: action.payload.value,
+            };
         case "CLOSE_MODAL":
-            return { ...cartState, closeButton: !cartState.closeButton }
+            return { ...cartState, closeButton: !cartState.closeButton };
         case "CLEAR_ORDER_CART":
-            return { ...cartState, ...action.payload.value, cartItemsNumber: 0, cartPrice: 0, }
+            return {
+                ...cartState,
+                ...action.payload.value,
+                cartItemsNumber: 0,
+                cartPrice: 0,
+            };
         case "ORDER_SUMMARY":
-            return { ...action.payload.value }
+            return { ...action.payload.value };
         default:
             return cartState;
     }
@@ -39,10 +48,10 @@ const cartReducer = (cartState, action) => {
 const CartWishlistProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
     const { alertDispatch } = useAlert();
-    const token = localStorage.getItem("encodedToken")
+    const { token } = useAuth();
     useEffect(() => {
         (async () => {
-            alertDispatch({ type: "SET_LOADER", payload: { value: true } })
+            alertDispatch({ type: "SET_LOADER", payload: { value: true } });
             try {
                 const res = await axios.get("/api/user/cart", {
                     headers: {
@@ -50,18 +59,25 @@ const CartWishlistProvider = ({ children }) => {
                     },
                 });
                 if (res.status) {
-                    cartDispatch({ type: "UPDATE_DEFAULT_CART", payload: { value: res.data.cart } });
-                    alertDispatch({ type: "SET_LOADER", payload: { value: false } })
+                    cartDispatch({
+                        type: "UPDATE_DEFAULT_CART",
+                        payload: { value: res.data.cart },
+                    });
+                    alertDispatch({
+                        type: "SET_LOADER",
+                        payload: { value: false },
+                    });
                 }
             } catch (err) {
-                token && alertDispatch({
-                    type: "ACTIVATE_ALERT",
-                    payload: { alertType: "error", alertMsg: err.message },
-                });
+                token &&
+                    alertDispatch({
+                        type: "ACTIVATE_ALERT",
+                        payload: { alertType: "error", alertMsg: err.message },
+                    });
             }
         })();
         (async () => {
-            alertDispatch({ type: "SET_LOADER", payload: { value: true } })
+            alertDispatch({ type: "SET_LOADER", payload: { value: true } });
             try {
                 const res = await axios.get("/api/user/wishlist", {
                     headers: {
@@ -69,14 +85,21 @@ const CartWishlistProvider = ({ children }) => {
                     },
                 });
                 if (res.status) {
-                    cartDispatch({ type: "UPDATE_DEFAULT_WISHLIST", payload: { value: res.data.wishlist } });
-                    alertDispatch({ type: "SET_LOADER", payload: { value: false } })
+                    cartDispatch({
+                        type: "UPDATE_DEFAULT_WISHLIST",
+                        payload: { value: res.data.wishlist },
+                    });
+                    alertDispatch({
+                        type: "SET_LOADER",
+                        payload: { value: false },
+                    });
                 }
             } catch (err) {
-                token && alertDispatch({
-                    type: "ACTIVATE_ALERT",
-                    payload: { alertType: "error", alertMsg: err.message },
-                });
+                token &&
+                    alertDispatch({
+                        type: "ACTIVATE_ALERT",
+                        payload: { alertType: "error", alertMsg: err.message },
+                    });
             }
         })();
     }, [alertDispatch, token]);
