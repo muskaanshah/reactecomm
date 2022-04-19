@@ -13,6 +13,7 @@ function Signup() {
 		firstName: "",
 		lastName: "",
 		email: "",
+		mobile: "",
 		password: "",
 		reEnteredPassword: "",
 	});
@@ -31,8 +32,8 @@ function Signup() {
 	};
 	const signUpHandler = (e) => {
 		e.preventDefault();
-		const { firstName, lastName, email, password } = signupFormInput;
-		signupUser(firstName, lastName, email, password);
+		const { firstName, lastName, email, mobile, password } = signupFormInput;
+		signupUser(firstName, lastName, email, mobile, password);
 	};
 	return (
 		<div className="container-body centered">
@@ -77,6 +78,20 @@ function Signup() {
 								className="input-text input-authentication p-0-5 fs-0-9 mb-1-5"
 								placeholder="Enter your email address"
 								onChange={(e) => setForm("email", e.target.value)}
+								required
+							/>
+						</span>
+					</label>
+					<label htmlFor="contact-number" className="fw-600">
+						Contact number
+						<span className="input-box">
+							<input
+								type="number"
+								id="contact-number"
+								value={signupFormInput.mobile}
+								className="input-text input-authentication p-0-5 fs-0-9 mb-1-5"
+								placeholder="Enter your contact number"
+								onChange={(e) => setForm("mobile", e.target.value)}
 								required
 							/>
 						</span>
