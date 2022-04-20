@@ -40,6 +40,16 @@ const cartReducer = (cartState, action) => {
             };
         case "ORDER_SUMMARY":
             return { ...action.payload.value };
+        case "LOGOUT":
+            return {
+                ...cartState,
+                cartItemsNumber: 0,
+                wishlistItemsNumber: 0,
+                cartPrice: 0,
+                cart: [],
+                wishlist: [],
+                order: {},
+            };
         default:
             return cartState;
     }
