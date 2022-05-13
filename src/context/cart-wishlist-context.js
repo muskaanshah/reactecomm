@@ -18,9 +18,17 @@ const initialState = {
 const cartReducer = (cartState, action) => {
     switch (action.type) {
         case "UPDATE_DEFAULT_CART":
-            return { ...cartState, cart: action.payload.value };
+            return {
+                ...cartState,
+                cart: action.payload.value,
+                cartItemsNumber: action.payload.value.length,
+            };
         case "UPDATE_DEFAULT_WISHLIST":
-            return { ...cartState, wishlist: action.payload.value };
+            return {
+                ...cartState,
+                wishlist: action.payload.value,
+                wishlistItemsNumber: action.payload.value.length,
+            };
         case "UPDATE_CART_WISHLIST":
             return { ...cartState, ...action.payload.value };
         case "OPEN_MODAL":
