@@ -12,7 +12,6 @@ const setTypes = (state, value, isChecked) => {
                 (curCategory) => curCategory !== value
             )
         };
-    console.log(temp)
     return FinalFiltering(temp, state.default);
 };
 

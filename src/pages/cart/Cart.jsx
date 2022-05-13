@@ -1,16 +1,29 @@
 import { Link } from "react-router-dom";
 import { ProductCardHorizontal } from "./components/ProductCardHorizontal";
 import { Modal } from "../../components/Modal/Modal";
-import { useCartWishlist } from "../../context";
+import { useAlert, useCartWishlist } from "../../context";
 import "./cart.css";
+import { clearCart } from "../../utils/cartFunctions";
 
 function Cart() {
 	const { cartState, cartDispatch } = useCartWishlist();
-	const token = localStorage.getItem("encodedToken");
+	const { alertDispatch, alertState } = useAlert();
+	const handleClearCart = async () => {
+		const newCart = await clearCart(cartState, alertDispatch);
+		cartDispatch({
+			type: "UPDATE_CART_WISHLIST",
+			payload: { value: newCart },
+		});
+	};
 	return (
 		<div>
-			{token ? (
-				cartState.cart.some((item) => item.qty > 0) ? (
+			{
+				alertState.productLoader ? (
+					<div className="loader-wrapper centered">
+						<div className="loader">Loading...</div>
+					</div>
+				) :
+				cartState?.cart?.length > 0 ? (
 					<>
 						{cartState.closeButton && <Modal />}
 						<div className={`container-body py-1 px-2`}>
@@ -57,7 +70,7 @@ function Cart() {
 									</button> */}
 									<button
 										className="btn bg-grey-light btn-place-order mt-1 fw-600 br-4px"
-										onClick={() => cartDispatch({ type: "CLEAR_CART" })}
+										onClick={handleClearCart}
 									>
 										CLEAR MY CART
 									</button>
@@ -70,7 +83,7 @@ function Cart() {
 						<h1>
 							You havent added anything in your cart! Let's start shopping
 						</h1>
-						<Link to="/products" className="btn bg-primary color-secondary">
+						<Link to="/products" className="btn bg-primary color-secondary br-4px">
 							Start Shopping
 						</Link>
 						<img
@@ -82,14 +95,7 @@ function Cart() {
 						></img>
 					</div>
 				)
-			) : (
-				<div className="cart-empty px-2">
-					<h1>Please login to continue</h1>
-					<Link to="/login" className="btn bg-primary color-secondary">
-						Go to Login page
-					</Link>
-				</div>
-			)}
+			}
 		</div>
 	);
 }

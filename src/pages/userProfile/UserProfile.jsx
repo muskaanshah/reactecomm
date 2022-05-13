@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../../context";
 import { AddressSection } from "./components/AddressSection";
 import { LogoutSection } from "./components/LogoutSection";
 import { ProfileSection } from "./components/ProfileSection";
@@ -7,17 +8,18 @@ import "./userprofile.css";
 function UserProfile() {
 	const [activeButton, setActiveButton] = useState("Profile");
 	const [openLogoutModal, setOpenLogoutModal] = useState(false);
+	const { user } = useAuth();
 	return (
 		<div className="container-body user-page-wrapper centered">
 			<div className="profile-card">
 				<div className="profile centered px-1">
 					<div className="profile-name">
 						<img
-							class="avatar avatar-sm borderradius-full"
+							className="avatar avatar-sm borderradius-full"
 							src="https://i.ibb.co/YWTbNKm/Deepika-Padukone-1200-PTI-0.jpg"
 							alt="avatar"
 						/>
-						<p className="fw-500 fs-1-25">Adarsh Balika</p>
+						<p className="fw-500 fs-1-25">{`${user.firstName} ${user.lastName}`}</p>
 					</div>
 					<button
 						className="btn bg-primary br-4px p-0 px-0-5"

@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
+import { addToCart, updateCartQty } from "../../../utils/cartFunctions";
 import { discount } from "../../../utils/discountCalculation";
+import {
+	addToWishlist,
+	removeFromWishlist,
+} from "../../../utils/wishlistFunctions";
 
-function ProductCard({
-	product: {
+function ProductCard({ product }) {
+	const {
 		_id,
 		url,
 		name,
@@ -13,27 +18,77 @@ function ProductCard({
 		actualprice,
 		outofstock,
 		badge,
-	},
-}) {
+	} = product;
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const [disabled, setDisabled] = useState(false);
 	const token = localStorage.getItem("encodedToken");
 	const navigate = useNavigate();
+	const location = useLocation();
 	const badgeColors = {
 		"Best selling": "bg-success-dark",
 		"Top 10": "bg-warning",
 		"Only few products left": "bg-danger",
 		"People's favourite": "bg-tealgreen-light",
 	};
+
+	const isInWishlist = cartState.wishlist?.find(
+		(wishlistProduct) => wishlistProduct._id === _id
+	);
+	const itemFind = cartState.cart?.find(
+		(currentItem) => currentItem._id === product._id
+	);
+
+	const handleAddToCart = async (e) => {
+		e.stopPropagation();
+		if (token) {
+			if (itemFind) {
+				const newCart = await updateCartQty(
+					cartState,
+					product._id,
+					"increment",
+					alertDispatch
+				);
+				cartDispatch({
+					type: "UPDATE_CART_WISHLIST",
+					payload: { value: newCart },
+				});
+			} else {
+				const newCart = await addToCart(cartState, product, alertDispatch);
+				cartDispatch({
+					type: "UPDATE_CART_WISHLIST",
+					payload: { value: newCart },
+				});
+			}
+		} else navigate("/login", { state: { from: location } });
+	};
+
+	const handleAddToWishlist = async (e) => {
+		e.stopPropagation();
+		if (token) {
+			if (isInWishlist) {
+				const newCart = await removeFromWishlist(cartState, _id, alertDispatch);
+				cartDispatch({
+					type: "UPDATE_CART_WISHLIST",
+					payload: { value: newCart },
+				});
+			} else {
+				const newCart = await addToWishlist(cartState, product, alertDispatch);
+				cartDispatch({
+					type: "UPDATE_CART_WISHLIST",
+					payload: { value: newCart },
+				});
+			}
+		} else {
+			navigate("/login", { state: { from: location } });
+		}
+	};
+
 	useEffect(() => {
 		if (outofstock) {
 			setDisabled(true);
 		}
 	}, [outofstock]);
-	const isInWishlist = cartState.wishlist.find(
-		(wishlistProduct) => wishlistProduct._id === _id
-	);
 	return (
 		<div
 			className="card card-product br-4px"
@@ -55,29 +110,7 @@ function ProductCard({
 						isInWishlist ? "activeButton" : ""
 					}
 						}`}
-					onClick={(e) => {
-						e.stopPropagation();
-						if (token) {
-							if (isInWishlist) {
-								cartDispatch({
-									type: "REMOVE_FROM_WISHLIST",
-									payload: { value: _id },
-								});
-							} else {
-								cartDispatch({
-									type: "ADD_TO_WISHLIST",
-									payload: { value: _id },
-								});
-								alertDispatch({
-									type: "ACTIVATE_ALERT",
-									payload: {
-										alertType: "success",
-										alertMsg: "Added to wishlist",
-									},
-								});
-							}
-						} else navigate("/login");
-					}}
+					onClick={handleAddToWishlist}
 				>
 					<span className="material-icons"> favorite </span>
 				</button>
@@ -98,19 +131,7 @@ function ProductCard({
 			<div className="card-button">
 				<button
 					className="btn btn-addtocart bg-primary ls-1 px-0-5 py-1 br-4px"
-					onClick={(e) => {
-						e.stopPropagation();
-						if (token) {
-							cartDispatch({
-								type: "ADD_TO_CART",
-								payload: { value: _id },
-							});
-							alertDispatch({
-								type: "ACTIVATE_ALERT",
-								payload: { alertType: "success", alertMsg: "Added to cart" },
-							});
-						} else navigate("/login");
-					}}
+					onClick={handleAddToCart}
 					disabled={disabled}
 				>
 					<span className="btn-addtocart-text">ADD TO CART</span>

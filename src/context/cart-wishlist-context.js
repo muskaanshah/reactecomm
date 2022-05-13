@@ -1,61 +1,119 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { addToCart, removeFromCart } from "../utils/cartFunctions";
-import { addToWishlist, removeFromWishlist } from "../utils/wishlistFunctions";
 import axios from "axios";
+import { useAlert, useAuth } from "./index";
 
 const CartWishlistContext = createContext();
-
-const cartReducer = (cartState, action) => {
-    switch (action.type) {
-        case "UPDATE_DEFAULT":
-            return { ...cartState, default: action.payload.value };
-        case "ADD_TO_CART":
-            return addToCart(cartState, action.payload.value);
-        case "REMOVE_FROM_CART":
-            return removeFromCart(cartState, action.payload.value, action.payload.isDeleteItem);
-        case "OPEN_MODAL":
-            return { ...cartState, closeButton: !cartState.closeButton, idOfProduct: action.payload.value }
-        case "CLOSE_MODAL":
-            return { ...cartState, closeButton: !cartState.closeButton }
-        case "CLEAR_CART":
-            return { ...cartState, cartItemsNumber: 0, cartPrice: 0, cart: [] }
-        case "ADD_TO_WISHLIST":
-            return addToWishlist(cartState, action.payload.value);
-        case "REMOVE_FROM_WISHLIST":
-            return removeFromWishlist(cartState, action.payload.value);
-        case "CLEAR_ORDER_CART":
-            return { ...cartState, cart: [], cartItemsNumber: 0 }
-        case "ORDER_SUMMARY":
-            return { ...cartState, order: { ...action.payload.value } }
-        default:
-            return cartState;
-    }
-};
 
 const initialState = {
     cartItemsNumber: 0,
     wishlistItemsNumber: 0,
     idOfProduct: 0,
     cartPrice: 0,
-    default: [],
     cart: [],
     wishlist: [],
     closeButton: false,
-    order: {}
+    order: {},
+};
+
+const cartReducer = (cartState, action) => {
+    switch (action.type) {
+        case "UPDATE_DEFAULT_CART":
+            return { ...cartState, cart: action.payload.value };
+        case "UPDATE_DEFAULT_WISHLIST":
+            return { ...cartState, wishlist: action.payload.value };
+        case "UPDATE_CART_WISHLIST":
+            return { ...cartState, ...action.payload.value };
+        case "OPEN_MODAL":
+            return {
+                ...cartState,
+                closeButton: !cartState.closeButton,
+                idOfProduct: action.payload.value,
+            };
+        case "CLOSE_MODAL":
+            return { ...cartState, closeButton: !cartState.closeButton };
+        case "CLEAR_ORDER_CART":
+            return {
+                ...cartState,
+                ...action.payload.value,
+                cartItemsNumber: 0,
+                cartPrice: 0,
+            };
+        case "ORDER_SUMMARY":
+            return { ...action.payload.value };
+        case "LOGOUT":
+            return {
+                ...cartState,
+                cartItemsNumber: 0,
+                wishlistItemsNumber: 0,
+                cartPrice: 0,
+                cart: [],
+                wishlist: [],
+                order: {},
+            };
+        default:
+            return cartState;
+    }
 };
 
 const CartWishlistProvider = ({ children }) => {
+    const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
+    const { alertDispatch } = useAlert();
+    const { token } = useAuth();
     useEffect(() => {
         (async () => {
+            alertDispatch({ type: "SET_LOADER", payload: { value: true } });
             try {
-                const res = await axios.get("/api/products");
-                cartDispatch({ type: "UPDATE_DEFAULT", payload: { value: res.data.products } });
-            } catch (error) {
-                console.error("Inside wishlist Error", error);
+                const res = await axios.get("/api/user/cart", {
+                    headers: {
+                        authorization: token,
+                    },
+                });
+                if (res.status) {
+                    cartDispatch({
+                        type: "UPDATE_DEFAULT_CART",
+                        payload: { value: res.data.cart },
+                    });
+                    alertDispatch({
+                        type: "SET_LOADER",
+                        payload: { value: false },
+                    });
+                }
+            } catch (err) {
+                token &&
+                    alertDispatch({
+                        type: "ACTIVATE_ALERT",
+                        payload: { alertType: "error", alertMsg: err.message },
+                    });
             }
         })();
-    }, []);
-    const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
+        (async () => {
+            alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+            try {
+                const res = await axios.get("/api/user/wishlist", {
+                    headers: {
+                        authorization: token,
+                    },
+                });
+                if (res.status) {
+                    cartDispatch({
+                        type: "UPDATE_DEFAULT_WISHLIST",
+                        payload: { value: res.data.wishlist },
+                    });
+                    alertDispatch({
+                        type: "SET_LOADER",
+                        payload: { value: false },
+                    });
+                }
+            } catch (err) {
+                token &&
+                    alertDispatch({
+                        type: "ACTIVATE_ALERT",
+                        payload: { alertType: "error", alertMsg: err.message },
+                    });
+            }
+        })();
+    }, [alertDispatch, token]);
+
     return (
         <CartWishlistContext.Provider value={{ cartState, cartDispatch }}>
             {children}

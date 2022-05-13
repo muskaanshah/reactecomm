@@ -1,55 +1,222 @@
-const addToCart = (state, id) => {
-    const itemFind = state.cart.find((currentItem) => currentItem._id === id);
-    const temp1 = {
-        ...state,
-        cartItemsNumber: state.cartItemsNumber + 1,
-        idOfProduct: id,
-        // cartPrice: state.cartPrice + price, - easier way, used logic in below return
-        // First checks if item is there or not, if yes increments qty by 1; if not, adds item to the cart array
-        cart: itemFind
-            ? state.cart.map((currentProduct) =>
-                currentProduct._id === id
-                    ? { ...currentProduct, qty: currentProduct.qty + 1 }
-                    : currentProduct
-            )
-            : state.default.reduce(
-                (acc, currentProduct) =>
-                    currentProduct._id === id
-                        ? [...acc, { ...currentProduct, qty: 1 }]
-                        : acc,
-                state.cart
-            ),
-    };
-    return {
-        ...temp1,
-        cartPrice: temp1.cart.reduce(
-            (acc, curr) => (acc += curr.newprice * curr.qty),
-            0
-        ),
-    };
+import axios from "axios";
+
+const addToCart = async (state, product, alertDispatch) => {
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+    try {
+        const res = await axios.post(
+            `/api/user/cart`,
+            {
+                product,
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            }
+        );
+        if (res.status === 201) {
+            const temp1 = {
+                ...state,
+                cartItemsNumber: res.data.cart.reduce(
+                    (acc, curr) => (acc += curr.qty),
+                    0
+                ),
+                idOfProduct: product._id,
+                cart: res.data.cart,
+            };
+            const temp2 = {
+                ...temp1,
+                cartPrice: temp1.cart.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
+            };
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Added to cart",
+                },
+            });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+            return temp2;
+        }
+    } catch (err) {
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+    }
 };
 
-const removeFromCart = (state, id, isDeleteItem) => {
-    const itemFind2 = state.cart.find((currentItem) => currentItem._id === id);
-    const temp2 = {
-        ...state,
-        cartItemsNumber: isDeleteItem
-            ? state.cartItemsNumber - itemFind2.qty
-            : state.cartItemsNumber - 1,
-        idOfProduct: id,
-        cart: state.cart.map((currentProduct) =>
-            currentProduct._id === id
-                ? { ...currentProduct, qty: isDeleteItem ? 0 : currentProduct.qty - 1 }
-                : { ...currentProduct }
-        ),
-    };
-    return {
-        ...temp2,
-        cartPrice: temp2.cart.reduce(
-            (acc, curr) => (acc += curr.newprice * curr.qty),
-            0
-        ),
-    };
+const removeFromCart = async (state, id, alertDispatch) => {
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+    try {
+        const res = await axios.delete(`/api/user/cart/${id}`, {
+            headers: {
+                authorization: localStorage.getItem("encodedToken"),
+            },
+        });
+        if (res.status === 200) {
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+            const temp1 = {
+                ...state,
+                cartItemsNumber: res.data.cart.reduce(
+                    (acc, curr) => (acc += curr.qty),
+                    0
+                ),
+                idOfProduct: id,
+                cart: res.data.cart,
+            };
+            return {
+                ...temp1,
+                cartPrice: temp1.cart.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
+            };
+        }
+    } catch (err) {
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+    }
 };
 
-export { addToCart, removeFromCart }
+const updateCartQty = async (state, id, action, alertDispatch) => {
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+    try {
+        const res = await axios.post(
+            `/api/user/cart/${id}`,
+            {
+                action: {
+                    type: action,
+                },
+            },
+            {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            }
+        );
+        if (res.status === 200) {
+            const temp1 = {
+                ...state,
+                cartItemsNumber: res.data.cart.reduce(
+                    (acc, curr) => (acc += curr.qty),
+                    0
+                ),
+                idOfProduct: id,
+                cart: res.data.cart,
+            };
+            const temp2 = {
+                ...temp1,
+                cartPrice: temp1.cart.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
+            };
+            if (action === "increment") {
+                alertDispatch({
+                    type: "ACTIVATE_ALERT",
+                    payload: {
+                        alertType: "success",
+                        alertMsg: "Added to cart",
+                    },
+                });
+            }
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+            return temp2;
+        }
+    } catch (err) {
+        alertDispatch({
+            type: "ACTIVATE_ALERT",
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
+        alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+    }
+};
+
+const clearCart = async (state, alertDispatch) => {
+    let newState;
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+    for await (const currentItem of state.cart) {
+        try {
+            const res = await axios.delete(`/api/user/cart/${currentItem._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            if (res.status === 200) {
+                const temp1 = {
+                    ...state,
+                    cartItemsNumber: 0,
+                    cart: res.data.cart,
+                };
+                newState = {
+                    ...temp1,
+                    cartPrice: temp1.cart.reduce(
+                        (acc, curr) => (acc += curr.newprice * curr.qty),
+                        0
+                    ),
+                };
+                alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+            }
+        } catch (err) {
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "error",
+                    alertMsg: err.message,
+                },
+            });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+        }
+    }
+    return newState;
+};
+
+const clearCartAfterOrdering = async (state, alertDispatch) => {
+    let newState;
+    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+    for await (const currentItem of state.cart) {
+        try {
+            const res = await axios.delete(`/api/user/cart/${currentItem._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            if (res.status === 200) {
+                newState = {
+                    ...state,
+                    cart: res.data.cart,
+                };
+                alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+            }
+        } catch (err) {
+            alertDispatch({
+                type: "ACTIVATE_ALERT",
+                payload: {
+                    alertType: "error",
+                    alertMsg: err.message,
+                },
+            });
+            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+        }
+    }
+    return newState;
+};
+
+export { addToCart, removeFromCart, updateCartQty, clearCart, clearCartAfterOrdering };

@@ -7,7 +7,9 @@ const alertReducer = (state, action) => {
         case "ACTIVATE_ALERT":
             return { ...state, alertType: action.payload.alertType, alertMsg: action.payload.alertMsg, active: true }
         case "DEACTIVATE_ALERT":
-            return initialState
+            return { ...state, alertType: "", alertMsg: "", active: false }
+        case "SET_LOADER":
+                return { ...state, productLoader: action.payload.value }
         default:
             return state
     }
@@ -16,7 +18,8 @@ const alertReducer = (state, action) => {
 const initialState = {
     alertType: "",
     active: false,
-    alertMsg: ""
+    alertMsg: "",
+    productLoader: false
 }
 
 const AlertProvider = ({ children }) => {

@@ -177,7 +177,7 @@ function Navbar() {
 						) : (
 							<Link to="/userprofile">
 								<img
-									class="avatar avatar-sm borderradius-full"
+									className="avatar avatar-sm borderradius-full"
 									src="https://i.ibb.co/YWTbNKm/Deepika-Padukone-1200-PTI-0.jpg"
 									alt="avatar"
 								/>

@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlert, useCartWishlist } from "../../../context";
 import { CouponsModal } from "./CouponsModal";
+import { displayRazorpay } from "../../../utils/paymentIntegration";
 
-function PriceCard() {
+function PriceCard({ selectedAddress }) {
 	const [couponModal, setCouponModal] = useState(false);
 	const [couponDiscount, setCouponDiscount] = useState(0);
+	const [disabled, setDisabled] = useState(false);
 	const { cartState, cartDispatch } = useCartWishlist();
 	const { alertDispatch } = useAlert();
 	const navigate = useNavigate();
@@ -29,66 +31,16 @@ function PriceCard() {
 	const totalPriceAfterDiscount =
 		totalActualPrice - totalDiscount + deliveryCharge - couponDiscount;
 
-	//Razorpay Payment Integration
-	const loadScript = async (url) => {
-		return new Promise((resolve) => {
-			const script = document.createElement("script");
-			script.src = url;
+	useEffect(() => {
+		setDisabled(selectedAddress === "" ? true : false);
+	}, [selectedAddress]);
 
-			script.onload = () => {
-				resolve(true);
-			};
-
-			script.onerror = () => {
-				resolve(false);
-			};
-
-			document.body.appendChild(script);
-		});
-	};
-	const displayRazorpay = async () => {
-		const res = await loadScript(
-			"https://checkout.razorpay.com/v1/checkout.js"
-		);
-
-		if (!res) {
-			alertDispatch({
-				type: "ACTIVATE_ALERT",
-				payload: {
-					alertType: "error",
-					alertMsg: "Unable to fetch RazorPay SDK",
-				},
-			});
-			return;
+	useEffect(() => {
+		if (totalActualPrice === 0) {
+			navigate("/");
 		}
+	}, [totalActualPrice, navigate]);
 
-		const options = {
-			key: "rzp_test_f1OzauHEGKTHtG",
-			amount: totalPriceAfterDiscount * 100,
-			currency: "INR",
-			name: "Board At Home",
-			description: "Thank you for shopping with us",
-			image:
-				"https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png",
-			handler: function (response) {
-				const tempObj = {
-					items: [...cartState.cart],
-					amount: totalPriceAfterDiscount,
-					paymentId: response.razorpay_payment_id,
-				};
-				cartDispatch({ type: "ORDER_SUMMARY", payload: { value: tempObj } });
-				navigate("/order");
-				cartDispatch({
-					type: "CLEAR_ORDER_CART",
-				});
-			},
-			theme: {
-				color: "#432818",
-			},
-		};
-		const paymentObject = new window.Razorpay(options);
-		paymentObject.open();
-	};
 	return (
 		<div className="ordersummary price-card p-1 br-4px">
 			{couponDiscount === 0 && (
@@ -141,8 +93,19 @@ function PriceCard() {
 				<p>₹{totalPriceAfterDiscount}</p>
 			</div>
 			<button
-				className="btn bg-primary btn-place-order mt-1 br-4px"
-				onClick={displayRazorpay}
+				className={`btn btn-place-order mt-1 br-4px ${
+					disabled ? "btn-disabled bg-grey" : "bg-primary"
+				}`}
+				onClick={() =>
+					displayRazorpay(
+						cartState,
+						cartDispatch,
+						alertDispatch,
+						totalPriceAfterDiscount,
+						navigate
+					)
+				}
+				disabled={disabled}
 			>
 				PLACE ORDER
 			</button>
