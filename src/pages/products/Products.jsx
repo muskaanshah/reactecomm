@@ -18,14 +18,27 @@ function Products() {
             ) : (
                 <>
                     <div className="p-1">
-                        <h2 className="page-heading">Showing all products</h2>
+                        <h2 className="page-heading">
+                            Showing all products{" "}
+                            <span className="fs-0-8">
+                                {`(${productState.filteredItems.length} ${
+                                    productState.filteredItems.length === 1
+                                        ? "product)"
+                                        : "products)"
+                                }`}
+                            </span>
+                        </h2>
+
                         <div className="products-listing">
-                            {productState.filteredItems.map((product) => (
-                                <ProductCard
-                                    key={product._id}
-                                    product={product}
-                                />
-                            ))}
+                            {productState.filteredItems.length > 0 ? (
+                                productState.filteredItems.map((product) => (
+                                    <ProductCard key={product._id} product={product} />
+                                ))
+                            ) : (
+                                <div className="centered">
+                                    <h3>No products to show for the selected filters</h3>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <button
