@@ -22,6 +22,10 @@ const cartReducer = (cartState, action) => {
                 ...cartState,
                 cart: action.payload.value,
                 cartItemsNumber: action.payload.value.length,
+                cartPrice: action.payload.value.reduce(
+                    (acc, curr) => (acc += curr.newprice * curr.qty),
+                    0
+                ),
             };
         case "UPDATE_DEFAULT_WISHLIST":
             return {
