@@ -5,7 +5,7 @@ const addToWishlist = async (state, product, alertDispatch) => {
         (wishlistProduct) => wishlistProduct._id === product._id
     );
     if (!isInWishlist) {
-        alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+        alertDispatch({ type: "SET_WISHLIST_LOADER", payload: { value: true } });
         try {
             const res = await axios.post(
                 `/api/user/wishlist`,
@@ -32,10 +32,6 @@ const addToWishlist = async (state, product, alertDispatch) => {
                         alertMsg: "Added to wishlist",
                     },
                 });
-                alertDispatch({
-                    type: "SET_LOADER",
-                    payload: { value: false },
-                });
                 return temp1;
             }
         } catch (err) {
@@ -46,13 +42,14 @@ const addToWishlist = async (state, product, alertDispatch) => {
                     alertMsg: err.message,
                 },
             });
-            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+        } finally {
+            alertDispatch({ type: "SET_WISHLIST_LOADER", payload: { value: false } });
         }
     }
 };
 
 const removeFromWishlist = async (state, id, alertDispatch) => {
-    alertDispatch({ type: "SET_LOADER", payload: { value: true } });
+    alertDispatch({ type: "SET_WISHLIST_LOADER", payload: { value: true } });
     try {
         const res = await axios.delete(`/api/user/wishlist/${id}`, {
             headers: {
@@ -66,7 +63,6 @@ const removeFromWishlist = async (state, id, alertDispatch) => {
                 idOfProduct: id,
                 wishlist: res.data.wishlist,
             };
-            alertDispatch({ type: "SET_LOADER", payload: { value: false } });
             return temp1;
         }
     } catch (err) {
@@ -77,7 +73,8 @@ const removeFromWishlist = async (state, id, alertDispatch) => {
                 alertMsg: err.message,
             },
         });
-        alertDispatch({ type: "SET_LOADER", payload: { value: false } });
+    } finally {
+        alertDispatch({ type: "SET_WISHLIST_LOADER", payload: { value: false } });
     }
 };
 

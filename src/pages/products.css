@@ -120,6 +120,10 @@
 	display: none;
 }
 
+.wishlist-disable .material-icons {
+	color: var(--dark-grey);
+}
+
 .activeButton .material-icons {
 	color: var(--danger);
 }

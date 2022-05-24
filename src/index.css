@@ -75,6 +75,10 @@ body {
 	background-color: var(--primary);
 }
 
+.btn:disabled {
+	cursor: not-allowed;
+}
+
 @media only screen and (min-width: 650px) {
 	.wishlist-listing,
 	.page-heading,
