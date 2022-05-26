@@ -128,10 +128,8 @@ function SingleProduct() {
                 }`}
                 onClick={handleAddToCart}
               >
-                {!alertState.cartLoader && (
-                  <span className="material-icons-outlined">add_shopping_cart</span>
-                )}
-                <span>{alertState.cartLoader ? "..." : "ADD TO CART"}</span>
+                <span className="material-icons-outlined">add_shopping_cart</span>
+                <span>{!itemFind ? "ADD TO CART" : "GO TO CART"}</span>
               </button>
               <button
                 className={`btn ls-1 px-0-5 py-1 ${
