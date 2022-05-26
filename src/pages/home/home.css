@@ -64,9 +64,3 @@
 .homequoteauthor {
 	text-align: right;
 }
-
-@media only screen and (min-width: 1000px) {
-	.game-card-overlay {
-		opacity: 0;
-	}
-}
