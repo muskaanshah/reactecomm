@@ -18,6 +18,7 @@
 	gap: 2rem;
 	padding: 1rem;
 	justify-content: center;
+	max-width: 80%;
 }
 
 .game-card {
