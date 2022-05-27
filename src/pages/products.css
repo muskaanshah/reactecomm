@@ -148,7 +148,7 @@
 	height: calc(100vh - 4rem);
 }
 
-.category-checkbox {
+.category-checkbox, input[type="radio"] {
 	accent-color: var(--primary);
 }
 
